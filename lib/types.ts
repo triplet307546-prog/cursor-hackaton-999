@@ -122,6 +122,7 @@ export interface ResearchRun {
   evidence: Evidence[];
   dedup_groups: DedupGroup[];
   config_snapshot: ScoringConfig;
-  llm: { mode: 'mock' | 'real'; dropped_quotes: number };
+  // promo/contentless 는 퍼널 첫 숫자(527)와 클러스터 합계의 차이를 화면이 설명하기 위한 값이다. 예전 run JSON 에는 없다.
+  llm: { mode: 'mock' | 'real'; dropped_quotes: number; promo_dropped?: number; contentless_dropped?: number };
   baseline?: BaselineResult;
 }

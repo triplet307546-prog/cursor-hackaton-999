@@ -69,6 +69,8 @@ describe("runPipeline (fixture)", () => {
       expect(cluster.ranking_reasons).toHaveLength(5);
     }
     expect(run.llm.dropped_quotes).toBe(0);
+    expect(typeof run.llm.promo_dropped).toBe("number");
+    expect(typeof run.llm.contentless_dropped).toBe("number");
     expect(run.llm.mode).toBe("mock");
   });
 

@@ -297,6 +297,11 @@ export async function runPipeline(
     evidence: classified.evidence,
     dedup_groups: groups,
     config_snapshot: structuredClone(cfg),
-    llm: { mode, dropped_quotes: classified.dropped },
+    llm: {
+      mode,
+      dropped_quotes: classified.dropped,
+      promo_dropped: classified.promo_dropped,
+      contentless_dropped: classified.contentless_dropped,
+    },
   };
 }
