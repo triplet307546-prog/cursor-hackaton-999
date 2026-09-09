@@ -48,7 +48,7 @@ function notExperiencedRatio(cluster: PainCluster): number {
   return cluster.counter.not_experienced / independent;
 }
 
-function baseOpportunityBand(cluster: PainCluster, cfg: ScoringConfig): Band {
+export function baseOpportunityBand(cluster: PainCluster, cfg: ScoringConfig): Band {
   const top = topRung(cluster.ladder, cfg.min_rung_obs);
   const topIndex = rungIndex(top);
 

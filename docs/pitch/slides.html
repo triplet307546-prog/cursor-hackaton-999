@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>PainRadar · 차별점 4장</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* 1920x1080 슬라이드 4장. ?slide=N 이면 그 장만 보인다(캡처용). 브라우저에서는 ←/→ 로 넘긴다. */
+:root{
+  --bg:#F5F4F0;--surface:#fff;--ink:#16150F;--ink-2:#4A4944;--muted:#8A8983;--line:#E4E2DB;--line-2:#D2D0C8;
+  --c-complaint:#8B929C;--c-workaround:#4EA6EA;--c-alt:#9E82F0;--c-switch:#F2913E;--c-pay:#2ED38F;--c-counter:#F4536F;
+  --mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+  --sans:"Noto Sans KR","Pretendard","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:#111;font-family:var(--sans);color:var(--ink)}
+body{scroll-snap-type:y mandatory;overflow-y:auto;height:100vh}
+.slide{width:1920px;height:1080px;background:var(--bg);position:relative;overflow:hidden;padding:64px 120px 72px;display:flex;flex-direction:column;scroll-snap-align:start;margin:0 auto}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+p,h1,h2{margin:0}
+.no{position:absolute;right:104px;top:64px;font-family:var(--mono);font-size:160px;font-weight:600;color:#E4E2DB;line-height:1;letter-spacing:-.06em}
+.kicker{font-family:var(--mono);font-size:20px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+h1{font-size:56px;font-weight:900;letter-spacing:-.025em;line-height:1.15;margin-top:14px;position:relative}
+.lead{font-size:25px;color:var(--ink-2);line-height:1.5;margin-top:14px;max-width:1150px;position:relative}
+.body{flex:1;min-height:0;display:grid;gap:40px;margin-top:36px;align-items:stretch;position:relative}
+.take{display:flex;align-items:center;gap:18px;margin-top:24px;font-size:24px;color:var(--ink)}
+.take b{background:var(--ink);color:#fff;font-family:var(--mono);font-size:16px;padding:6px 12px;border-radius:8px;letter-spacing:.06em}
+.take em{font-style:normal;color:var(--muted);font-size:20px;margin-left:auto;font-family:var(--mono)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:22px}
+.foot{position:absolute;left:120px;bottom:34px;font-family:var(--mono);font-size:16px;color:var(--muted)}
+
+/* 1. echo */
+.echo-wrap{position:relative;border-radius:22px;background:linear-gradient(90deg,transparent 0 62%,rgba(0,0,0,.028) 62%)}
+.echo-wrap .lab{position:absolute;top:26px;font-family:var(--mono);font-size:20px;color:var(--muted)}
+.echo-wrap .lab.l{left:32px}.echo-wrap .lab.r{left:calc(62% + 32px)}
+.dot{position:absolute;width:16px;height:16px;border-radius:50%;background:var(--ink)}
+.dot.ghost{opacity:.13}
+.dot.rep{width:22px;height:22px;background:#0f7a52;box-shadow:0 0 0 6px rgba(46,211,143,.28)}
+.echo-wrap .count{position:absolute;right:36px;bottom:30px;text-align:right}
+.echo-wrap .count b{font-family:var(--mono);font-size:96px;font-weight:600;display:block;line-height:1}
+.echo-wrap .count small{font-size:22px;color:var(--muted)}
+.echo-wrap .from{position:absolute;left:32px;bottom:30px}
+.echo-wrap .from b{font-family:var(--mono);font-size:96px;font-weight:600;display:block;line-height:1;color:var(--muted);text-decoration:line-through;text-decoration-color:var(--c-counter);text-decoration-thickness:6px}
+.echo-wrap .from small{font-size:22px;color:var(--muted)}
+.infl{position:absolute;left:31%;top:52%;transform:translate(-50%,-50%) rotate(-5deg);font-family:var(--mono);font-size:34px;color:var(--c-counter);border:4px solid var(--c-counter);border-radius:14px;padding:10px 22px;background:rgba(245,244,240,.85)}
+.merge{display:flex;flex-direction:column;gap:14px;font-size:24px;justify-content:center;padding:36px 40px}
+.merge .l{padding:16px 22px;border:1.5px solid var(--line-2);border-radius:14px;background:#fff;color:var(--ink-2);display:flex;align-items:center}
+.merge .l em{font-style:normal;font-family:var(--mono);font-size:16px;color:var(--muted);margin-left:auto;padding-left:16px}
+.merge .arrow{text-align:center;color:var(--muted);font-size:40px;line-height:1}
+.merge .rep1{border:3px solid var(--ink);color:var(--ink);font-weight:700;position:relative}
+.merge .rep1 em{color:#fff;background:var(--ink);padding:3px 10px;border-radius:6px}
+
+/* 2. ladder */
+.ladder{position:relative;padding-left:40px;display:flex;flex-direction:column;justify-content:space-between}
+.ladder::before{content:"";position:absolute;left:10px;top:20px;bottom:20px;width:4px;background:var(--line-2);border-radius:2px}
+.rung{display:grid;grid-template-columns:230px 1fr 170px;gap:24px;align-items:center;position:relative;padding:10px 0}
+.rung::before{content:"";position:absolute;left:-38px;top:50%;width:20px;height:20px;border-radius:50%;background:var(--c);transform:translateY(-50%);box-shadow:0 0 0 6px var(--bg),0 0 0 9px var(--c)}
+.rung .name{font-weight:900;font-size:34px;line-height:1.1}
+.rung .name small{display:block;font-family:var(--mono);font-size:16px;color:var(--muted);font-weight:400;margin-top:2px}
+.rung .quote{font-size:25px;white-space:nowrap;color:var(--ink-2);padding:16px 26px;background:#fff;border:1.5px solid var(--line);border-radius:16px}
+.rung .w{font-family:var(--mono);font-size:18px;color:var(--muted);text-align:right}
+.rung.top .quote{background:rgba(46,211,143,.12);border-color:rgba(46,211,143,.6);color:var(--ink);font-weight:700}
+.rung.bottom .quote{color:var(--muted);text-decoration:line-through;text-decoration-color:rgba(0,0,0,.3);text-decoration-thickness:3px}
+.flip{padding:40px 44px;display:flex;flex-direction:column}
+.flip h2{font-size:22px;font-family:var(--mono);color:var(--muted);font-weight:400;letter-spacing:.1em;text-transform:uppercase}
+.flip svg{flex:1;width:100%;overflow:visible;margin-top:10px}
+.flip .axes{display:flex;justify-content:space-between;font-size:20px;color:var(--ink-2);font-weight:700;margin-top:6px}
+.flip text{font-family:var(--sans);font-size:22px;fill:var(--ink)}
+.flip text.r{font-family:var(--mono);fill:var(--muted)}
+.flip path{fill:none;stroke-linecap:round}
+.flip .hi{stroke:#0f7a52;stroke-width:8}
+.flip .lo{stroke:var(--c-counter);stroke-width:6}
+.flip .dim{stroke:var(--line-2);stroke-width:4}
+
+/* 3. counter */
+.cex{padding:40px 44px;display:flex;flex-direction:column;justify-content:center}
+.cex .h{display:flex;align-items:center;gap:20px;font-weight:900;font-size:32px;white-space:nowrap}
+.cex .h .stat{font-family:var(--mono);font-size:17px;color:var(--muted);font-weight:400;white-space:normal;line-height:1.2}
+.bd{margin-left:auto;font-family:var(--mono);font-size:20px;padding:8px 18px;border-radius:999px;border:2px solid}
+.bd.High{color:#0f7a52;border-color:rgba(46,211,143,.7);background:rgba(46,211,143,.14)}
+.bd.Medium{color:#8a5a00;border-color:rgba(242,193,78,.8);background:rgba(242,193,78,.18)}
+.bd.Low{color:#5a5f66;border-color:var(--line-2);background:#f1f0eb}
+.bd.was{text-decoration:line-through;opacity:.55;margin-left:auto}
+.bd.was+.bd{margin-left:0}
+.cm{position:relative;height:90px;margin-top:40px}
+.cm .bg{position:absolute;left:0;right:0;top:40px;height:18px;background:#EEEDE8;border-radius:9px}
+.cm .fg{position:absolute;left:0;top:40px;height:18px;border-radius:9px;background:var(--c-counter)}
+.cm .th{position:absolute;left:30%;top:22px;height:54px;width:4px;background:var(--ink)}
+.cm .th::after{content:"30% 하향선";position:absolute;left:12px;top:-6px;font-family:var(--mono);font-size:18px;color:var(--ink);white-space:nowrap}
+.cm .pct{position:absolute;top:64px;font-family:var(--mono);font-size:30px;font-weight:600;color:var(--c-counter);transform:translateX(-50%)}
+.ctypes{display:flex;gap:12px;margin-top:22px;flex-wrap:wrap}
+.ctypes span{font-size:20px;border:1.5px solid var(--line);border-radius:10px;padding:8px 16px;color:var(--ink-2);background:#fafaf7}
+.ctypes span b{font-family:var(--mono);margin-left:8px;color:var(--c-counter)}
+.verdict{margin-top:26px;font-size:26px;color:var(--ink-2)}
+.verdict b{color:var(--c-counter)}
+.verdict.ok b{color:#0f7a52}
+
+/* 4. code vs llm */
+.lanes{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.lane{padding:22px 28px}
+.lane .lh{font-family:var(--mono);font-size:17px;color:var(--muted);display:flex;align-items:center;gap:12px;margin-bottom:8px;letter-spacing:.08em}
+.lane .lh i{width:14px;height:14px;border-radius:50%;display:inline-block}
+.lane ul{margin:0;padding:0;list-style:none;font-size:22px}
+.lane li{padding:7px 0;border-top:1.5px dashed var(--line);color:var(--ink-2)}
+.lane li:first-child{border-top:0}
+.lane li.x{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--c-counter);text-decoration-thickness:3px}
+.lane li b{color:var(--ink);font-weight:700}
+.verify{padding:20px 26px}
+.orig{font-size:25px;line-height:1.5;color:var(--ink);padding:12px 20px;background:#FAFAF7;border-radius:14px;border:1.5px solid var(--line)}
+.orig .src{font-family:var(--mono);font-size:16px;color:var(--muted);display:block;margin-bottom:6px}
+.orig mark{background:rgba(46,211,143,.38);border-radius:4px;padding:0 2px}
+.qlist{margin-top:12px;display:flex;flex-direction:column;gap:8px}
+.ql{display:grid;grid-template-columns:150px 1fr 250px;gap:16px;align-items:center;font-size:22px;padding:8px 16px;border-radius:14px;border:1.5px solid var(--line)}
+.ql .ty{font-family:var(--mono);font-size:18px;padding:5px 12px;border-radius:8px;color:#fff;background:var(--c);text-align:center}
+.ql .qt{color:var(--ink-2)}
+.ql .res{font-family:var(--mono);font-size:20px;text-align:right;color:var(--muted)}
+.ql.ok{border-color:rgba(46,211,143,.6);background:rgba(46,211,143,.07)}
+.ql.ok .res{color:#0f7a52}
+.ql.bad{border-color:rgba(244,83,111,.6);background:rgba(244,83,111,.06);opacity:.7}
+.ql.bad .qt{text-decoration:line-through}
+.ql.bad .res{color:var(--c-counter)}
+</style>
+</head>
+<body>
+
+<!-- ===== 1 ===== -->
+<section class="slide" id="s1">
+  <span class="no">01</span>
+  <div class="kicker">에코 제거 · dedup</div>
+  <h1>언급 148건 ≠ 목소리 148개</h1>
+  <p class="lead">크롤링 도구는 148건을 그대로 148로 셉니다. PainRadar는 완전 동일 문장, 어미만 바꾼 문장, 같은 스레드 안에서 윗글을 되받은 답글을 묶어 대표 1건만 남깁니다.</p>
+  <div class="body" style="grid-template-columns:1.25fr .75fr">
+    <div class="card echo-wrap" id="echo">
+      <span class="lab l">언급</span><span class="lab r">독립 관측</span>
+      <div class="from"><b class="num">148</b><small>언급 (호가)</small></div>
+      <div class="count"><b class="num">11</b><small>독립 관측 (체결)</small></div>
+      <span class="infl">×13.5 inflation</span>
+    </div>
+    <div class="card merge">
+      <div class="l">정산 왜 이렇게 늦어요<em>원문</em></div>
+      <div class="l">정산 왜 이렇게 늦어요<em>완전 동일</em></div>
+      <div class="l">정산 왜이렇게 늦나요ㅠ<em>어미 변형</em></div>
+      <div class="l">↳ 저도요 정산 늦음<em>스레드 답글</em></div>
+      <div class="arrow">↓</div>
+      <div class="l rep1">정산 왜 이렇게 늦어요<em>대표 1건</em></div>
+    </div>
+  </div>
+  <div class="take"><b>TAKEAWAY</b>148 ÷ 11 = 13.5. 이 배수가 inflation이고, 3배를 넘으면 신뢰도 등급을 깎습니다.<em>reason: exact · near · thread_echo</em></div>
+  <span class="foot">PainRadar · 차별점 1/4</span>
+</section>
+
+<!-- ===== 2 ===== -->
+<section class="slide" id="s2">
+  <span class="no">02</span>
+  <div class="kicker">행동 사다리 · behavior ladder</div>
+  <h1>불만이 아니라 행동으로 순위를 매김</h1>
+  <p class="lead">불만 → 우회 → 대안 탐색 → 이탈 → 결제, 5단계. "짜증나요"는 맨 아래, "월 3만원 내고 딴 거 씁니다"는 맨 위. 그래서 언급 3위였던 CSV 수작업이 기회 1위로 올라옵니다.</p>
+  <div class="body" style="grid-template-columns:1.3fr .7fr">
+    <div class="ladder">
+      <div class="rung top" style="--c:var(--c-pay)"><div class="name">결제<small>payment</small></div><div class="quote">"월 3만원 내고 딴 거 씁니다"</div><div class="w">순위 반영 ●●●●●</div></div>
+      <div class="rung" style="--c:var(--c-switch)"><div class="name">이탈<small>switching</small></div><div class="quote">"결국 쿠팡윙으로 옮겼어요"</div><div class="w">순위 반영 ●●●●</div></div>
+      <div class="rung" style="--c:var(--c-alt)"><div class="name">대안 탐색<small>alternative_search</small></div><div class="quote">"혹시 자동으로 해주는 툴 있나요?"</div><div class="w">순위 반영 ●●●</div></div>
+      <div class="rung" style="--c:var(--c-workaround)"><div class="name">우회<small>workaround</small></div><div class="quote">"매일 밤 엑셀 매크로 돌려요"</div><div class="w">순위 반영 ●●</div></div>
+      <div class="rung bottom" style="--c:var(--c-complaint)"><div class="name">불만<small>complaint</small></div><div class="quote">"짜증나요 진짜"</div><div class="w">순위 제외</div></div>
+    </div>
+    <div class="card flip">
+      <h2>토글 한 번의 아하 모먼트</h2>
+      <svg viewBox="0 0 600 420" id="flip"></svg>
+      <div class="axes"><span>언급 순위</span><span>검증 순위</span></div>
+    </div>
+  </div>
+  <div class="take"><b>TAKEAWAY</b>한 단은 독립 관측 3건 이상일 때만 인정합니다. 불만만 많은 주제는 순위가 오르지 않습니다.<em>min_rung_obs = 3</em></div>
+  <span class="foot">PainRadar · 차별점 2/4</span>
+</section>
+
+<!-- ===== 3 ===== -->
+<section class="slide" id="s3">
+  <span class="no">03</span>
+  <div class="kicker">반박 근거 · counter evidence</div>
+  <h1>반박 근거를 같이 찾음</h1>
+  <p class="lead">"이미 업데이트로 해결됨", "무료 기능으로 충분함", "난 그런 적 없음" 3종을 따로 셉니다. 독립 관측의 30%를 넘으면 기회 등급을 자동으로 한 칸 내립니다. 크롤링 요약은 지지 근거만 모으죠.</p>
+  <div class="body" style="grid-template-columns:1fr 1fr">
+    <div class="card cex">
+      <div class="h">정산 지연 <span class="stat">독립 관측 11 · 반박 4</span><span class="bd Medium was">Medium</span><span class="bd Low">Opportunity Low</span></div>
+      <div class="cm"><div class="bg"></div><div class="fg" style="width:36%"></div><div class="th"></div><span class="pct" style="left:36%">36%</span></div>
+      <div class="ctypes"><span>이미 해결<b>3</b></span><span>대안으로 충분<b>1</b></span><span>경험 없음<b>0</b></span></div>
+      <p class="verdict"><b>36% ≥ 30%</b> → Medium에서 Low로 한 단계 하향</p>
+    </div>
+    <div class="card cex">
+      <div class="h">주문 CSV 수작업 <span class="stat">독립 관측 52 · 반박 2</span><span class="bd High">Opportunity High</span></div>
+      <div class="cm"><div class="bg"></div><div class="fg" style="width:4%"></div><div class="th"></div><span class="pct" style="left:4%">4%</span></div>
+      <div class="ctypes"><span>이미 해결<b>1</b></span><span>대안으로 충분<b>1</b></span><span>경험 없음<b>0</b></span></div>
+      <p class="verdict ok"><b>4% &lt; 30%</b> → 하향 없음, High 유지</p>
+    </div>
+  </div>
+  <div class="take"><b>TAKEAWAY</b>많이 말해도 반박이 붙으면 기회가 아닙니다. 기준은 고정값이고 결과를 보고 조정한 적이 없습니다.<em>counter_downgrade_ratio = 0.3</em></div>
+  <span class="foot">PainRadar · 차별점 3/4</span>
+</section>
+
+<!-- ===== 4 ===== -->
+<section class="slide" id="s4">
+  <span class="no">04</span>
+  <div class="kicker">역할 분리 · code counts, llm labels</div>
+  <h1>숫자는 코드가 세고, LLM은 라벨만 붙임</h1>
+  <p class="lead">LLM에게 "몇 건이야?"를 물으면 그럴듯한 숫자를 지어냅니다. 그래서 LLM은 문장 하나당 라벨과 인용문만 내고, 집계·중복 제거·순위는 전부 일반 코드가 합니다.</p>
+  <div class="body" style="grid-template-columns:1fr;grid-template-rows:auto 1fr;gap:24px">
+    <div class="lanes">
+      <div class="card lane">
+        <div class="lh"><i style="background:var(--c-alt)"></i>LLM 이 하는 일</div>
+        <ul><li><b>주제 이름</b> 붙이기</li><li>문장마다 <b>라벨</b> (우회 / 이탈 / 반박…)</li><li>라벨의 근거 <b>인용문</b> 1개</li><li class="x">몇 건인지 세기 · 순위 매기기</li></ul>
+      </div>
+      <div class="card lane">
+        <div class="lh"><i style="background:var(--ink)"></i>코드가 하는 일</div>
+        <ul><li>중복 제거 · <b>독립 관측</b> 세기</li><li>사다리 합계 · <b>반박 비율</b></li><li>임계값으로 <b>밴드 · 순위</b></li><li><b>인용문 원문 대조</b>, 없으면 폐기</li></ul>
+      </div>
+    </div>
+    <div class="card verify">
+      <div class="orig"><span class="src">youtube · 댓글 원문</span><span id="origText"></span></div>
+      <div class="qlist" id="qlist"></div>
+    </div>
+  </div>
+  <div class="take"><b>TAKEAWAY</b>q1 실측: 신호·반박 337건 중 22건(6.5%)이 원문에 없어 코드가 버렸습니다.<em>quote ⊂ text · 공백 제거 후 대조</em></div>
+  <span class="foot">PainRadar · 차별점 4/4</span>
+</section>
+
+<script>
+// ?slide=N → 그 장만 표시 (캡처용)
+const only=new URLSearchParams(location.search).get('slide');
+if(only){document.querySelectorAll('.slide').forEach(s=>{if(s.id!=='s'+only)s.remove()});document.body.style.height='1080px';document.body.style.overflow='hidden';}
+addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowDown')scrollBy(0,1080);if(e.key==='ArrowLeft'||e.key==='ArrowUp')scrollBy(0,-1080)});
+
+// 1. 점 148개 → 대표 11개 (끝 상태)
+(function(){
+  const wrap=document.getElementById('echo'); if(!wrap)return;
+  const sizes=[62,31,18,12,9,5,4,3,2,1,1];
+  const W=wrap.clientWidth,H=wrap.clientHeight, cols=19, gw=(W*0.62-90)/cols, gh=(H-260)/Math.ceil(148/cols);
+  let i=0;
+  sizes.forEach((n,g)=>{for(let k=0;k<n;k++,i++){
+    const d=document.createElement('i');
+    const rep=k===0;
+    d.className='dot'+(rep?' rep':' ghost');
+    // 멤버는 원래 격자 자리에 흐리게, 대표는 오른쪽 열로
+    const x=rep?W*0.62+70+ (g%2)*0: 45+(i%cols)*gw, y=rep?100+g*((H-250)/(sizes.length-1)):90+Math.floor(i/cols)*gh;
+    d.style.left=x+'px';d.style.top=y+'px';wrap.appendChild(d);
+    if(rep){const t=document.createElement('span');t.textContent=n+'건 대표';t.style.cssText=`position:absolute;left:${x+40}px;top:${y-4}px;font-family:var(--mono);font-size:18px;color:var(--muted)`;wrap.appendChild(t)}
+  }});
+})();
+
+// 2. 슬로프 (언급 3위 → 검증 1위)
+(function(){
+  const svg=document.getElementById('flip'); if(!svg)return;
+  const rows=[['정산 지연',1,5,'lo'],['광고비 대비 매출',2,2,'dim'],['주문 CSV 수작업',3,1,'hi'],['고객 문의 응대',4,3,'dim'],['재고 동기화',5,4,'dim'],['상품 사진 촬영',6,6,'dim']];
+  const y=r=>30+(r-1)*72, x0=210,x1=520;
+  let s='';
+  rows.forEach(([t,b,a,c])=>{s+=`<path class="${c}" d="M${x0} ${y(b)} C ${x0+140} ${y(b)}, ${x1-140} ${y(a)}, ${x1} ${y(a)}"/>`});
+  rows.forEach(([t,b,a,c])=>{s+=`<text x="${x0-16}" y="${y(b)+8}" text-anchor="end" style="${c==='dim'?'fill:#8A8983':''}">${t}</text><text class="r" x="${x1+16}" y="${y(a)+8}">${a}위${c==='hi'?' ▲2':c==='lo'?' ▼4':''}</text><circle cx="${x0}" cy="${y(b)}" r="7" fill="${c==='hi'?'#0f7a52':c==='lo'?'#F4536F':'#D2D0C8'}"/><circle cx="${x1}" cy="${y(a)}" r="7" fill="${c==='hi'?'#0f7a52':c==='lo'?'#F4536F':'#D2D0C8'}"/>`});
+  svg.innerHTML=s;
+})();
+
+// 4. 인용문 대조 (제품과 같은 규칙: 공백 제거 후 부분 문자열)
+(function(){
+  const text='정산이 매번 2주씩 밀려서 결국 월 3만원 내고 셀러허브 정산 알림 쓰고 있어요. 네이버 고객센터는 답이 없고요.';
+  const quotes=[{ty:'payment',c:'var(--c-pay)',q:'월 3만원 내고 셀러허브 정산 알림 쓰고 있어요'},{ty:'complaint',c:'var(--c-complaint)',q:'정산이 매번 2주씩 밀려서'},{ty:'switching',c:'var(--c-switch)',q:'네이버 정산 포기하고 쿠팡으로 옮겼어요'}];
+  function findRange(t,q){const target=q.replace(/\s+/g,'');const idx=[];let s='';for(let i=0;i<t.length;i++){if(/\s/.test(t[i]))continue;idx.push(i);s+=t[i]}const st=s.indexOf(target);if(st<0)return null;return [idx[st],idx[st+target.length-1]+1]}
+  const o=document.getElementById('origText'), l=document.getElementById('qlist'); if(!o)return;
+  const ranges=quotes.map(x=>findRange(text,x.q)).filter(Boolean).sort((a,b)=>a[0]-b[0]);
+  let html='',pos=0;ranges.forEach(([a,b])=>{html+=text.slice(pos,a)+'<mark>'+text.slice(a,b)+'</mark>';pos=b});o.innerHTML=html+text.slice(pos);
+  l.innerHTML=quotes.map(x=>{const ok=!!findRange(text,x.q);return `<div class="ql ${ok?'ok':'bad'}"><span class="ty" style="--c:${x.c}">${x.ty}</span><span class="qt">"${x.q}"</span><span class="res">${ok?'✓ 원문 일치 · 채택':'✗ 원문에 없음 · 폐기'}</span></div>`}).join('');
+})();
+</script>
+</body>
+</html>

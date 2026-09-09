@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import Hero from "@/components/Hero";
+import Stage from "@/components/Stage";
 import type { PipelineStep } from "@/lib/pipeline/run";
 import type { ResearchRun } from "@/lib/types";
 
@@ -94,6 +95,9 @@ export default function RunPage() {
   const [run, setRun] = useState<ResearchRun | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [replayIndex, setReplayIndex] = useState(0);
+  // 스테이지(순위 재계산) 다음에 흰색 상세 분석을 연다. Hero 자체는 그대로다.
+  const [showDetails, setShowDetails] = useState(false);
+  const detailsRef = useRef<HTMLDivElement>(null);
 
   // 700ms 간격으로 상태를 읽고, 끝나면 결과 파일을 한 번 읽는다.
   useEffect(() => {
@@ -114,6 +118,7 @@ export default function RunPage() {
       if (cancelled) return;
       setRun(loaded);
       setReplayIndex(0);
+      setShowDetails(false);
       setPhase(loaded.mode === "live" ? "ready" : "replay");
     };
 
@@ -159,6 +164,12 @@ export default function RunPage() {
     };
   }, [phase]);
 
+  useEffect(() => {
+    if (showDetails) {
+      detailsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [showDetails]);
+
   const activeIndex =
     phase === "replay"
       ? replayIndex
@@ -186,7 +197,16 @@ export default function RunPage() {
           <Stepper activeIndex={activeIndex} detail={detail} />
         )}
 
-        {phase === "ready" && run && <Hero run={run} />}
+        {phase === "ready" && run && (
+          <>
+            <Stage run={run} onOpenDetails={() => setShowDetails(true)} />
+            {showDetails && (
+              <div ref={detailsRef} className="scroll-mt-4">
+                <Hero run={run} />
+              </div>
+            )}
+          </>
+        )}
       </div>
     </main>
   );

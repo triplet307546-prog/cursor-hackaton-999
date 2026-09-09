@@ -1,0 +1,665 @@
+/* 어두운 "순위 재계산" 스테이지. 값은 전부 run JSON 에서 오고 여기서는 그리기만 한다. */
+.stage {
+  --stage: #0e1013;
+  --stage-2: #161a20;
+  --stage-3: #1f252d;
+  --ink: #eceae4;
+  --muted: #8b929c;
+  --line: #2a313b;
+  --high: #2ed38f;
+  --medium: #f2c14e;
+  --low: #8b929c;
+  --counter: #f4536f;
+  --mono: var(--font-geist-mono), ui-monospace, Menlo, Consolas, monospace;
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  border-radius: 22px;
+  padding: 24px 28px 28px;
+  background: var(--stage);
+  color: var(--ink);
+  box-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.45);
+}
+.stage::before {
+  content: "";
+  position: absolute;
+  inset: -40% -20% auto -20%;
+  height: 70%;
+  background: radial-gradient(60% 60% at 50% 50%, rgba(78, 166, 234, 0.14), transparent 70%);
+  pointer-events: none;
+  transition: background 1s;
+}
+.stage[data-step="4"]::before {
+  background: radial-gradient(60% 60% at 50% 50%, rgba(46, 211, 143, 0.18), transparent 70%);
+}
+.num {
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- head ---------- */
+.head {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+}
+.kicker {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.seg {
+  position: relative;
+  display: inline-flex;
+  padding: 4px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--stage-2);
+}
+.seg button {
+  position: relative;
+  z-index: 1;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+.seg button.on {
+  color: var(--stage);
+}
+.thumb {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 4px;
+  width: calc(50% - 4px);
+  border-radius: 999px;
+  background: var(--ink);
+  transition: transform 0.45s var(--ease), background 0.45s;
+}
+.seg.right .thumb {
+  transform: translateX(100%);
+  background: var(--high);
+}
+.seg.right button.on {
+  color: #052b1b;
+}
+.ghost {
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.3s, color 0.3s;
+}
+.ghost:hover {
+  background: var(--stage-2);
+}
+.ghost:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+.cta {
+  margin-left: auto;
+}
+.stage[data-step="4"] .cta {
+  border-color: var(--high);
+  color: var(--high);
+  animation: glow 1.6s var(--ease) infinite alternate;
+}
+@keyframes glow {
+  from { box-shadow: 0 0 0 0 rgba(46, 211, 143, 0); }
+  to { box-shadow: 0 0 0 6px rgba(46, 211, 143, 0.18); }
+}
+.steps {
+  display: flex;
+  gap: 6px;
+}
+.steps button {
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--muted);
+  border-radius: 8px;
+  padding: 5px 9px;
+  font-size: 11px;
+  font-family: var(--mono);
+  cursor: pointer;
+  transition: all 0.25s;
+}
+.steps button.done {
+  border-color: rgba(236, 234, 228, 0.35);
+  color: var(--ink);
+}
+.steps button.now {
+  background: var(--ink);
+  color: var(--stage);
+  border-color: var(--ink);
+}
+
+/* ---------- caption ---------- */
+.caption {
+  margin: 20px 0 16px;
+  min-height: 52px;
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+}
+.caption small {
+  display: block;
+  margin-top: 4px;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--muted);
+}
+.swap {
+  animation: rise 0.5s var(--ease);
+}
+@keyframes rise {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ---------- body ---------- */
+.body {
+  display: grid;
+  grid-template-columns: 1fr 240px;
+  gap: 24px;
+}
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 10px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.legend i {
+  display: inline-block;
+  width: 14px;
+  height: 9px;
+  margin-right: 5px;
+  border-radius: 2px;
+  vertical-align: -1px;
+}
+.legend .hollow {
+  border: 1.5px dashed rgba(236, 234, 228, 0.5);
+}
+.legend .ind {
+  background: #b8bec6;
+}
+.legend .sw {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+.legend .lad {
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.stage[data-step="2"] .legend .lad,
+.stage[data-step="3"] .legend .lad,
+.stage[data-step="4"] .legend .lad {
+  opacity: 1;
+}
+
+.cards {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 60px 1fr 170px;
+  gap: 16px;
+  align-items: center;
+  padding: 14px 18px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--stage-2);
+  cursor: default;
+  transition: border-color 0.5s, background 0.5s, box-shadow 0.5s;
+}
+.stage[data-step="4"] .card {
+  cursor: pointer;
+}
+.card.hot {
+  border-color: rgba(46, 211, 143, 0.55);
+  background: linear-gradient(90deg, rgba(46, 211, 143, 0.1), var(--stage-2) 55%);
+  box-shadow: 0 0 0 1px rgba(46, 211, 143, 0.25), 0 20px 40px -20px rgba(46, 211, 143, 0.35);
+}
+.card.cold {
+  border-color: rgba(244, 83, 111, 0.45);
+}
+
+.rank {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+.rankNum {
+  position: relative;
+  width: 44px;
+  height: 32px;
+  overflow: hidden;
+  font-family: var(--mono);
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 1;
+}
+.rankNum span {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transition: transform 0.55s var(--ease), opacity 0.4s;
+}
+.rankNum .new {
+  transform: translateY(120%);
+  opacity: 0;
+}
+.stage[data-step="4"] .rankNum .old {
+  transform: translateY(-120%);
+  opacity: 0;
+}
+.stage[data-step="4"] .rankNum .new {
+  transform: translateY(0);
+  opacity: 1;
+}
+.delta {
+  font-family: var(--mono);
+  font-size: 11px;
+  padding: 1px 6px;
+  border-radius: 5px;
+  opacity: 0;
+  transform: scale(0.7);
+  transition: all 0.4s var(--ease) 0.35s;
+}
+.delta.up {
+  background: rgba(46, 211, 143, 0.18);
+  color: var(--high);
+}
+.delta.down {
+  background: rgba(244, 83, 111, 0.18);
+  color: var(--counter);
+}
+.delta.same {
+  color: var(--muted);
+}
+.stage[data-step="4"] .delta {
+  opacity: 1;
+  transform: none;
+}
+
+.main {
+  min-width: 0;
+}
+.row1 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 24px;
+  margin-bottom: 8px;
+}
+.title {
+  flex: 0 1 auto;
+  min-width: 0;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* 숨긴 칩은 자리도 차지하지 않는다 (제목이 밀려 잘리지 않게). 나타날 때만 짧게 떠오른다. */
+.chip {
+  display: none;
+  font-family: var(--mono);
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+.chip.show {
+  display: inline-block;
+  animation: chipIn 0.4s var(--ease);
+}
+@keyframes chipIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: none; }
+}
+.chip.infl {
+  border-color: rgba(244, 83, 111, 0.4);
+  color: var(--counter);
+  background: rgba(244, 83, 111, 0.1);
+}
+.chip.ctr {
+  border-color: rgba(244, 83, 111, 0.55);
+  color: #fff;
+  background: var(--counter);
+  font-weight: 600;
+}
+.band {
+  margin-left: auto;
+  font-family: var(--mono);
+  font-size: 11px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  border: 1px solid;
+  opacity: 0;
+  transition: all 0.4s;
+}
+.band.show {
+  opacity: 1;
+}
+.band.High {
+  color: var(--high);
+  border-color: rgba(46, 211, 143, 0.45);
+  background: rgba(46, 211, 143, 0.1);
+}
+.band.Medium {
+  color: var(--medium);
+  border-color: rgba(242, 193, 78, 0.45);
+  background: rgba(242, 193, 78, 0.1);
+}
+.band.Low {
+  color: var(--low);
+  border-color: rgba(139, 146, 156, 0.45);
+  background: rgba(139, 146, 156, 0.1);
+}
+.band.stamp {
+  animation: stamp 0.5s var(--ease);
+}
+@keyframes stamp {
+  0% { transform: scale(1.5) rotate(-6deg); opacity: 0; }
+  60% { transform: scale(0.95) rotate(0); opacity: 1; }
+  100% { transform: none; }
+}
+
+/* 막대 3겹: 점선 = 언급, 회색 = 독립 관측, 색 분절 = 사다리 */
+.track {
+  position: relative;
+  height: 22px;
+}
+.barRaw {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--raw);
+  border: 1.5px dashed rgba(236, 234, 228, 0.45);
+  border-radius: 6px;
+  transition: border-color 0.6s;
+}
+.stage[data-step="0"] .barRaw {
+  border-color: rgba(236, 234, 228, 0.7);
+}
+.echo {
+  position: absolute;
+  inset: 3px 3px 3px auto;
+  left: calc(var(--ind) - 3px);
+  width: calc(var(--raw) - var(--ind));
+  border-radius: 0 4px 4px 0;
+  background: repeating-linear-gradient(135deg, rgba(244, 83, 111, 0.35) 0 3px, transparent 3px 7px);
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.stage[data-step="1"] .echo {
+  opacity: 1;
+}
+.barInd {
+  position: absolute;
+  inset: 3px auto 3px 3px;
+  width: calc(var(--raw) - 6px);
+  display: flex;
+  border-radius: 4px;
+  overflow: hidden;
+  transition: width 0.9s var(--ease);
+}
+.stage:not([data-step="0"]) .barInd {
+  width: calc(var(--ind) - 6px);
+}
+.segm {
+  flex: var(--n) 0 0;
+  background: #b8bec6;
+  transition: background 0.6s;
+}
+.stage[data-step="2"] .segm,
+.stage[data-step="3"] .segm,
+.stage[data-step="4"] .segm {
+  background: var(--c);
+}
+.stage[data-step="2"] .segm + .segm,
+.stage[data-step="3"] .segm + .segm,
+.stage[data-step="4"] .segm + .segm {
+  box-shadow: inset 1px 0 0 rgba(14, 16, 19, 0.7);
+}
+.stage[data-step="2"] .segm.complaint,
+.stage[data-step="3"] .segm.complaint,
+.stage[data-step="4"] .segm.complaint {
+  background: repeating-linear-gradient(135deg, rgba(139, 146, 156, 0.45) 0 4px, rgba(139, 146, 156, 0.15) 4px 8px);
+}
+
+.meter {
+  position: relative;
+  height: 0;
+  margin-top: 0;
+  overflow: hidden;
+  transition: height 0.5s var(--ease), margin 0.5s;
+}
+.stage[data-step="3"] .meter,
+.stage[data-step="4"] .meter {
+  height: 14px;
+  margin-top: 8px;
+}
+.meterBg {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 5px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--stage-3);
+}
+.meterFg {
+  position: absolute;
+  left: 0;
+  top: 5px;
+  height: 4px;
+  width: 0;
+  border-radius: 2px;
+  background: var(--counter);
+  transition: width 1s var(--ease) 0.2s;
+}
+.stage[data-step="3"] .meterFg,
+.stage[data-step="4"] .meterFg {
+  width: var(--ctr);
+}
+.meterTh {
+  position: absolute;
+  left: var(--th);
+  top: 0;
+  height: 14px;
+  width: 1px;
+  background: rgba(236, 234, 228, 0.6);
+}
+.meterTh::after {
+  content: attr(data-label);
+  position: absolute;
+  left: 4px;
+  top: -2px;
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--muted);
+}
+/* 반박 비율 숫자는 오른쪽 끝에 고정한다 (임계선 라벨과 겹치지 않게). */
+.meterLab {
+  position: absolute;
+  right: 0;
+  top: -2px;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--counter);
+  opacity: 0;
+  transition: opacity 0.4s 1s;
+}
+.stage[data-step="3"] .meterLab,
+.stage[data-step="4"] .meterLab {
+  opacity: 1;
+}
+
+.nums {
+  text-align: right;
+}
+.big {
+  font-family: var(--mono);
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 1;
+}
+.big s {
+  margin-right: 6px;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--muted);
+  text-decoration-color: var(--counter);
+}
+.sub {
+  min-height: 14px;
+  margin-top: 4px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+}
+.lad {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 3px 8px;
+  margin-top: 6px;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.stage[data-step="2"] .lad,
+.stage[data-step="3"] .lad,
+.stage[data-step="4"] .lad {
+  opacity: 1;
+}
+.lad i {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  white-space: nowrap;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-style: normal;
+  color: var(--muted);
+}
+.lad i::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--c);
+}
+
+.reasons {
+  grid-column: 1 / -1;
+  display: none;
+  margin-top: 2px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--line);
+  font-size: 13px;
+  color: var(--muted);
+}
+.card.open .reasons {
+  display: block;
+}
+.reasons ol {
+  margin: 0;
+  padding-left: 18px;
+}
+.reasons li {
+  margin: 2px 0;
+}
+.hint {
+  margin-top: 14px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* ---------- slope ---------- */
+.slope {
+  position: relative;
+}
+.axes {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+}
+.slope svg {
+  display: block;
+  width: 100%;
+  overflow: visible;
+}
+.slope path {
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+.slope text {
+  font-family: var(--mono);
+  font-size: 9px;
+  fill: var(--muted);
+}
+.note {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--muted);
+  opacity: 0;
+  transition: opacity 0.5s 0.6s;
+}
+.stage[data-step="4"] .note {
+  opacity: 1;
+}
+
+@media (max-width: 960px) {
+  .body {
+    grid-template-columns: 1fr;
+  }
+  .slope {
+    display: none;
+  }
+  .card {
+    grid-template-columns: 52px 1fr 110px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .stage *,
+  .stage::before {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
