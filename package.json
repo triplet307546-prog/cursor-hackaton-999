@@ -1,0 +1,33 @@
+{
+  "name": "workspace",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "test": "vitest run",
+    "run:fixture": "node --env-file-if-exists=.env.local --import tsx scripts/run.ts --fixture",
+    "run:cached": "node --env-file-if-exists=.env.local --import tsx scripts/run.ts --cached",
+    "run:raw": "node --env-file-if-exists=.env.local --import tsx scripts/run.ts --raw",
+    "fetch:youtube": "node --env-file-if-exists=.env.local --import tsx scripts/fetch-youtube.ts"
+  },
+  "dependencies": {
+    "next": "16.3.4",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^26.5.0",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.3.4",
+    "tailwindcss": "^4",
+    "tsx": "^4.23.13",
+    "typescript": "^5",
+    "vitest": "^5.0.0"
+  }
+}
