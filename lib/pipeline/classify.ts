@@ -93,8 +93,12 @@ function compactForQuote(text: string): string {
 }
 
 function quoteMatchesSource(quote: string, textRaw: string): boolean {
+  // LLM 이 quote 키를 빼고 돌려주는 경우가 있어 문자열이 아니면 불일치로 센다.
+  if (typeof quote !== "string" || quote.length < 4) {
+    return false;
+  }
   const compactQuote = compactForQuote(quote);
-  if (quote.length < 4 || compactQuote.length < 4) {
+  if (compactQuote.length < 4) {
     return false;
   }
   return compactForQuote(textRaw).includes(compactQuote);
