@@ -10,7 +10,7 @@ import type {
   ResearchRun,
   ScoringConfig,
 } from "@/lib/types";
-import EvidenceDrawer, {
+import {
   COUNTER_LABELS,
   RUNG_LABELS,
   SIGNAL_STYLES,
@@ -389,10 +389,10 @@ function RankColumn({
   );
 }
 
-export default function Hero({ run }: { run: ResearchRun }) {
+// 드로어 상태는 app/run/[id]/page.tsx 가 갖는다. 스테이지와 같은 드로어를 쓰기 위해서다.
+export default function Hero({ run, onSelect }: { run: ResearchRun; onSelect: SelectHandler }) {
   const [view, setView] = useState<RankView>("raw");
   const [expanded, setExpanded] = useState<{ column: RankView; id: string } | null>(null);
-  const [selection, setSelection] = useState<EvidenceSelection | null>(null);
 
   const cfg = run.config_snapshot;
   // RAW RANK 는 rank_before(언급 많은 순), VERIFIED RANK 는 rank_after 순. 둘 다 JSON 값만 쓴다.
@@ -415,7 +415,7 @@ export default function Hero({ run }: { run: ResearchRun }) {
         <ViewToggle view={view} onChange={setView} />
       </header>
 
-      <Funnel run={run} onSelect={setSelection} />
+      <Funnel run={run} onSelect={onSelect} />
 
       {signalsMatch && (
         <div className="rounded-xl border border-emerald-300 bg-emerald-50 px-5 py-3 text-sm font-medium text-emerald-800">
@@ -434,7 +434,7 @@ export default function Hero({ run }: { run: ResearchRun }) {
           highlightTop={false}
           expandedId={expanded?.column === "raw" ? expanded.id : null}
           onToggle={toggleExpanded("raw")}
-          onSelect={setSelection}
+          onSelect={onSelect}
         />
         <RankColumn
           title="검증 순위"
@@ -446,16 +446,9 @@ export default function Hero({ run }: { run: ResearchRun }) {
           highlightTop
           expandedId={expanded?.column === "verified" ? expanded.id : null}
           onToggle={toggleExpanded("verified")}
-          onSelect={setSelection}
+          onSelect={onSelect}
         />
       </div>
-
-      <EvidenceDrawer
-        run={run}
-        selection={selection}
-        onClose={() => setSelection(null)}
-        onSelect={setSelection}
-      />
     </div>
   );
 }

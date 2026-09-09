@@ -6,12 +6,13 @@ import {
   useRef,
   useState,
   useSyncExternalStore,
+  type MouseEvent,
   type ReactNode,
 } from "react";
 
 import { RUNG_ORDER, baseOpportunityBand } from "@/lib/pipeline/score";
 import type { Band, PainCluster, ResearchRun, SignalType } from "@/lib/types";
-import { RUNG_LABELS } from "./EvidenceDrawer";
+import { RUNG_LABELS, type ClusterMetric, type EvidenceSelection } from "./EvidenceDrawer";
 import s from "./Stage.module.css";
 
 // 질문 화면과 흰색 분석 화면 사이에 끼는 "순위 재계산" 장면.
@@ -164,6 +165,27 @@ function Num({ value, ms = 700 }: { value: number; ms?: number }) {
   return <>{shown}</>;
 }
 
+// 카드 안의 숫자 버튼. 카드 펼침(onClick)과 분리되어야 하므로 전파를 막는다. Hero 의 NumberButton 과 같은 규칙.
+function NumBtn({
+  onSelect,
+  className = "",
+  children,
+}: {
+  onSelect: () => void;
+  className?: string;
+  children: ReactNode;
+}) {
+  const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+    onSelect();
+  };
+  return (
+    <button type="button" className={`${s.numBtn} ${className}`} onClick={handleClick}>
+      {children}
+    </button>
+  );
+}
+
 // ---------- 카드 ----------
 
 function Card({
@@ -173,6 +195,7 @@ function Card({
   threshold,
   open,
   onToggle,
+  onSelect,
 }: {
   row: Row;
   step: Step;
@@ -180,8 +203,11 @@ function Card({
   threshold: number;
   open: boolean;
   onToggle: () => void;
+  onSelect: (selection: EvidenceSelection) => void;
 }) {
   const { c } = row;
+  const select = (metric: ClusterMetric) =>
+    onSelect({ scope: "cluster", clusterId: c.cluster_id, metric });
   const delta = c.rank_before - c.rank_after;
   const rawPct = (c.raw_mentions / max) * 100;
   const indPct = (c.independent_observations / max) * 100;
@@ -189,17 +215,21 @@ function Card({
   const bandChanged = step >= 3 && row.downgraded;
 
   let big: number;
+  let bigMetric: ClusterMetric;
   let strike: ReactNode = null;
   let sub: string;
   if (step === 0) {
     big = c.raw_mentions;
+    bigMetric = { kind: "raw_mentions" };
     sub = "언급";
   } else if (step === 1) {
     big = c.independent_observations;
+    bigMetric = { kind: "independent_observations" };
     strike = <s>{c.raw_mentions}</s>;
     sub = "독립 관측";
   } else {
     big = c.supporting_evidence;
+    bigMetric = { kind: "supporting_evidence" };
     sub = `행동 신호 (${row.recognizedRungs}단 인정)`;
   }
 
@@ -235,9 +265,12 @@ function Card({
           <span className={`${s.chip} ${s.infl} ${step >= 1 && c.inflation >= 3 ? s.show : ""}`}>
             ×{c.inflation.toFixed(1)} 인플레이션
           </span>
-          <span className={`${s.chip} ${s.ctr} ${step >= 3 && row.downgraded ? s.show : ""}`}>
+          <NumBtn
+            className={`${s.chip} ${s.ctr} ${step >= 3 && row.downgraded ? s.show : ""}`}
+            onSelect={() => select({ kind: "counter_evidence" })}
+          >
             반박 {pct(row.ratio)}% ▼ 하향
-          </span>
+          </NumBtn>
           <span
             key={band}
             className={`${s.band} ${s[band]} ${step >= 2 ? s.show : ""} ${bandChanged ? s.stamp : ""}`}
@@ -270,21 +303,27 @@ function Card({
           <div className={s.meterBg} />
           <div className={s.meterFg} />
           <div className={s.meterTh} data-label={`${threshold}%`} />
-          <span className={s.meterLab}>{pct(row.ratio)}%</span>
+          <NumBtn className={s.meterLab} onSelect={() => select({ kind: "counter_evidence" })}>
+            {pct(row.ratio)}%
+          </NumBtn>
         </div>
       </div>
 
       <div className={s.nums}>
         <div className={s.big}>
           {strike}
-          <Num value={big} />
+          <NumBtn onSelect={() => select(bigMetric)}>
+            <Num value={big} />
+          </NumBtn>
         </div>
         <div className={s.sub}>{sub}</div>
         <div className={s.lad}>
           {BEHAVIOR_RUNGS.filter((type) => c.ladder[type] > 0).map((type) => (
-            <i key={type} style={{ "--c": RUNG_COLORS[type] } as React.CSSProperties}>
-              {RUNG_LABELS[type]} {c.ladder[type]}
-            </i>
+            <NumBtn key={type} onSelect={() => select({ kind: "ladder", type })}>
+              <i style={{ "--c": RUNG_COLORS[type] } as React.CSSProperties}>
+                {RUNG_LABELS[type]} {c.ladder[type]}
+              </i>
+            </NumBtn>
           ))}
         </div>
       </div>
@@ -366,9 +405,11 @@ function Slope({
 export default function Stage({
   run,
   onOpenDetails,
+  onSelect,
 }: {
   run: ResearchRun;
   onOpenDetails: () => void;
+  onSelect: (selection: EvidenceSelection) => void;
 }) {
   const rows = buildRows(run);
   const max = Math.max(1, ...rows.map((row) => row.c.raw_mentions));
@@ -583,12 +624,13 @@ export default function Stage({
                 onToggle={() =>
                   setOpenId((current) => (current === row.c.cluster_id ? null : row.c.cluster_id))
                 }
+                onSelect={onSelect}
               />
             ))}
           </ol>
           <p className={s.hint}>
             {step === 4
-              ? "카드를 누르면 코드가 쓴 순위 이유가 펼쳐집니다. 숫자별 근거 원문은 아래 상세 화면에서 엽니다."
+              ? "카드를 누르면 코드가 쓴 순위 이유가 펼쳐집니다. 숫자를 누르면 그 숫자의 근거 원문이 열립니다."
               : "검증 순위를 누르면 네 단계가 차례로 재생됩니다."}
           </p>
         </div>

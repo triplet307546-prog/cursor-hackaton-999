@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
+import EvidenceDrawer, { type EvidenceSelection } from "@/components/EvidenceDrawer";
 import Hero from "@/components/Hero";
 import Stage from "@/components/Stage";
 import type { PipelineStep } from "@/lib/pipeline/run";
@@ -97,6 +98,8 @@ export default function RunPage() {
   const [replayIndex, setReplayIndex] = useState(0);
   // 스테이지(순위 재계산) 다음에 흰색 상세 분석을 연다. Hero 자체는 그대로다.
   const [showDetails, setShowDetails] = useState(false);
+  // 근거 드로어. 스테이지 카드의 숫자와 Hero 의 숫자가 같은 드로어를 연다.
+  const [selection, setSelection] = useState<EvidenceSelection | null>(null);
   const detailsRef = useRef<HTMLDivElement>(null);
 
   // 700ms 간격으로 상태를 읽고, 끝나면 결과 파일을 한 번 읽는다.
@@ -119,6 +122,7 @@ export default function RunPage() {
       setRun(loaded);
       setReplayIndex(0);
       setShowDetails(false);
+      setSelection(null);
       setPhase(loaded.mode === "live" ? "ready" : "replay");
     };
 
@@ -199,12 +203,22 @@ export default function RunPage() {
 
         {phase === "ready" && run && (
           <>
-            <Stage run={run} onOpenDetails={() => setShowDetails(true)} />
+            <Stage
+              run={run}
+              onOpenDetails={() => setShowDetails(true)}
+              onSelect={setSelection}
+            />
             {showDetails && (
               <div ref={detailsRef} className="scroll-mt-4">
-                <Hero run={run} />
+                <Hero run={run} onSelect={setSelection} />
               </div>
             )}
+            <EvidenceDrawer
+              run={run}
+              selection={selection}
+              onClose={() => setSelection(null)}
+              onSelect={setSelection}
+            />
           </>
         )}
       </div>

@@ -326,6 +326,28 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+/* 숫자 버튼. 겉모양은 감싼 글자 그대로 두고, 점선 밑줄로 누를 수 있음을 알린다. */
+.numBtn {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  text-decoration: underline dotted;
+  text-decoration-color: rgba(139, 146, 156, 0.6);
+  text-underline-offset: 3px;
+}
+.numBtn:hover {
+  text-decoration-color: currentColor;
+}
+.numBtn:focus-visible {
+  outline: 2px solid rgba(78, 166, 234, 0.8);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
 /* 숨긴 칩은 자리도 차지하지 않는다 (제목이 밀려 잘리지 않게). 나타날 때만 짧게 떠오른다. */
 .chip {
   display: none;
