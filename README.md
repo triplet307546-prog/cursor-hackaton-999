@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PainRadar
 
-## Getting Started
+YouTube 댓글처럼 공개 커뮤니티에 쌓인 언급을, 같은 말·스레드 반복을 뺀 **독립 관측**으로 바꾸고, 불만이 아니라 우회·대안 탐색·이탈·결제 같은 **행동 신호**로 기회 순위를 다시 매기는 도구입니다. 1박 2일 해커톤 MVP이며, 저장은 `data/` 아래 JSON 파일뿐입니다.
 
-First, run the development server:
+## 핵심 아이디어
+
+- **언급 수 ≠ 독립 관측.** 같은 말과 스레드 메아리를 빼야 한 번의 관측이 된다. 언급이 많아도 한 영상·한 타래에서 반복이면 부풀어 오른 숫자다.
+- **행동 사다리.** 불만(complaint)만으로는 순위를 올리지 않는다. 우회 → 대안 탐색 → 이탈 → 결제 순으로 실제로 시간과 돈을 쓴 신호를 센다.
+- **반박 근거.** “이미 해결됨 / 다른 걸로 충분함”이 일정 비율을 넘으면 Opportunity 밴드를 한 단계 내린다. 많이 말해도 반박이 붙으면 기회가 아니다.
+
+## 아키텍처
+
+1. **수집** — YouTube Data API v3 공식 호출(또는 사용자 CSV). 스크래핑 없음.
+2. **정규화** — 원문 공백·형태를 맞추고, 작성자 필드는 파싱 단계에서 폐기.
+3. **중복 제거** — 완전 일치·유사 문장·스레드 메아리를 묶어 대표 1건만 독립 관측으로 남긴다.
+4. **LLM 라벨** — 주제 이름과 신호/반박 유형, 인용문(quote)만 붙인다. 숫자는 세지 않는다.
+5. **규칙 기반 밴드** — `config/scoring.json` 임계값으로 High/Medium/Low와 순위를 매긴다. 0~100점 없음.
+
+## 실행 방법
+
+환경변수와 명령은 [docs/ENVIRONMENT.md](docs/ENVIRONMENT.md)를 따른다.
 
 ```bash
+npm test
+npx tsc --noEmit
+npm run build
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+브라우저에서 `http://localhost:3000`을 연다. 시연은 사전 수집한 캐시(`data/runs/demo_cached.json` 등)를 읽는다. 발표 동선은 [docs/PITCH.md](docs/PITCH.md).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 원칙: 숫자는 코드가 세고, LLM은 라벨만
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+LLM은 유형(type)과 인용문(quote)만 낸다. quote는 공백을 제거한 원문에 부분 문자열로 들어 있어야 하고, 없으면 코드가 버린다. 퍼널 숫자·사다리 합계·밴드·순위는 `lib/pipeline/`의 규칙이 계산한다.
 
-## Learn More
+## 하지 않는 것
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **작성자 식별** — `authorDisplayName`·`authorChannelId`는 파싱 단계에서 폐기한다. 저장 파일에 이름·ID·해시는 어떤 형태로도 없다.
+- **크롤링** — 공식 API와 사용자 CSV만 받는다. CAPTCHA 우회·프록시 회전·비공개 API 없음.
+- **점수화** — 0~100점은 없다. High/Medium/Low 밴드와 규칙이 만든 이유 문자열만 있다.
+- **판매자 문장을 신호로 세기** — 홍보(링크+연락/판매) 댓글은 신호를 비우고 제외한다.
+- **내용 없는 댓글을 언급으로 세기** — 이모지·감사 한마디 같은 무내용은 언급에서 빼고, 화면 캡션에 제외 건수를 적는다.
