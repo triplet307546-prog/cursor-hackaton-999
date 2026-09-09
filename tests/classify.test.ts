@@ -61,6 +61,34 @@ describe("classifyAll / validateLabels", () => {
     expect(validateLabels(batch, labels, themes, cfg).dropped).toBe(1);
   });
 
+  it("(b3) quote 누락·잘못된 type·모르는 id 는 죽지 않고 dropped 로 센다", () => {
+    const batch = [representatives[0]];
+    const sourceQuote = batch[0].text_raw.slice(0, 20);
+    const labels = [
+      {
+        evidence_id: batch[0].evidence_id,
+        pain_cluster_id: "c1",
+        is_noise: false,
+        signals: [
+          { type: "complaint", text: sourceQuote, confidence: 0.8 },
+          "complaint",
+          { type: "not_a_signal", quote: sourceQuote, confidence: 0.8 },
+          { type: "complaint", quote: sourceQuote, confidence: 0.9 },
+        ],
+        counter: [
+          { type: "already_solved", confidence: 0.8 },
+          { type: "alternative_search", quote: sourceQuote, confidence: 0.8 },
+        ],
+      },
+      { evidence_id: "id-not-in-batch", pain_cluster_id: "c1", is_noise: false, signals: [], counter: [] },
+    ] as unknown as RawLabel[];
+
+    const result = validateLabels(batch, labels, themes, cfg);
+    expect(result.dropped).toBe(5);
+    expect(result.evidence[0].signals).toHaveLength(1);
+    expect(result.evidence[0].counter).toHaveLength(0);
+  });
+
   it("(b2) 공백만 다른 quote 는 통과한다", () => {
     const batch = [representatives[0]];
     const snippet = batch[0].text_raw.slice(0, 16);

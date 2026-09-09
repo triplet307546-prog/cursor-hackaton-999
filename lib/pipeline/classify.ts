@@ -1,4 +1,5 @@
 import { callJson, llmMode, type LlmMode } from "../llm";
+import { RUNG_ORDER } from "./score";
 import type {
   CounterSignal,
   CounterType,
@@ -91,6 +92,13 @@ function compactForQuote(text: string): string {
   // NFKC 후 공백·줄바꿈을 없애야 띄어쓰기만 다른 인용도 같은 원문으로 본다.
   return text.normalize("NFKC").replace(/\s/gu, "");
 }
+
+const SIGNAL_TYPES: ReadonlySet<string> = new Set(RUNG_ORDER);
+const COUNTER_TYPES: ReadonlySet<string> = new Set<CounterType>([
+  "already_solved",
+  "alternative_sufficient",
+  "not_experienced",
+]);
 
 function quoteMatchesSource(quote: string, textRaw: string): boolean {
   // LLM 이 quote 키를 빼고 돌려주는 경우가 있어 문자열이 아니면 불일치로 센다.
@@ -186,7 +194,11 @@ export function validateLabels(
 
     let signals: Signal[] = [];
     for (const signal of raw.signals) {
-      if (!quoteMatchesSource(signal.quote, item.text_raw)) {
+      // type 이 목록 밖이면 ladder/counter 집계에서 NaN 이 되므로 quote 불일치와 같이 버린다.
+      if (
+        !SIGNAL_TYPES.has(signal?.type) ||
+        !quoteMatchesSource(signal.quote, item.text_raw)
+      ) {
         dropped += 1;
         continue;
       }
@@ -200,7 +212,10 @@ export function validateLabels(
 
     const counter: CounterSignal[] = [];
     for (const itemCounter of raw.counter) {
-      if (!quoteMatchesSource(itemCounter.quote, item.text_raw)) {
+      if (
+        !COUNTER_TYPES.has(itemCounter?.type) ||
+        !quoteMatchesSource(itemCounter.quote, item.text_raw)
+      ) {
         dropped += 1;
         continue;
       }
