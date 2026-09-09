@@ -92,6 +92,10 @@ function parseRequest(body: unknown): RunRequest | null {
   if (slug !== undefined && (typeof slug !== "string" || !SLUG_PATTERN.test(slug))) {
     return null;
   }
+  // slug 는 캐시 경로라 query 가 조용히 무시된다. 둘 다 오면 잘못된 호출이므로 거절한다.
+  if (slug !== undefined && query !== undefined) {
+    return null;
+  }
   // 검색어는 그대로 API URL 의 q 로 나가므로 질문과 같은 기준으로 검사한다.
   if (
     query !== undefined &&
@@ -266,7 +270,7 @@ export async function POST(request: Request): Promise<NextResponse> {
   const parsed = parseRequest(body);
   if (parsed === null) {
     return NextResponse.json(
-      { error: "question(문자열)과 선택적 slug([A-Za-z0-9_-])가 필요합니다." },
+      { error: "question(문자열)과 slug([A-Za-z0-9_-]) 또는 query 중 하나만 보낼 수 있습니다." },
       { status: 400 },
     );
   }
@@ -278,11 +282,10 @@ export async function POST(request: Request): Promise<NextResponse> {
       { status: 409 },
     );
   }
-  // after() 는 응답 뒤에 돌므로 플래그는 여기서 세운다. 두 요청이 연달아 와도 하나만 통과한다.
-  liveRunning = liveRunning || live;
-
   const id = createRunId(new Date());
   writeStatus(id, { step: "queued", done: false });
+  // after() 는 응답 뒤에 돌므로 플래그는 동기로 세운다. 위 준비 단계가 예외를 내도 플래그가 남지 않게 after() 직전이다.
+  liveRunning = liveRunning || live;
 
   after(async () => {
     await executeRun(id, parsed, live);
