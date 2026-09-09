@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import {
   useEffect,
   useLayoutEffect,
@@ -553,6 +554,9 @@ export default function Stage({
     <section className={s.stage} data-step={step} aria-label="순위 재계산">
       <div className={s.head}>
         <span className={s.kicker}>rank recount</span>
+        <Link href="/" className={s.ghost}>
+          ← 질문으로
+        </Link>
         <div className={`${s.seg} ${step === 4 ? s.right : ""}`}>
           <span className={s.thumb} />
           <button

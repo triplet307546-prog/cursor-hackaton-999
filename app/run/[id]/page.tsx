@@ -66,7 +66,7 @@ function Stepper({ activeIndex, detail }: { activeIndex: number; detail?: string
         })}
       </ol>
       <p className="mt-3 h-5 text-xs text-zinc-500">
-        {activeIndex < 0 ? "대기 중…" : detail ?? "\u00a0"}
+        {detail ?? (activeIndex < 0 ? "대기 중…" : "\u00a0")}
       </p>
     </div>
   );
@@ -181,15 +181,18 @@ export default function RunPage() {
   const detail = phase === "replay" ? undefined : status?.detail;
 
   return (
-    <main className="min-h-screen bg-zinc-50 text-zinc-900">
-      <div className="flex flex-col gap-2 px-3 py-2">
-        <div className="flex items-center gap-3 text-sm">
-          <Link href="/" className="text-zinc-500 hover:text-zinc-900">
-            ← 질문으로
-          </Link>
-          {run && run.mode !== "live" && <ModeBadge mode={run.mode} />}
-          <span className="ml-auto font-mono text-xs text-zinc-400">{id}</span>
-        </div>
+    <main className="min-h-screen bg-[#0e1013] text-zinc-100">
+      <div className="flex flex-col gap-1.5 p-1.5">
+        {/* 스테이지가 뜨면 이 줄은 접는다. "질문으로" 는 스테이지 머리에 들어 있다. */}
+        {phase !== "ready" && (
+          <div className="flex items-center gap-3 text-sm">
+            <Link href="/" className="text-zinc-500 hover:text-zinc-100">
+              ← 질문으로
+            </Link>
+            {run && run.mode !== "live" && <ModeBadge mode={run.mode} />}
+            <span className="ml-auto font-mono text-xs text-zinc-400">{id}</span>
+          </div>
+        )}
 
         {phase === "error" && (
           <p className="rounded-lg border border-rose-300 bg-rose-50 px-4 py-2 text-sm text-rose-700">
@@ -209,7 +212,7 @@ export default function RunPage() {
               onSelect={setSelection}
             />
             {showDetails && (
-              <div ref={detailsRef} className="scroll-mt-4">
+              <div ref={detailsRef} className="scroll-mt-2 rounded-xl bg-zinc-50 p-4 text-zinc-900">
                 <Hero run={run} onSelect={setSelection} />
               </div>
             )}
