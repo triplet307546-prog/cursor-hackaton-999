@@ -64,11 +64,12 @@ counter 정의:
 - not_experienced: 그런 적 없음/현재 방식에 만족
 
 출력 스키마 예시:
-[{"evidence_id":"e1","pain_cluster_id":"c1","is_noise":false,"signals":[{"type":"complaint","quote":"원문 연속 구간","confidence":0.8}],"counter":[]}]
+[{"evidence_id":"e1","pain_cluster_id":"c1","is_noise":false,"signals":[{"type":"complaint","quote":"원문 연속 구간","confidence":0.8}],"counter":[{"type":"already_solved","quote":"원문 연속 구간","confidence":0.7}]}]
 
 입력 evidence 마다 정확히 한 항목을 반환한다. 항목 수와 evidence 수는 같아야 한다.
 주제가 여러 개로 보여도 가장 맞는 것 하나만 고르고, 해당 없으면 is_noise:true 로 표시한다.
 
+signal 과 counter 모두 quote 가 필수다. note 같은 다른 키로 대신하지 말고, quote 를 못 찾으면 항목을 내지 않는다.
 quote 는 원문에서 20~60자 연속 구간을 한 글자도 바꾸지 말고 복사한다.
 이모지·ㅋㅋ·오타도 그대로.
 JSON 외 텍스트 금지.`;
