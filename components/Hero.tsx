@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useState, type MouseEvent, type ReactNode } from "react";
+import { Fragment, useEffect, useState, type MouseEvent, type ReactNode } from "react";
 
 import { RUNG_ORDER } from "@/lib/pipeline/score";
 import type {
@@ -87,6 +87,34 @@ function Badge({ label, band }: { label: string; band: Band }) {
   );
 }
 
+// 숫자가 0 에서 목표값까지 올라간다. 왼쪽부터 차례로(delay) 시작해 "언급 → 독립 관측 → 행동 신호 → 기회" 로 줄어드는 흐름이 보이게.
+function CountUp({ value, delay }: { value: number; delay: number }) {
+  const [shown, setShown] = useState(0);
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setShown(value);
+      return;
+    }
+    const duration = 700;
+    let start = 0;
+    let frame = 0;
+    const tick = (now: number) => {
+      if (!start) start = now;
+      const t = Math.min(1, (now - start) / duration);
+      setShown(Math.round(value * (1 - Math.pow(1 - t, 3))));
+      if (t < 1) frame = requestAnimationFrame(tick);
+    };
+    const timer = setTimeout(() => {
+      frame = requestAnimationFrame(tick);
+    }, delay);
+    return () => {
+      clearTimeout(timer);
+      cancelAnimationFrame(frame);
+    };
+  }, [value, delay]);
+  return <>{shown}</>;
+}
+
 function Funnel({ run, onSelect }: { run: ResearchRun; onSelect: SelectHandler }) {
   // 첫 숫자(언급)는 무내용을 빼지 않으므로 두 번째 숫자와의 차이를 여기서 설명한다. 예전 run JSON 에는 값이 없다.
   const { promo_dropped, contentless_dropped } = run.llm;
@@ -100,7 +128,10 @@ function Funnel({ run, onSelect }: { run: ResearchRun; onSelect: SelectHandler }
       {FUNNEL_STEPS.map((step, index) => (
         <Fragment key={step.key}>
           {index > 0 && (
-            <span className="flex flex-col items-center px-2">
+            <span
+              className="flex flex-col items-center px-2 animate-[funnel-in_0.5s_cubic-bezier(0.2,0.8,0.2,1)_both]"
+              style={{ animationDelay: `${index * 500 - 150}ms` }}
+            >
               <span className="text-2xl text-zinc-300">→</span>
               {index === 1 && exclusionCaption && (
                 <span className="whitespace-nowrap text-[10px] text-zinc-400">{exclusionCaption}</span>
@@ -110,11 +141,12 @@ function Funnel({ run, onSelect }: { run: ResearchRun; onSelect: SelectHandler }
           <button
             type="button"
             onClick={() => onSelect({ scope: "funnel", key: step.key })}
-            className="flex flex-col items-start rounded-lg px-3 py-1 text-left hover:bg-zinc-100"
+            className="flex flex-col items-start rounded-lg px-3 py-1 text-left hover:bg-zinc-100 animate-[funnel-in_0.5s_cubic-bezier(0.2,0.8,0.2,1)_both]"
+            style={{ animationDelay: `${index * 500}ms` }}
           >
             <span className="text-xs text-zinc-500">{step.label}</span>
             <span className="text-[32px] font-bold leading-none tabular-nums text-zinc-900">
-              {run.funnel[step.key]}
+              <CountUp value={run.funnel[step.key]} delay={index * 500} />
             </span>
           </button>
         </Fragment>
