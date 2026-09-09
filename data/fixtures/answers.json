@@ -1,0 +1,245 @@
+{
+  "expected_groups": [
+    {
+      "member_ids": [
+        "del-ex1-01",
+        "del-ex1-02",
+        "del-ex1-03",
+        "del-ex1-04",
+        "del-echo-01",
+        "del-echo-02"
+      ],
+      "reason": "exact"
+    },
+    {
+      "member_ids": [
+        "del-ex2-01",
+        "del-ex2-02",
+        "del-ex2-03",
+        "del-ex2-04",
+        "del-echo-03",
+        "del-echo-04"
+      ],
+      "reason": "exact"
+    },
+    {
+      "member_ids": [
+        "del-ne1-01",
+        "del-ne1-02",
+        "del-ne1-03",
+        "del-ne1-04",
+        "del-ne1-05",
+        "del-echo-05",
+        "del-echo-06"
+      ],
+      "reason": "near"
+    },
+    {
+      "member_ids": [
+        "del-ne2-01",
+        "del-ne2-02",
+        "del-ne2-03",
+        "del-ne2-04",
+        "del-ne2-05",
+        "del-echo-07",
+        "del-echo-08"
+      ],
+      "reason": "near"
+    },
+    {
+      "member_ids": [
+        "del-ne3-01",
+        "del-ne3-02",
+        "del-ne3-03",
+        "del-ne3-04",
+        "del-echo-09",
+        "del-echo-10"
+      ],
+      "reason": "near"
+    },
+    {
+      "member_ids": [
+        "del-ne4-01",
+        "del-ne4-02",
+        "del-ne4-03",
+        "del-ne4-04"
+      ],
+      "reason": "near"
+    },
+    {
+      "member_ids": [
+        "cs-ne1-01",
+        "cs-ne1-02",
+        "cs-ne1-03",
+        "cs-ne1-04",
+        "cs-ne1-05"
+      ],
+      "reason": "near"
+    },
+    {
+      "member_ids": [
+        "cs-ne2-01",
+        "cs-ne2-02",
+        "cs-ne2-03",
+        "cs-ne2-04",
+        "cs-ne2-05"
+      ],
+      "reason": "near"
+    },
+    {
+      "member_ids": [
+        "csv-ex1-01",
+        "csv-ex1-02"
+      ],
+      "reason": "exact"
+    },
+    {
+      "member_ids": [
+        "csv-ex2-01",
+        "csv-ex2-02"
+      ],
+      "reason": "exact"
+    }
+  ],
+  "expected_echo": {
+    "del-echo-01": "del-ex1-01",
+    "del-echo-02": "del-ex1-02",
+    "del-echo-03": "del-ex2-01",
+    "del-echo-04": "del-ex2-02",
+    "del-echo-05": "del-ne1-01",
+    "del-echo-06": "del-ne1-02",
+    "del-echo-07": "del-ne2-01",
+    "del-echo-08": "del-ne2-02",
+    "del-echo-09": "del-ne3-01",
+    "del-echo-10": "del-ne3-02"
+  },
+  "expected_representatives": {
+    "배송-송장등록후집하지연": "del-ex1-01",
+    "배송-당일발송표시후지연": "del-ex2-01",
+    "배송-출고후집하지연": "del-ne1-01",
+    "배송-포장후기사방문지연": "del-ne2-01",
+    "배송-주말주문월요일적체": "del-ne3-01",
+    "배송-도착예정일불일치": "del-ne4-01",
+    "배송-독립-출고완료후멈춤": "del-single-01",
+    "배송-독립-개선확인": "del-single-02",
+    "배송-독립-도구활용": "del-single-03",
+    "배송-독립-연동활용": "del-single-04",
+    "CS-배송질문반복": "cs-ne1-01",
+    "CS-교환절차질문반복": "cs-ne2-01",
+    "CS-독립-01": "cs-single-01",
+    "CS-독립-02": "cs-single-02",
+    "CS-독립-03": "cs-single-03",
+    "CS-독립-04": "cs-single-04",
+    "CS-독립-05": "cs-single-05",
+    "CS-독립-06": "cs-single-06",
+    "CS-독립-07": "cs-single-07",
+    "CS-독립-08": "cs-single-08",
+    "CS-독립-09": "cs-single-09",
+    "CS-독립-10": "cs-single-10",
+    "CS-독립-11": "cs-single-11",
+    "CS-독립-12": "cs-single-12",
+    "CS-독립-13": "cs-single-13",
+    "CS-독립-14": "cs-single-14",
+    "CS-독립-15": "cs-single-15",
+    "CSV-정산엑셀재정리": "csv-ex1-01",
+    "CSV-재고파일수동합치기": "csv-ex2-01",
+    "CSV-독립-01": "csv-single-01",
+    "CSV-독립-02": "csv-single-02",
+    "CSV-독립-03": "csv-single-03",
+    "CSV-독립-04": "csv-single-04",
+    "CSV-독립-05": "csv-single-05",
+    "CSV-독립-06": "csv-single-06",
+    "CSV-독립-07": "csv-single-07",
+    "CSV-독립-08": "csv-single-08",
+    "CSV-독립-09": "csv-single-09",
+    "CSV-독립-10": "csv-single-10",
+    "CSV-독립-11": "csv-single-11"
+  },
+  "expected_independent_by_topic": {
+    "delivery": 10,
+    "cs": 17,
+    "csv": 13
+  },
+  "topic_of": {
+    "del-ex1-01": "delivery",
+    "del-ex1-02": "delivery",
+    "del-ex1-03": "delivery",
+    "del-ex1-04": "delivery",
+    "del-ex2-01": "delivery",
+    "del-ex2-02": "delivery",
+    "del-ex2-03": "delivery",
+    "del-ex2-04": "delivery",
+    "del-ne1-01": "delivery",
+    "del-ne1-02": "delivery",
+    "del-ne1-03": "delivery",
+    "del-ne1-04": "delivery",
+    "del-ne1-05": "delivery",
+    "del-ne2-01": "delivery",
+    "del-ne2-02": "delivery",
+    "del-ne2-03": "delivery",
+    "del-ne2-04": "delivery",
+    "del-ne2-05": "delivery",
+    "del-ne3-01": "delivery",
+    "del-ne3-02": "delivery",
+    "del-ne3-03": "delivery",
+    "del-ne3-04": "delivery",
+    "del-ne4-01": "delivery",
+    "del-ne4-02": "delivery",
+    "del-ne4-03": "delivery",
+    "del-ne4-04": "delivery",
+    "del-echo-01": "delivery",
+    "del-echo-02": "delivery",
+    "del-echo-03": "delivery",
+    "del-echo-04": "delivery",
+    "del-echo-05": "delivery",
+    "del-echo-06": "delivery",
+    "del-echo-07": "delivery",
+    "del-echo-08": "delivery",
+    "del-echo-09": "delivery",
+    "del-echo-10": "delivery",
+    "del-single-01": "delivery",
+    "del-single-02": "delivery",
+    "del-single-03": "delivery",
+    "del-single-04": "delivery",
+    "cs-ne1-01": "cs",
+    "cs-ne1-02": "cs",
+    "cs-ne1-03": "cs",
+    "cs-ne1-04": "cs",
+    "cs-ne1-05": "cs",
+    "cs-ne2-01": "cs",
+    "cs-ne2-02": "cs",
+    "cs-ne2-03": "cs",
+    "cs-ne2-04": "cs",
+    "cs-ne2-05": "cs",
+    "cs-single-01": "cs",
+    "cs-single-02": "cs",
+    "cs-single-03": "cs",
+    "cs-single-04": "cs",
+    "cs-single-05": "cs",
+    "cs-single-06": "cs",
+    "cs-single-07": "cs",
+    "cs-single-08": "cs",
+    "cs-single-09": "cs",
+    "cs-single-10": "cs",
+    "cs-single-11": "cs",
+    "cs-single-12": "cs",
+    "cs-single-13": "cs",
+    "cs-single-14": "cs",
+    "cs-single-15": "cs",
+    "csv-ex1-01": "csv",
+    "csv-ex1-02": "csv",
+    "csv-ex2-01": "csv",
+    "csv-ex2-02": "csv",
+    "csv-single-01": "csv",
+    "csv-single-02": "csv",
+    "csv-single-03": "csv",
+    "csv-single-04": "csv",
+    "csv-single-05": "csv",
+    "csv-single-06": "csv",
+    "csv-single-07": "csv",
+    "csv-single-08": "csv",
+    "csv-single-09": "csv",
+    "csv-single-10": "csv",
+    "csv-single-11": "csv"
+  }
+}
