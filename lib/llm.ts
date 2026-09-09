@@ -201,7 +201,8 @@ async function callAnthropicOnce(
       },
       body: JSON.stringify({
         model,
-        max_tokens: 4096,
+        // 배치 20건 응답이 3천 토큰을 넘긴 적이 있어 잘림 여유를 둔다. 잘리면 파싱 실패로 배치 전체가 비워진다.
+        max_tokens: 8192,
         system,
         messages: [{ role: "user", content: user }],
       }),
