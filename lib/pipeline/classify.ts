@@ -1,0 +1,241 @@
+import { callJson, llmMode, type LlmMode } from "../llm";
+import type {
+  CounterSignal,
+  CounterType,
+  Evidence,
+  ScoringConfig,
+  Signal,
+  SignalType,
+  Theme,
+} from "../types";
+
+export const CLASSIFY_PROMPT = `아래 pain 주제 목록에 각 evidence를 분류하라.
+
+주제:
+{themes}
+
+signal 정의:
+- complaint: 불편·항의·불만을 직접 말하는 표현
+- workaround: 원래 기능 대신 손으로 우회하거나 임시로 때우는 행동
+- alternative_search: 다른 도구·서비스를 찾거나 물어보는 표현
+- switching: 다른 도구·서비스로 갈아탔거나 옮긴 행동
+- payment: 돈(월 요금·결제)을 내고 쓰는 행동
+
+counter 정의:
+- already_solved: 이미 해결됨/업데이트로 됨
+- alternative_sufficient: 무료·기존 대안으로 충분
+- not_experienced: 그런 적 없음/현재 방식에 만족
+
+출력 스키마 예시:
+[{"evidence_id":"e1","pain_cluster_id":"c1","is_noise":false,"signals":[{"type":"complaint","quote":"원문 연속 구간","confidence":0.8}],"counter":[]}]
+
+quote 는 원문에서 20~60자 연속 구간을 한 글자도 바꾸지 말고 복사한다.
+이모지·ㅋㅋ·오타도 그대로.
+JSON 외 텍스트 금지.`;
+
+export type RawLabel = {
+  evidence_id: string;
+  pain_cluster_id: string | null;
+  is_noise: boolean;
+  signals: { type: SignalType; quote: string; confidence: number }[];
+  counter: { type: CounterType; quote: string; confidence: number }[];
+};
+
+function emptyRawLabel(evidenceId: string): RawLabel {
+  return {
+    evidence_id: evidenceId,
+    pain_cluster_id: null,
+    is_noise: false,
+    signals: [],
+    counter: [],
+  };
+}
+
+function compactForQuote(text: string): string {
+  // NFKC 후 공백·줄바꿈을 없애야 띄어쓰기만 다른 인용도 같은 원문으로 본다.
+  return text.normalize("NFKC").replace(/\s/gu, "");
+}
+
+function quoteMatchesSource(quote: string, textRaw: string): boolean {
+  const compactQuote = compactForQuote(quote);
+  if (quote.length < 4 || compactQuote.length < 4) {
+    return false;
+  }
+  return compactForQuote(textRaw).includes(compactQuote);
+}
+
+function formatThemes(themes: Theme[]): string {
+  return themes
+    .map((theme) => `- ${theme.cluster_id}: ${theme.title} (${theme.description})`)
+    .join("\n");
+}
+
+function buildClassifyUser(batch: Evidence[], themes: Theme[]): string {
+  const themeBlock = formatThemes(themes);
+  const evidenceBlock = batch
+    .map((item) => `${item.evidence_id}: ${item.text_raw}`)
+    .join("\n");
+  return `주제:\n${themeBlock}\n\nevidence:\n${evidenceBlock}`;
+}
+
+export async function classifyBatch(
+  batch: Evidence[],
+  themes: Theme[],
+  mode?: LlmMode,
+): Promise<RawLabel[]> {
+  const resolvedMode = mode ?? llmMode();
+  const system = CLASSIFY_PROMPT.replace("{themes}", formatThemes(themes));
+  const user = buildClassifyUser(batch, themes);
+
+  if (resolvedMode === "real") {
+    const labels = await callJson<RawLabel[]>({
+      system,
+      user,
+      mockKey: "labels",
+      fallback: [],
+      mode: "real",
+    });
+    const byId = new Map(
+      (Array.isArray(labels) ? labels : []).map((label) => [
+        label.evidence_id,
+        label,
+      ]),
+    );
+    return batch.map(
+      (item) => byId.get(item.evidence_id) ?? emptyRawLabel(item.evidence_id),
+    );
+  }
+
+  // mock 은 전체 맵을 한 번에 읽고 id 로 찾는다. 배치 크기·순서에 결과가 달라지면 안 된다.
+  const map = await callJson<Record<string, RawLabel>>({
+    system,
+    user,
+    mockKey: "labels",
+    fallback: {},
+    mode: "mock",
+  });
+
+  return batch.map((item) => {
+    const found = map[item.evidence_id];
+    if (!found) {
+      return emptyRawLabel(item.evidence_id);
+    }
+    return found;
+  });
+}
+
+export function validateLabels(
+  batch: Evidence[],
+  labels: RawLabel[],
+  themes: Theme[],
+  cfg: ScoringConfig,
+): { evidence: Evidence[]; dropped: number } {
+  const labelsById = new Map(labels.map((label) => [label.evidence_id, label]));
+  const themeIds = new Set(themes.map((theme) => theme.cluster_id));
+  let dropped = 0;
+
+  const evidence = batch.map((item) => {
+    const raw = labelsById.get(item.evidence_id) ?? emptyRawLabel(item.evidence_id);
+
+    const signals: Signal[] = [];
+    for (const signal of raw.signals) {
+      if (!quoteMatchesSource(signal.quote, item.text_raw)) {
+        dropped += 1;
+        continue;
+      }
+      signals.push({
+        type: signal.type,
+        quote: signal.quote,
+        confidence: signal.confidence,
+        used_in_ranking: signal.confidence >= cfg.signal_min_confidence,
+      });
+    }
+
+    const counter: CounterSignal[] = [];
+    for (const itemCounter of raw.counter) {
+      if (!quoteMatchesSource(itemCounter.quote, item.text_raw)) {
+        dropped += 1;
+        continue;
+      }
+      counter.push({
+        type: itemCounter.type,
+        quote: itemCounter.quote,
+        confidence: itemCounter.confidence,
+      });
+    }
+
+    let painClusterId = raw.pain_cluster_id;
+    let isNoise = raw.is_noise;
+    if (painClusterId !== null && !themeIds.has(painClusterId)) {
+      painClusterId = null;
+      isNoise = true;
+    }
+
+    return {
+      ...item,
+      pain_cluster_id: painClusterId,
+      is_noise: isNoise,
+      signals,
+      counter,
+    };
+  });
+
+  return { evidence, dropped };
+}
+
+export async function classifyAll(
+  evidence: Evidence[],
+  themes: Theme[],
+  cfg: ScoringConfig,
+  mode?: LlmMode,
+): Promise<{ evidence: Evidence[]; dropped: number }> {
+  const representatives = evidence.filter((item) => item.is_group_representative);
+  const labeledRepresentatives: Evidence[] = [];
+  let dropped = 0;
+  let totalSignals = 0;
+
+  // LLM 호출은 항상 순차. 배치를 동시에 보내면 할당량·로그가 꼬인다.
+  for (let start = 0; start < representatives.length; start += cfg.batch_size) {
+    const batch = representatives.slice(start, start + cfg.batch_size);
+    const rawLabels = await classifyBatch(batch, themes, mode);
+    totalSignals += rawLabels.reduce(
+      (count, label) => count + label.signals.length,
+      0,
+    );
+    const validated = validateLabels(batch, rawLabels, themes, cfg);
+    labeledRepresentatives.push(...validated.evidence);
+    dropped += validated.dropped;
+  }
+
+  if (totalSignals > 0 && dropped / totalSignals > 0.3) {
+    console.warn(
+      `[classify] dropped quotes ${dropped}/${totalSignals} exceed 0.3`,
+    );
+  }
+
+  const representativeById = new Map(
+    labeledRepresentatives.map((item) => [item.evidence_id, item]),
+  );
+  const representativeByGroup = new Map<string, Evidence>();
+  for (const item of labeledRepresentatives) {
+    representativeByGroup.set(item.dedup_group_id, item);
+  }
+
+  const labeledEvidence = evidence.map((item) => {
+    if (item.is_group_representative) {
+      return representativeById.get(item.evidence_id) ?? item;
+    }
+
+    const representative = representativeByGroup.get(item.dedup_group_id);
+    return {
+      ...item,
+      pain_cluster_id: representative?.pain_cluster_id ?? null,
+      is_noise: representative?.is_noise ?? false,
+      // 멤버 원문에는 대표 quote 가 없을 수 있어 신호는 비운다.
+      signals: [],
+      counter: [],
+    };
+  });
+
+  return { evidence: labeledEvidence, dropped };
+}
