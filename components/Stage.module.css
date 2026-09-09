@@ -19,6 +19,14 @@
   background: var(--stage);
   color: var(--ink);
   box-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.45);
+  /* 스테퍼가 끝나고 등장할 때 페이드인. transform 은 FLIP 좌표를 흔들어서 opacity 만 쓴다. */
+  animation: rise 0.7s var(--ease);
+}
+@keyframes rise {
+  from { opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .stage { animation: none; }
 }
 .stage::before {
   content: "";

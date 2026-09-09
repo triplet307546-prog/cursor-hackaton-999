@@ -33,6 +33,16 @@ const RUNG_COLORS: Record<SignalType, string> = {
   payment: "#2ed38f",
 };
 const BEHAVIOR_RUNGS = RUNG_ORDER.filter((type) => type !== "complaint");
+// 등장 뒤 자동 재생까지 기다리는 시간. ?step= 이 있으면 자동 재생하지 않는다.
+const AUTOPLAY_DELAY_MS = 1000;
+
+function stepParam(): Step | null {
+  if (typeof window === "undefined") return null;
+  const param = new URLSearchParams(window.location.search).get("step");
+  if (param === null) return null; // Number(null) 은 0 이라 먼저 걸러야 한다
+  const raw = Number(param);
+  return STEPS.includes(raw as Step) ? (raw as Step) : null;
+}
 
 interface Row {
   c: PainCluster;
@@ -418,11 +428,7 @@ export default function Stage({
   const reduced = useReducedMotion();
 
   // ?step=N 으로 특정 단계에서 시작한다 (발표 리허설용). 스테이지는 데이터 로드 뒤 클라이언트에서만 마운트되므로 location 을 읽어도 된다.
-  const [step, setStep] = useState<Step>(() => {
-    if (typeof window === "undefined") return 0;
-    const raw = Number(new URLSearchParams(window.location.search).get("step"));
-    return STEPS.includes(raw as Step) ? (raw as Step) : 0;
-  });
+  const [step, setStep] = useState<Step>(() => stepParam() ?? 0);
   const [playing, setPlaying] = useState(false);
   const [openId, setOpenId] = useState<string | null>(null);
   const [progress, setProgress] = useState(0);
@@ -523,6 +529,14 @@ export default function Stage({
       at += STEP_HOLD_MS[i] ?? 0;
     }
   };
+
+  // 마운트 1초 뒤 1단계부터 자동 재생. ?step= 으로 들어왔으면 그 단계에 멈춰 둔다.
+  useEffect(() => {
+    if (stepParam() !== null) return;
+    const id = window.setTimeout(() => play(1), AUTOPLAY_DELAY_MS);
+    return () => window.clearTimeout(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const onToggleView = (view: "raw" | "verified") => {
     if (playing) return;

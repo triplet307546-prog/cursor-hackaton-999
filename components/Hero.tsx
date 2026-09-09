@@ -9,11 +9,11 @@ import type {
   PainCluster,
   ResearchRun,
   ScoringConfig,
+  SignalType,
 } from "@/lib/types";
 import {
   COUNTER_LABELS,
   RUNG_LABELS,
-  SIGNAL_STYLES,
   type ClusterMetric,
   type EvidenceSelection,
   type FunnelKey,
@@ -21,10 +21,19 @@ import {
 
 type RankView = "raw" | "verified";
 
+// 밴드·사다리 색은 Stage.module.css 의 --high/--medium/--low, RUNG_COLORS 와 같은 값이다.
+// 흰 배경이라 글자는 어둡게 두고 테두리와 바탕만 스테이지 색으로 칠한다.
 const BAND_STYLES: Record<Band, string> = {
-  High: "border-emerald-300 bg-emerald-100 text-emerald-800",
-  Medium: "border-amber-300 bg-amber-100 text-amber-800",
-  Low: "border-zinc-300 bg-zinc-100 text-zinc-700",
+  High: "border-[#2ed38f] bg-[#2ed38f]/20 text-zinc-900",
+  Medium: "border-[#f2c14e] bg-[#f2c14e]/20 text-zinc-900",
+  Low: "border-[#8b929c] bg-[#8b929c]/20 text-zinc-900",
+};
+const LADDER_STYLES: Record<SignalType, string> = {
+  complaint: "border-[#8b929c] bg-[#8b929c]/20 text-zinc-900",
+  workaround: "border-[#4ea6ea] bg-[#4ea6ea]/20 text-zinc-900",
+  alternative_search: "border-[#9e82f0] bg-[#9e82f0]/20 text-zinc-900",
+  switching: "border-[#f2913e] bg-[#f2913e]/20 text-zinc-900",
+  payment: "border-[#2ed38f] bg-[#2ed38f]/20 text-zinc-900",
 };
 
 const FUNNEL_STEPS: { key: FunnelKey; label: string }[] = [
@@ -190,7 +199,7 @@ function ExpandedDetails({
         {RUNG_ORDER.filter((type) => cluster.ladder[type] > 0).map((type) => (
           <NumberButton
             key={type}
-            className={`border no-underline ${SIGNAL_STYLES[type]}`}
+            className={`border no-underline ${LADDER_STYLES[type]}`}
             onSelect={() => select({ kind: "ladder", type })}
           >
             {RUNG_LABELS[type]} {cluster.ladder[type]}
