@@ -1,69 +1,116 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { useRouter } from "next/navigation";
+import { useState, type FormEvent } from "react";
+
+import questions from "@/config/questions.json";
+
+interface QuestionItem {
+  label: string;
+  query: string;
+  slug: string;
+}
+
+interface RunRequest {
+  question: string;
+  slug?: string;
+}
+
+const QUESTIONS: QuestionItem[] = questions;
+
+export default function AskPage() {
+  const router = useRouter();
+  const [pending, setPending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [customQuestion, setCustomQuestion] = useState("");
+
+  // 질문을 보내고 run_id 를 받으면 바로 결과 화면으로 이동한다. 파이프라인은 서버가 뒤에서 돌린다.
+  const startRun = async (body: RunRequest) => {
+    setPending(true);
+    setError(null);
+    try {
+      const response = await fetch("/api/run", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+      const payload = (await response.json()) as { run_id?: string; error?: string };
+      if (!response.ok || !payload.run_id) {
+        throw new Error(payload.error ?? `요청 실패 (${response.status})`);
+      }
+      router.push(`/run/${payload.run_id}`);
+    } catch (caught) {
+      setError(caught instanceof Error ? caught.message : String(caught));
+      setPending(false);
+    }
+  };
+
+  const submitCustom = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const question = customQuestion.trim();
+    if (question === "") {
+      setError("질문을 입력해 주세요.");
+      return;
+    }
+    void startRun({ question });
+  };
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <main className="flex min-h-screen flex-col items-center justify-center bg-zinc-50 px-6 py-12 text-zinc-900">
+      <div className="w-full max-w-2xl">
+        <header className="mb-8 text-center">
+          <p className="text-sm font-medium uppercase tracking-widest text-zinc-500">PainRadar</p>
+          <h1 className="mt-2 text-3xl font-semibold">무엇을 알아볼까요?</h1>
+          <p className="mt-2 text-sm text-zinc-600">
+            공개 댓글을 중복 없는 독립 관측으로 바꾸고, 불만이 아니라 행동 신호로 기회를 다시 매깁니다.
           </p>
+        </header>
+
+        <div className="flex flex-col gap-3">
+          {QUESTIONS.map((item) => (
+            <button
+              key={item.slug}
+              type="button"
+              disabled={pending}
+              onClick={() => void startRun({ question: item.label, slug: item.slug })}
+              className="rounded-2xl border border-zinc-200 bg-white px-6 py-6 text-left text-lg font-medium shadow-sm transition hover:border-zinc-400 hover:shadow disabled:cursor-wait disabled:opacity-60"
+            >
+              {item.label}
+            </button>
+          ))}
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
+
+        <p className="mt-4 text-center text-xs text-zinc-500">출처: YouTube 댓글 (공식 API)</p>
+
+        <details className="mt-6 rounded-xl border border-zinc-200 bg-white px-5 py-4">
+          <summary className="cursor-pointer text-sm font-medium text-zinc-700">직접 입력</summary>
+          <form onSubmit={submitCustom} className="mt-3 flex gap-2">
+            <input
+              type="text"
+              value={customQuestion}
+              onChange={(event) => setCustomQuestion(event.target.value)}
+              placeholder="예: 셀러들이 광고비 때문에 겪는 문제는?"
+              maxLength={300}
+              disabled={pending}
+              className="flex-1 rounded-lg border border-zinc-300 px-3 py-2 text-sm outline-none focus:border-zinc-500"
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+            <button
+              type="submit"
+              disabled={pending}
+              className="rounded-lg bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-700 disabled:cursor-wait disabled:opacity-60"
+            >
+              실행
+            </button>
+          </form>
+        </details>
+
+        {error && (
+          <p className="mt-4 rounded-lg border border-rose-300 bg-rose-50 px-4 py-2 text-sm text-rose-700">
+            오류: {error}
+          </p>
+        )}
+        {pending && <p className="mt-4 text-center text-sm text-zinc-500">실행을 준비하고 있습니다…</p>}
+      </div>
+    </main>
   );
 }
