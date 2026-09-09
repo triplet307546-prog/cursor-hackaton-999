@@ -34,9 +34,17 @@ const EMPTY_COUNTER: Record<CounterType, number> = {
   not_experienced: 0,
 };
 
-function makeCluster(partial: Partial<PainCluster> & Pick<PainCluster, "cluster_id">): PainCluster {
+function makeCluster(
+  partial: Omit<Partial<PainCluster>, "ladder" | "counter"> &
+    Pick<PainCluster, "cluster_id"> & {
+      ladder?: Partial<Record<SignalType, number>>;
+      counter?: Partial<Record<CounterType, number>>;
+    },
+): PainCluster {
+  const { ladder, counter, cluster_id, ...rest } = partial;
   return {
-    title: partial.cluster_id,
+    cluster_id,
+    title: cluster_id,
     description: "",
     raw_mentions: 0,
     independent_observations: 0,
@@ -44,9 +52,7 @@ function makeCluster(partial: Partial<PainCluster> & Pick<PainCluster, "cluster_
     source_items: 1,
     same_item_ratio: 0,
     inflation: 1,
-    ladder: { ...EMPTY_LADDER },
     top_rung: "complaint",
-    counter: { ...EMPTY_COUNTER },
     supporting_evidence: 0,
     counter_evidence: 0,
     opportunity: "Low",
@@ -55,9 +61,9 @@ function makeCluster(partial: Partial<PainCluster> & Pick<PainCluster, "cluster_
     rank_after: 0,
     ranking_reasons: [],
     representative_ids: [],
-    ...partial,
-    ladder: { ...EMPTY_LADDER, ...partial.ladder },
-    counter: { ...EMPTY_COUNTER, ...partial.counter },
+    ...rest,
+    ladder: { ...EMPTY_LADDER, ...ladder },
+    counter: { ...EMPTY_COUNTER, ...counter },
   };
 }
 
@@ -205,6 +211,13 @@ describe("explain", () => {
     );
     expect(explain(clusterC, cfg)[2]).toBe(
       "소스 그룹 1개, 소스 아이템 5개 — 단일 출처 데이터",
+    );
+    const alreadyLow = makeCluster({
+      ...clusterC,
+      counter: { already_solved: 2 },
+    });
+    expect(explain(alreadyLow, cfg)[3]).toBe(
+      "반박 2건 (40%) — 하향 대상이나 이미 Low",
     );
   });
 });
