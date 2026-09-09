@@ -7,6 +7,7 @@ import demoJson from "../data/fixtures/demo.json";
 import labelsJson from "../data/fixtures/labels.json";
 import {
   classifyAll,
+  isPromo,
   validateLabels,
   type RawLabel,
 } from "../lib/pipeline/classify";
@@ -134,5 +135,71 @@ describe("classifyAll / validateLabels", () => {
   it("(f) used_in_ranking signal 총수는 20 이상이다", async () => {
     const result = await classifyAll(deduplicatedEvidence, themes, cfg);
     expect(rankingSignals(result.evidence).length).toBeGreaterThanOrEqual(20);
+  });
+
+  it("(g) 판매·홍보 댓글은 signal 을 비우고 is_noise 로 만든다", () => {
+    const textRaw =
+      "이거 저희가 해결해드려요 카톡 아이디 남겨주시면 무료 상담 https://example.com";
+    const batch: Evidence[] = [
+      {
+        ...representatives[0],
+        evidence_id: "promo-g",
+        text_raw: textRaw,
+      },
+    ];
+    const labels: RawLabel[] = [
+      {
+        evidence_id: "promo-g",
+        pain_cluster_id: "c1",
+        is_noise: false,
+        signals: [
+          {
+            type: "switching",
+            quote: "해결해드려요",
+            confidence: 0.9,
+          },
+        ],
+        counter: [],
+      },
+    ];
+
+    const result = validateLabels(batch, labels, themes, cfg);
+    expect(result.evidence[0].signals.length).toBe(0);
+    expect(result.evidence[0].is_noise).toBe(true);
+    expect(result.promo_dropped).toBe(1);
+  });
+
+  it("(h) 단독 '문의' 는 홍보로 보지 않고 signal 을 남긴다", () => {
+    const textRaw =
+      "저희 스토어도 정산 문의가 많아서 그냥 엑셀로 따로 정리해서 씁니다";
+    expect(isPromo(textRaw)).toBe(false);
+
+    const batch: Evidence[] = [
+      {
+        ...representatives[0],
+        evidence_id: "promo-h",
+        text_raw: textRaw,
+      },
+    ];
+    const labels: RawLabel[] = [
+      {
+        evidence_id: "promo-h",
+        pain_cluster_id: "c1",
+        is_noise: false,
+        signals: [
+          {
+            type: "workaround",
+            quote: "엑셀로 따로 정리해서",
+            confidence: 0.9,
+          },
+        ],
+        counter: [],
+      },
+    ];
+
+    const result = validateLabels(batch, labels, themes, cfg);
+    expect(result.evidence[0].signals).toHaveLength(1);
+    expect(result.evidence[0].signals[0].type).toBe("workaround");
+    expect(result.promo_dropped).toBe(0);
   });
 });
