@@ -98,7 +98,7 @@ function selectFunnelEvidence(run: ResearchRun, key: FunnelKey): Evidence[] {
           item.signals.some((signal) => isBehaviorRung(signal.type)),
       );
     case "opportunities":
-      // 기회는 클러스터 목록이므로 evidence 가 아니다. 드로어가 클러스터 목록을 따로 그린다.
+      // 기회는 클러스터 목록이라 evidence 가 없다. selectDrawerItems 가 이 경우를 먼저 처리한다.
       return [];
   }
 }
@@ -137,7 +137,7 @@ function selectClusterEvidence(
   }
 }
 
-export function selectEvidence(
+function selectEvidence(
   run: ResearchRun,
   selection: EvidenceSelection,
 ): Evidence[] {
@@ -146,6 +146,24 @@ export function selectEvidence(
   }
   const cluster = findCluster(run, selection.clusterId);
   return cluster ? selectClusterEvidence(run, cluster, selection.metric) : [];
+}
+
+// 드로어 목록. 어떤 선택이든 items.length 가 expectedCount 와 같아야 한다 (기회는 클러스터 목록).
+export type DrawerItems =
+  | { kind: "evidence"; items: Evidence[] }
+  | { kind: "clusters"; items: PainCluster[] };
+
+export function selectDrawerItems(
+  run: ResearchRun,
+  selection: EvidenceSelection,
+): DrawerItems {
+  if (selection.scope === "funnel" && selection.key === "opportunities") {
+    return {
+      kind: "clusters",
+      items: [...run.clusters].sort((a, b) => a.rank_after - b.rank_after),
+    };
+  }
+  return { kind: "evidence", items: selectEvidence(run, selection) };
 }
 
 // 화면에 표시하는 숫자는 항상 JSON 값이다. 드로어 목록 길이와 다르면 파이프라인 버그로 본다.
@@ -371,7 +389,7 @@ function EvidenceRow({ item, group, evidenceById, highlight }: EvidenceRowProps)
       {isRepresentative && members.length > 0 && (
         <details className="mt-2">
           <summary className="cursor-pointer text-xs text-zinc-600 hover:text-zinc-900">
-            이 관측은 언급 {groupSize}건을 대표 · 멤버 원문 {members.length}건 보기
+            이 관측은 언급 {groupSize}건을 대표 · 멤버 원문 보기
           </summary>
           <MemberList members={members} />
         </details>
@@ -381,16 +399,15 @@ function EvidenceRow({ item, group, evidenceById, highlight }: EvidenceRowProps)
 }
 
 function ClusterList({
-  run,
+  clusters,
   onSelect,
 }: {
-  run: ResearchRun;
+  clusters: PainCluster[];
   onSelect: (selection: EvidenceSelection) => void;
 }) {
-  const byAfter = [...run.clusters].sort((a, b) => a.rank_after - b.rank_after);
   return (
     <ul className="space-y-2">
-      {byAfter.map((cluster) => (
+      {clusters.map((cluster) => (
         <li key={cluster.cluster_id}>
           <button
             type="button"
@@ -458,9 +475,7 @@ export default function EvidenceDrawer({
     return null;
   }
 
-  const showClusters =
-    selection.scope === "funnel" && selection.key === "opportunities";
-  const items = selectEvidence(run, selection);
+  const drawerItems = selectDrawerItems(run, selection);
   const expected = expectedCount(run, selection);
   const cluster =
     selection.scope === "cluster" ? findCluster(run, selection.clusterId) : null;
@@ -468,7 +483,7 @@ export default function EvidenceDrawer({
     selection.scope === "cluster" && selection.metric.kind === "ladder"
       ? selection.metric.type
       : null;
-  const mismatch = !showClusters && items.length !== expected;
+  const mismatch = drawerItems.items.length !== expected;
 
   return (
     <div className="fixed inset-0 z-50" role="dialog" aria-modal="true">
@@ -499,12 +514,12 @@ export default function EvidenceDrawer({
             <span className="text-2xl font-bold tabular-nums text-zinc-900">
               {expected}
               <span className="ml-1 text-sm font-normal text-zinc-500">
-                {showClusters ? "개" : "건"}
+                {drawerItems.kind === "clusters" ? "개" : "건"}
               </span>
             </span>
             {mismatch && (
               <span className="rounded border border-rose-300 bg-rose-50 px-2 py-0.5 text-xs text-rose-700">
-                불일치: 목록 {items.length}건
+                불일치: 목록 {drawerItems.items.length}건
               </span>
             )}
             {cluster && (
@@ -526,13 +541,13 @@ export default function EvidenceDrawer({
         </header>
 
         <div className="flex-1 overflow-y-auto px-5 py-4">
-          {showClusters ? (
-            <ClusterList run={run} onSelect={onSelect} />
-          ) : items.length === 0 ? (
+          {drawerItems.kind === "clusters" ? (
+            <ClusterList clusters={drawerItems.items} onSelect={onSelect} />
+          ) : drawerItems.items.length === 0 ? (
             <p className="text-sm text-zinc-500">해당하는 근거가 없습니다.</p>
           ) : (
             <ul className="space-y-2">
-              {items.map((item) => (
+              {drawerItems.items.map((item) => (
                 <EvidenceRow
                   key={item.evidence_id}
                   item={item}

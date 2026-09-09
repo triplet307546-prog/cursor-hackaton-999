@@ -241,8 +241,19 @@ function ClusterCard({
     >
       <div className="flex items-start justify-between gap-3">
         <h3 className="text-xl font-semibold leading-tight text-zinc-900">
-          <span className="mr-1 text-zinc-400">#{rank}</span>
-          {cluster.title}
+          {/* 제목을 진짜 버튼으로 두어 키보드(Tab → Enter)로도 펼칠 수 있게 한다. 카드 전체 클릭은 그대로 유지. */}
+          <button
+            type="button"
+            aria-expanded={expanded}
+            onClick={(event) => {
+              event.stopPropagation();
+              onToggle();
+            }}
+            className="cursor-pointer text-left"
+          >
+            <span className="mr-1 text-zinc-400">#{rank}</span>
+            {cluster.title}
+          </button>
         </h3>
         <RankMove cluster={cluster} />
       </div>
