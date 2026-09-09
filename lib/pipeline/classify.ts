@@ -66,6 +66,9 @@ counter 정의:
 출력 스키마 예시:
 [{"evidence_id":"e1","pain_cluster_id":"c1","is_noise":false,"signals":[{"type":"complaint","quote":"원문 연속 구간","confidence":0.8}],"counter":[]}]
 
+입력 evidence 마다 정확히 한 항목을 반환한다. 항목 수와 evidence 수는 같아야 한다.
+주제가 여러 개로 보여도 가장 맞는 것 하나만 고르고, 해당 없으면 is_noise:true 로 표시한다.
+
 quote 는 원문에서 20~60자 연속 구간을 한 글자도 바꾸지 말고 복사한다.
 이모지·ㅋㅋ·오타도 그대로.
 JSON 외 텍스트 금지.`;
@@ -118,12 +121,12 @@ function formatThemes(themes: Theme[]): string {
     .join("\n");
 }
 
-function buildClassifyUser(batch: Evidence[], themes: Theme[]): string {
-  const themeBlock = formatThemes(themes);
+export function buildClassifyUser(batch: Evidence[]): string {
   const evidenceBlock = batch
     .map((item) => `${item.evidence_id}: ${item.text_raw}`)
     .join("\n");
-  return `주제:\n${themeBlock}\n\nevidence:\n${evidenceBlock}`;
+  // 주제·정의는 system 에 있다. 여기서 되풀이하면 배치마다 토큰만 늘고 항목 수 규칙이 묻힌다.
+  return `evidence ${batch.length}건을 분류해 항목 ${batch.length}개짜리 JSON 배열로 반환하라.\n\nevidence:\n${evidenceBlock}`;
 }
 
 export async function classifyBatch(
@@ -133,7 +136,7 @@ export async function classifyBatch(
 ): Promise<RawLabel[]> {
   const resolvedMode = mode ?? llmMode();
   const system = CLASSIFY_PROMPT.replace("{themes}", formatThemes(themes));
-  const user = buildClassifyUser(batch, themes);
+  const user = buildClassifyUser(batch);
 
   if (resolvedMode === "real") {
     const labels = await callJson<RawLabel[]>({
@@ -143,6 +146,13 @@ export async function classifyBatch(
       fallback: [],
       mode: "real",
     });
+    if (!Array.isArray(labels) || (batch.length > 0 && labels.length === 0)) {
+      console.warn(
+        `[classify] unexpected labels response for ${batch[0]?.evidence_id}: ${
+          Array.isArray(labels) ? `array(${labels.length})` : typeof labels
+        }`,
+      );
+    }
     const byId = new Map(
       (Array.isArray(labels) ? labels : []).map((label) => [
         label.evidence_id,

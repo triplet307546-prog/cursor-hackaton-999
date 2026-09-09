@@ -6,6 +6,8 @@ import scoringConfig from "../config/scoring.json";
 import demoJson from "../data/fixtures/demo.json";
 import labelsJson from "../data/fixtures/labels.json";
 import {
+  CLASSIFY_PROMPT,
+  buildClassifyUser,
   classifyAll,
   isContentless,
   isPromo,
@@ -254,5 +256,23 @@ describe("isContentless", () => {
         "핸드메이드 제품은 인건비 생각하면 공장제품과 싸워야 해서 도저히 답이 안 나오더라고요",
       ),
     ).toBe(false);
+  });
+});
+
+describe("buildClassifyUser", () => {
+  it("(m) user 는 주제 블록 없이 evidence 와 항목 수를 담고, 한 항목 규칙은 system 에 있다", () => {
+    const batch = representatives.slice(0, 3);
+    const user = buildClassifyUser(batch);
+
+    // 배치 크기만큼 항목을 요구해야 모델이 evidence 를 조용히 빠뜨리지 않는다.
+    expect(user).toContain(`항목 ${batch.length}개`);
+    for (const item of batch) {
+      expect(user).toContain(item.evidence_id);
+    }
+
+    // 주제·정의는 system 한 곳에만 있어야 한다. description 은 길어서 원문에 우연히 섞이지 않는다.
+    expect(user).not.toContain("주제:");
+    expect(user).not.toContain(themes[0].description);
+    expect(CLASSIFY_PROMPT).toContain("evidence 마다 정확히 한 항목");
   });
 });
