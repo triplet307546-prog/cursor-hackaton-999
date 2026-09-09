@@ -1,0 +1,764 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PainRadar · 순위 재계산 목업</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* ---------- tokens ---------- */
+:root{
+  --bg:#F5F4F0; --surface:#FFFFFF; --ink:#16150F; --ink-2:#4A4944; --muted:#8A8983; --line:#E4E2DB; --line-2:#D2D0C8;
+  --stage:#0E1013; --stage-2:#161A20; --stage-3:#1F252D; --stage-ink:#ECEAE4; --stage-muted:#8B929C; --stage-line:#2A313B;
+  --c-complaint:#8B929C; --c-workaround:#4EA6EA; --c-alt:#9E82F0; --c-switch:#F2913E; --c-pay:#2ED38F; --c-counter:#F4536F;
+  --high:#2ED38F; --medium:#F2C14E; --low:#8B929C;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --sans:"Noto Sans KR","Pretendard","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --r:14px; --ease:cubic-bezier(.2,.8,.2,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+b,strong{font-weight:700}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.wrap{max-width:1240px;margin:0 auto;padding:0 28px}
+h1,h2,h3{margin:0;letter-spacing:-.02em;line-height:1.2}
+p{margin:0}
+button{font:inherit;cursor:pointer;color:inherit}
+.kicker{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.card-lite{background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
+@media (prefers-reduced-motion:reduce){*{transition-duration:.01ms!important;animation-duration:.01ms!important}}
+
+/* ---------- top ---------- */
+.top{display:flex;align-items:center;gap:14px;padding:18px 0;border-bottom:1px solid var(--line)}
+.logo{display:flex;align-items:center;gap:8px;font-weight:900;font-size:16px;letter-spacing:-.02em}
+.logo i{width:10px;height:10px;border-radius:50%;background:var(--ink);box-shadow:0 0 0 4px rgba(22,21,15,.12);animation:ping 2.4s infinite}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(22,21,15,.28)}70%{box-shadow:0 0 0 9px rgba(22,21,15,0)}100%{box-shadow:0 0 0 0 rgba(22,21,15,0)}}
+.top .tag{font-family:var(--mono);font-size:11px;color:var(--muted);border:1px solid var(--line-2);border-radius:999px;padding:2px 9px}
+.top .q{margin-left:auto;color:var(--ink-2);font-size:13px}
+
+/* ---------- hero ---------- */
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:36px;padding:48px 0 28px;align-items:end}
+.hero h1{font-size:40px;font-weight:900;line-height:1.15}
+.hero h1 em{font-style:normal;color:var(--muted);text-decoration:line-through;text-decoration-thickness:3px;text-decoration-color:var(--c-counter)}
+.hero h1 mark{background:linear-gradient(transparent 62%,rgba(46,211,143,.35) 62%);color:inherit}
+.hero .sub{margin-top:16px;color:var(--ink-2);font-size:16px;max-width:560px}
+.book{padding:18px 20px}
+.book .head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px}
+.book .head b{font-size:13px}
+.book .legend{display:flex;gap:14px;font-size:12px;color:var(--muted)}
+.book .legend i{display:inline-block;width:18px;height:9px;vertical-align:middle;margin-right:5px;border-radius:2px}
+.book .legend .hollow{border:1.5px dashed var(--ink-2);background:transparent}
+.book .legend .fill{background:var(--ink)}
+.orow{display:grid;grid-template-columns:104px 1fr 44px;align-items:center;gap:10px;height:26px;font-size:12px;color:var(--ink-2)}
+.orow .label{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.orow .t{position:relative;height:14px}
+.orow .ask{position:absolute;inset:0 auto 0 0;border:1.5px dashed var(--ink-2);border-radius:3px;opacity:.6}
+.orow .ask.flicker{animation:flick 1.8s var(--ease) infinite alternate}
+@keyframes flick{0%{opacity:.62}100%{opacity:.18}}
+.orow .fill{position:absolute;inset:2px auto 2px 0;background:var(--ink);border-radius:2px}
+.orow .n{text-align:right;color:var(--muted)}
+.book .foot{margin-top:12px;font-size:12px;color:var(--muted);border-top:1px dashed var(--line);padding-top:10px}
+
+/* ---------- funnel ---------- */
+.funnel{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin:8px 0 40px;overflow:hidden}
+.fstep{position:relative;padding:18px 22px;border-right:1px solid var(--line)}
+.fstep:last-child{border-right:0}
+.fstep .k{font-size:12px;color:var(--muted)}
+.fstep .v{font-size:40px;font-weight:700;line-height:1.05;margin-top:4px}
+.fstep .d{font-size:12px;color:var(--ink-2);margin-top:6px;min-height:18px}
+.fstep .drop{position:absolute;right:14px;top:16px;font-family:var(--mono);font-size:11px;color:var(--c-counter);background:rgba(244,83,111,.08);border-radius:999px;padding:2px 8px}
+.fstep .bar{height:6px;background:var(--line);border-radius:999px;margin-top:12px;overflow:hidden}
+.fstep .bar i{display:block;height:100%;background:var(--ink);width:0;transition:width 1.1s var(--ease)}
+.fstep:nth-child(3) .bar i{background:var(--c-workaround)}
+.fstep:nth-child(4) .bar i{background:var(--c-pay)}
+
+/* ---------- stage ---------- */
+.stage{background:var(--stage);color:var(--stage-ink);border-radius:22px;padding:26px 28px 30px;position:relative;overflow:hidden;box-shadow:0 30px 80px -30px rgba(0,0,0,.45)}
+.stage::before{content:"";position:absolute;inset:-40% -20% auto -20%;height:70%;background:radial-gradient(60% 60% at 50% 50%,rgba(78,166,234,.14),transparent 70%);pointer-events:none;transition:background 1s}
+.stage[data-step="4"]::before{background:radial-gradient(60% 60% at 50% 50%,rgba(46,211,143,.18),transparent 70%)}
+.stage-head{display:flex;align-items:center;gap:18px;flex-wrap:wrap;position:relative}
+.stage-head .kicker{color:var(--stage-muted)}
+.seg{display:inline-flex;background:var(--stage-2);border:1px solid var(--stage-line);border-radius:999px;padding:4px;position:relative}
+.seg button{position:relative;z-index:1;border:0;background:transparent;color:var(--stage-muted);padding:9px 20px;border-radius:999px;font-weight:700;font-size:15px;transition:color .3s}
+.seg button.on{color:var(--stage)}
+.seg .thumb{position:absolute;top:4px;bottom:4px;left:4px;width:calc(50% - 4px);background:var(--stage-ink);border-radius:999px;transition:transform .45s var(--ease),background .45s}
+.seg.right .thumb{transform:translateX(100%);background:var(--high)}
+.seg.right button.on{color:#052b1b}
+.ghostbtn{border:1px solid var(--stage-line);background:transparent;color:var(--stage-ink);border-radius:999px;padding:9px 16px;font-size:13px;font-weight:500;transition:background .2s}
+.ghostbtn:hover{background:var(--stage-2)}
+.ghostbtn[disabled]{opacity:.45;cursor:default}
+.steps{display:flex;gap:6px;margin-left:auto}
+.steps button{border:1px solid var(--stage-line);background:transparent;color:var(--stage-muted);border-radius:8px;padding:6px 10px;font-size:12px;font-family:var(--mono);transition:all .25s}
+.steps button.done{border-color:rgba(236,234,228,.35);color:var(--stage-ink)}
+.steps button.now{background:var(--stage-ink);color:var(--stage);border-color:var(--stage-ink)}
+.caption{margin:22px 0 18px;font-size:22px;font-weight:700;letter-spacing:-.02em;min-height:34px;position:relative}
+.caption small{display:block;font-size:14px;font-weight:400;color:var(--stage-muted);margin-top:4px}
+.caption .swap{animation:rise .5s var(--ease)}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.stage-body{display:grid;grid-template-columns:1fr 250px;gap:26px;position:relative}
+.legend2{display:flex;gap:16px;font-size:12px;color:var(--stage-muted);margin-bottom:10px;flex-wrap:wrap}
+.legend2 i{display:inline-block;width:14px;height:9px;border-radius:2px;vertical-align:-1px;margin-right:5px}
+.legend2 .hollow{border:1.5px dashed rgba(236,234,228,.5)}
+.legend2 .ind{background:#B8BEC6}
+.legend2 .sw{width:10px;height:10px;border-radius:50%}
+.legend2 .lad{opacity:0;transition:opacity .5s}
+.stage[data-step="2"] .legend2 .lad,.stage[data-step="3"] .legend2 .lad,.stage[data-step="4"] .legend2 .lad{opacity:1}
+
+.cards{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.card{display:grid;grid-template-columns:64px 1fr 180px;gap:16px;align-items:center;background:var(--stage-2);border:1px solid var(--stage-line);border-radius:14px;padding:14px 18px;position:relative;will-change:transform;transition:border-color .5s,background .5s,box-shadow .5s}
+.card.hot{border-color:rgba(46,211,143,.55);background:linear-gradient(90deg,rgba(46,211,143,.10),var(--stage-2) 55%);box-shadow:0 0 0 1px rgba(46,211,143,.25),0 20px 40px -20px rgba(46,211,143,.35)}
+.card.cold{border-color:rgba(244,83,111,.45)}
+.rank{display:flex;flex-direction:column;align-items:flex-start;gap:4px}
+.rank .n{font-family:var(--mono);font-size:30px;font-weight:600;line-height:1;position:relative;height:32px;overflow:hidden;width:44px}
+.rank .n span{position:absolute;left:0;top:0;transition:transform .55s var(--ease),opacity .4s}
+.rank .n .old{transform:translateY(0)}
+.rank .n .new{transform:translateY(120%);opacity:0}
+.stage[data-step="4"] .rank .n .old{transform:translateY(-120%);opacity:0}
+.stage[data-step="4"] .rank .n .new{transform:translateY(0);opacity:1}
+.delta{font-family:var(--mono);font-size:11px;padding:1px 6px;border-radius:5px;opacity:0;transform:scale(.7);transition:all .4s var(--ease) .35s}
+.delta.up{background:rgba(46,211,143,.18);color:var(--high)}
+.delta.down{background:rgba(244,83,111,.18);color:var(--c-counter)}
+.delta.same{color:var(--stage-muted)}
+.stage[data-step="4"] .delta{opacity:1;transform:none}
+
+.main{min-width:0}
+.row1{display:flex;align-items:center;gap:10px;margin-bottom:8px;min-height:24px}
+.title{font-weight:700;font-size:16px;letter-spacing:-.01em}
+.chip{font-family:var(--mono);font-size:11px;padding:2px 8px;border-radius:999px;border:1px solid transparent;opacity:0;transform:translateY(4px);transition:all .4s var(--ease)}
+.chip.show{opacity:1;transform:none}
+.chip.infl{border-color:rgba(244,83,111,.4);color:var(--c-counter);background:rgba(244,83,111,.1)}
+.chip.ctr{border-color:rgba(244,83,111,.55);color:#fff;background:var(--c-counter);font-weight:600}
+.chip.ok{border-color:var(--stage-line);color:var(--stage-muted)}
+.band{margin-left:auto;font-family:var(--mono);font-size:11px;padding:3px 9px;border-radius:999px;border:1px solid;transition:all .4s;opacity:0}
+.band.show{opacity:1}
+.band.High{color:var(--high);border-color:rgba(46,211,143,.45);background:rgba(46,211,143,.1)}
+.band.Medium{color:var(--medium);border-color:rgba(242,193,78,.45);background:rgba(242,193,78,.1)}
+.band.Low{color:var(--low);border-color:rgba(139,146,156,.45);background:rgba(139,146,156,.1)}
+.band.stamp{animation:stamp .5s var(--ease)}
+@keyframes stamp{0%{transform:scale(1.5) rotate(-6deg);opacity:0}60%{transform:scale(.95) rotate(0);opacity:1}100%{transform:none}}
+
+.track{position:relative;height:22px}
+.bar-raw{position:absolute;inset:0 auto 0 0;width:var(--raw);border:1.5px dashed rgba(236,234,228,.45);border-radius:6px;transition:opacity .6s,border-color .6s}
+.stage[data-step="0"] .bar-raw{border-color:rgba(236,234,228,.7)}
+.bar-ind{position:absolute;inset:3px auto 3px 3px;width:calc(var(--raw) - 6px);display:flex;border-radius:4px;overflow:hidden;transition:width .9s var(--ease)}
+.stage:not([data-step="0"]) .bar-ind{width:calc(var(--ind) - 6px)}
+.seg{}
+.bar-ind .s{flex:var(--n) 0 0;background:#B8BEC6;transition:background .6s,opacity .6s,flex .6s;position:relative}
+.stage[data-step="2"] .bar-ind .s+ .s,.stage[data-step="3"] .bar-ind .s+ .s,.stage[data-step="4"] .bar-ind .s+ .s{box-shadow:inset 1px 0 0 rgba(14,16,19,.7)}
+.stage[data-step="2"] .bar-ind .s,.stage[data-step="3"] .bar-ind .s,.stage[data-step="4"] .bar-ind .s{background:var(--c)}
+.stage[data-step="2"] .bar-ind .s.complaint,.stage[data-step="3"] .bar-ind .s.complaint,.stage[data-step="4"] .bar-ind .s.complaint{background:repeating-linear-gradient(135deg,rgba(139,146,156,.45) 0 4px,rgba(139,146,156,.15) 4px 8px)}
+.echo{position:absolute;inset:3px 3px 3px auto;left:calc(var(--ind) - 3px);width:calc(var(--raw) - var(--ind));border-radius:0 4px 4px 0;background:repeating-linear-gradient(135deg,rgba(244,83,111,.35) 0 3px,transparent 3px 7px);opacity:0;transition:opacity .5s}
+.stage[data-step="1"] .echo{opacity:1}
+.meter{height:0;overflow:hidden;transition:height .5s var(--ease),margin .5s;margin-top:0;position:relative}
+.stage[data-step="3"] .meter,.stage[data-step="4"] .meter{height:14px;margin-top:8px}
+.meter .bg{position:absolute;left:0;right:0;top:5px;height:4px;background:var(--stage-3);border-radius:2px}
+.meter .fg{position:absolute;left:0;top:5px;height:4px;width:0;background:var(--c-counter);border-radius:2px;transition:width 1s var(--ease) .2s}
+.stage[data-step="3"] .meter .fg,.stage[data-step="4"] .meter .fg{width:var(--ctr)}
+.meter .th{position:absolute;left:30%;top:0;height:14px;width:1px;background:rgba(236,234,228,.6)}
+.meter .th::after{content:"30%";position:absolute;left:4px;top:-2px;font-family:var(--mono);font-size:9px;color:var(--stage-muted)}
+.meter .lab{position:absolute;left:calc(var(--ctr) + 6px);top:-2px;font-family:var(--mono);font-size:10px;color:var(--c-counter);opacity:0;transition:opacity .4s 1s}
+.stage[data-step="3"] .meter .lab,.stage[data-step="4"] .meter .lab{opacity:1}
+
+.nums{text-align:right}
+.nums .big{font-family:var(--mono);font-size:26px;font-weight:600;line-height:1}
+.nums .big s{color:var(--stage-muted);font-size:14px;font-weight:400;margin-right:6px;text-decoration-color:var(--c-counter)}
+.nums .sub{font-size:11px;color:var(--stage-muted);margin-top:4px;font-family:var(--mono);min-height:14px}
+.nums .lad{display:flex;justify-content:flex-end;flex-wrap:wrap;gap:3px 8px;margin-top:6px;opacity:0;transition:opacity .5s}
+.stage[data-step="2"] .nums .lad,.stage[data-step="3"] .nums .lad,.stage[data-step="4"] .nums .lad{opacity:1}
+.nums .lad i{display:inline-flex;align-items:center;gap:3px;white-space:nowrap;font-family:var(--mono);font-size:10px;color:var(--stage-muted);font-style:normal}
+.nums .lad i::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--c)}
+
+.slope{position:relative}
+.slope .axes{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;color:var(--stage-muted);margin-bottom:8px}
+.slope svg{width:100%;overflow:visible;display:block}
+.slope path{fill:none;stroke-width:2;stroke-linecap:round;vector-effect:non-scaling-stroke;transition:stroke .5s,stroke-width .5s,opacity .5s}
+.slope circle{transition:all .5s}
+.slope text{font-family:var(--mono);font-size:11px;fill:var(--stage-muted)}
+.slope .note{position:absolute;left:0;right:0;bottom:-6px;font-size:12px;color:var(--stage-muted);text-align:center;opacity:0;transition:opacity .5s .6s}
+.stage[data-step="4"] .slope .note{opacity:1}
+.reasons{grid-column:1 / -1;font-size:13px;color:var(--stage-muted);border-top:1px dashed var(--stage-line);padding-top:10px;margin-top:2px;display:none}
+.card.open .reasons{display:block}
+.reasons ol{margin:0;padding-left:18px}
+.reasons li{margin:2px 0}
+.reasons b{color:var(--stage-ink);font-weight:500}
+.hint{font-size:12px;color:var(--stage-muted);margin-top:14px}
+.hint u{text-decoration-style:dotted;text-underline-offset:4px}
+
+/* ---------- differentiators ---------- */
+.diffs{margin:56px 0 60px}
+.diffs>.head{display:flex;align-items:end;justify-content:space-between;margin-bottom:22px}
+.diffs h2{font-size:28px;font-weight:900}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.panel{padding:24px 26px;position:relative;overflow:hidden}
+.panel .pno{position:absolute;right:20px;top:16px;font-family:var(--mono);font-size:56px;font-weight:600;color:var(--line);line-height:1;letter-spacing:-.05em}
+.panel h3{font-size:19px;font-weight:700;margin-bottom:4px;position:relative}
+.panel .lead{color:var(--ink-2);font-size:13px;max-width:440px;position:relative}
+.panel .viz{margin-top:18px}
+.panel .ctl{margin-top:14px;display:flex;gap:8px;align-items:center}
+.btn{border:1px solid var(--ink);background:var(--ink);color:#fff;border-radius:999px;padding:7px 14px;font-size:13px;font-weight:600}
+.btn.light{background:transparent;color:var(--ink)}
+.btn[disabled]{opacity:.4;cursor:default}
+.stat{font-family:var(--mono);font-size:12px;color:var(--muted)}
+
+/* A. echo */
+.echo-wrap{position:relative;height:250px;border:1px solid var(--line);border-radius:10px;background:linear-gradient(90deg,transparent 0 62%,rgba(0,0,0,.025) 62%)}
+.echo-wrap .lab{position:absolute;top:8px;font-family:var(--mono);font-size:11px;color:var(--muted)}
+.echo-wrap .lab.l{left:12px}.echo-wrap .lab.r{left:calc(62% + 12px)}
+.dot{position:absolute;width:9px;height:9px;border-radius:50%;background:var(--ink);transition:transform 1.1s var(--ease),opacity .9s,width .6s,height .6s,box-shadow .6s;will-change:transform}
+.dot.ghost{opacity:.12}
+.dot.rep{box-shadow:0 0 0 3px rgba(46,211,143,.3);background:#0f7a52}
+.echo-wrap .count{position:absolute;right:16px;bottom:12px;text-align:right}
+.echo-wrap .count b{font-family:var(--mono);font-size:32px;font-weight:600;display:block;line-height:1}
+.echo-wrap .count small{font-size:11px;color:var(--muted)}
+.echo-wrap .infl{position:absolute;left:16px;bottom:14px;font-family:var(--mono);font-size:12px;color:var(--c-counter);border:1.5px solid var(--c-counter);border-radius:6px;padding:3px 8px;opacity:0;transform:rotate(-4deg) scale(1.3);transition:all .4s var(--ease)}
+.echo-wrap.done .infl{opacity:1;transform:rotate(-4deg) scale(1)}
+.merge{margin-top:14px;display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center;font-size:12px}
+.merge .col{display:flex;flex-direction:column;gap:5px}
+.merge .l{padding:6px 10px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink-2)}
+.merge .l em{font-style:normal;font-family:var(--mono);font-size:10px;color:var(--muted);margin-left:6px}
+.merge .arrow{color:var(--muted);font-size:20px}
+.merge .rep1{border:1.5px solid var(--ink);color:var(--ink);font-weight:500;position:relative}
+.merge .rep1::after{content:"대표 1건";position:absolute;right:8px;top:-9px;background:var(--ink);color:#fff;font-family:var(--mono);font-size:9px;padding:1px 6px;border-radius:4px}
+
+/* B. ladder */
+.ladder{position:relative;padding-left:18px}
+.ladder::before{content:"";position:absolute;left:5px;top:6px;bottom:6px;width:2px;background:var(--line-2)}
+.rung{display:grid;grid-template-columns:118px 1fr 70px;gap:12px;align-items:center;padding:9px 0;position:relative;opacity:.35;transform:translateX(-6px);transition:all .5s var(--ease)}
+.ladder.in .rung{opacity:1;transform:none}
+.rung::before{content:"";position:absolute;left:-17px;top:50%;width:10px;height:10px;border-radius:50%;background:var(--c);transform:translateY(-50%);box-shadow:0 0 0 3px #fff,0 0 0 4px var(--c)}
+.rung .name{font-weight:700;font-size:14px;display:flex;flex-direction:column;align-items:flex-start;gap:0;line-height:1.2}
+.rung .name small{font-family:var(--mono);font-size:10px;color:var(--muted);font-weight:400}
+.rung .quote{font-size:13px;color:var(--ink-2);padding:3px 10px;background:#fff;border:1px solid var(--line);border-radius:8px}
+.rung .w{font-family:var(--mono);font-size:11px;color:var(--muted);text-align:right}
+.rung.top .quote{background:rgba(46,211,143,.08);color:var(--ink);font-weight:500}
+.rung.bottom .quote{color:var(--muted);text-decoration:line-through;text-decoration-color:rgba(0,0,0,.25)}
+.ladder-note{margin-top:12px;font-size:12px;color:var(--muted)}
+.ladder-note b{color:var(--ink)}
+
+/* C. counter */
+.cex{border:1px solid var(--line);border-radius:10px;padding:14px 16px;background:#fff;margin-top:10px}
+.cex .h{display:flex;align-items:center;gap:10px;font-weight:700;font-size:14px}
+.cex .h .bd{margin-left:auto;font-family:var(--mono);font-size:11px;padding:2px 9px;border-radius:999px;border:1px solid;transition:all .35s}
+.cex .bd.High{color:#0f7a52;border-color:rgba(46,211,143,.6);background:rgba(46,211,143,.12)}
+.cex .bd.Medium{color:#8a5a00;border-color:rgba(242,193,78,.7);background:rgba(242,193,78,.16)}
+.cex .bd.Low{color:#5a5f66;border-color:var(--line-2);background:#f1f0eb}
+.cex .bd.stamp{animation:stamp .45s var(--ease)}
+.cm{position:relative;height:30px;margin-top:10px}
+.cm .bg{position:absolute;left:0;right:0;top:12px;height:8px;background:#EEEDE8;border-radius:4px}
+.cm .fg{position:absolute;left:0;top:12px;height:8px;width:0;border-radius:4px;background:var(--c-counter);transition:width 1.2s var(--ease)}
+.cm .th{position:absolute;left:30%;top:4px;height:24px;width:2px;background:var(--ink)}
+.cm .th::after{content:"30% 하향선";position:absolute;left:6px;top:-2px;font-family:var(--mono);font-size:10px;color:var(--ink);white-space:nowrap}
+.cm .pct{position:absolute;top:-4px;font-family:var(--mono);font-size:12px;font-weight:600;color:var(--c-counter);transform:translateX(-50%);transition:left 1.2s var(--ease)}
+.ctypes{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.ctypes span{font-size:11px;border:1px solid var(--line);border-radius:6px;padding:2px 8px;color:var(--ink-2);background:#fafaf7}
+.ctypes span b{font-family:var(--mono);margin-left:4px;color:var(--c-counter)}
+.cex .verdict{margin-top:8px;font-size:12px;color:var(--ink-2);min-height:18px}
+.cex .verdict b{color:var(--c-counter)}
+
+/* D. code vs llm */
+.lanes{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.lane{border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:#fff}
+.lane .lh{font-family:var(--mono);font-size:11px;color:var(--muted);display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.lane .lh i{width:8px;height:8px;border-radius:50%;display:inline-block}
+.lane ul{margin:0;padding:0;list-style:none;font-size:13px}
+.lane li{padding:4px 0;border-top:1px dashed var(--line);color:var(--ink-2)}
+.lane li:first-child{border-top:0}
+.lane li.no{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--c-counter)}
+.lane li b{color:var(--ink);font-weight:500}
+.verify{margin-top:14px;border:1px solid var(--line);border-radius:10px;background:#fff;padding:14px 16px}
+.verify .orig{font-size:14px;line-height:1.8;color:var(--ink);padding:8px 10px;background:#FAFAF7;border-radius:8px;border:1px solid var(--line)}
+.verify .orig .src{font-family:var(--mono);font-size:10px;color:var(--muted);display:block;margin-bottom:2px}
+.verify mark{background:rgba(46,211,143,.35);border-radius:3px;padding:0 1px;animation:sweep .6s var(--ease)}
+@keyframes sweep{from{background:rgba(46,211,143,0)}to{background:rgba(46,211,143,.35)}}
+.qlist{margin-top:10px;display:flex;flex-direction:column;gap:6px}
+.ql{display:grid;grid-template-columns:86px 1fr 74px;gap:10px;align-items:center;font-size:13px;padding:6px 10px;border-radius:8px;border:1px solid var(--line);transition:all .5s var(--ease)}
+.ql .ty{font-family:var(--mono);font-size:11px;padding:2px 7px;border-radius:5px;color:#fff;background:var(--c);text-align:center}
+.ql .qt{color:var(--ink-2)}
+.ql .res{font-family:var(--mono);font-size:11px;text-align:right;color:var(--muted)}
+.ql.ok{border-color:rgba(46,211,143,.5);background:rgba(46,211,143,.06)}
+.ql.ok .res{color:#0f7a52}
+.ql.bad{border-color:rgba(244,83,111,.5);background:rgba(244,83,111,.05);transform:translateX(10px);opacity:.55}
+.ql.bad .qt{text-decoration:line-through}
+.ql.bad .res{color:var(--c-counter)}
+.verify .foot{margin-top:10px;font-size:12px;color:var(--muted)}
+.verify .foot b{color:var(--ink);font-family:var(--mono)}
+
+/* ---------- notes ---------- */
+.notes{border-top:1px solid var(--line);padding:28px 0 60px;color:var(--ink-2);font-size:13px}
+.notes h3{font-size:14px;margin-bottom:10px;color:var(--ink)}
+.notes ol{margin:0;padding-left:20px}
+.notes li{margin:4px 0}
+.notes code{font-family:var(--mono);font-size:12px;background:#EEEDE8;padding:1px 5px;border-radius:4px}
+
+@media (max-width:960px){
+  .hero{grid-template-columns:1fr}
+  .funnel{grid-template-columns:1fr 1fr}
+  .stage-body{grid-template-columns:1fr}
+  .slope{display:none}
+  .grid2{grid-template-columns:1fr}
+  .card{grid-template-columns:52px 1fr 110px}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <div class="logo"><i></i>PainRadar</div>
+    <span class="tag">design mockup · 순위 재계산</span>
+    <span class="q">Q. 셀러들이 실제로 시간과 돈을 쓰고 있는 문제는?</span>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div>
+      <div class="kicker">what we count</div>
+      <h1 style="margin-top:10px"><em>몇 번 말했나</em>가 아니라<br><mark>몇 명이 실제로 움직였나</mark>를 셉니다.</h1>
+      <p class="sub">언급 수는 호가창에 쌓인 주문이고, 행동 신호는 실제 체결입니다. 허수 주문이 두꺼운 가격대가 진짜 매물대는 아니죠. 인터넷에서 가장 시끄러운 문제도 마찬가지입니다.</p>
+    </div>
+    <div class="book card-lite">
+      <div class="head"><b>호가창 vs 체결</b>
+        <div class="legend"><span><i class="hollow"></i>언급 (호가)</span><span><i class="fill"></i>행동 (체결)</span></div>
+      </div>
+      <div id="book"></div>
+      <div class="foot">점선은 깜빡이며 취소되는 허수 주문입니다. 남는 건 검은 체결뿐입니다.</div>
+    </div>
+  </section>
+
+  <!-- ============ FUNNEL ============ -->
+  <section class="funnel card-lite" id="funnel">
+    <div class="fstep"><div class="k">언급</div><div class="v num" data-to="393">0</div><div class="d">공개 댓글 원문 그대로</div><div class="bar"><i data-w="100"></i></div></div>
+    <div class="fstep"><span class="drop">−226 에코</span><div class="k">독립 관측</div><div class="v num" data-to="167">0</div><div class="d">같은 말·스레드 반복을 1건으로</div><div class="bar"><i data-w="42"></i></div></div>
+    <div class="fstep"><span class="drop">불만만 있는 건 제외</span><div class="k">행동 신호</div><div class="v num" data-to="68">0</div><div class="d">우회 · 대안 탐색 · 이탈 · 결제</div><div class="bar"><i data-w="17"></i></div></div>
+    <div class="fstep"><div class="k">기회</div><div class="v num" data-to="6">0</div><div class="d">규칙이 High / Medium / Low 밴드로</div><div class="bar"><i data-w="6"></i></div></div>
+  </section>
+
+  <!-- ============ STAGE ============ -->
+  <section class="stage" id="stage" data-step="0">
+    <div class="stage-head">
+      <span class="kicker">rank recount</span>
+      <div class="seg" id="seg">
+        <span class="thumb"></span>
+        <button class="on" data-view="raw">언급 순위</button>
+        <button data-view="verified">검증 순위</button>
+      </div>
+      <button class="ghostbtn" id="play">▶ 단계별 재생</button>
+      <div class="steps" id="steps">
+        <button data-s="0" class="now">0 언급</button>
+        <button data-s="1">1 에코 제거</button>
+        <button data-s="2">2 행동 가중</button>
+        <button data-s="3">3 반박 하향</button>
+        <button data-s="4">4 재배열</button>
+      </div>
+    </div>
+
+    <div class="caption" id="caption"></div>
+
+    <div class="stage-body">
+      <div>
+        <div class="legend2">
+          <span><i class="hollow"></i>언급 (호가)</span>
+          <span><i class="ind"></i>독립 관측</span>
+          <span class="lad"><i class="sw" style="background:var(--c-complaint)"></i>불만</span>
+          <span class="lad"><i class="sw" style="background:var(--c-workaround)"></i>우회</span>
+          <span class="lad"><i class="sw" style="background:var(--c-alt)"></i>대안 탐색</span>
+          <span class="lad"><i class="sw" style="background:var(--c-switch)"></i>이탈</span>
+          <span class="lad"><i class="sw" style="background:var(--c-pay)"></i>결제</span>
+        </div>
+        <ol class="cards" id="cards"></ol>
+        <p class="hint">4단계에서 카드를 누르면 코드가 쓴 <u>순위 이유</u>가 펼쳐집니다. 실제 화면에선 모든 숫자가 근거 원문 드로어로 연결됩니다.</p>
+      </div>
+      <aside class="slope">
+        <div class="axes"><span>언급 순위</span><span>검증 순위</span></div>
+        <svg id="slope"></svg>
+        <p class="note">선이 교차하는 만큼 "시끄러운 것"과 "움직인 것"이 다릅니다.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ DIFFERENTIATORS ============ -->
+  <section class="diffs">
+    <div class="head">
+      <div><div class="kicker">why it's not a crawler</div><h2 style="margin-top:6px">차별점 4가지, 각각 화면에서 보이게</h2></div>
+      <span class="stat">모든 숫자는 코드가 셌고, 인용문은 원문 대조를 통과한 것만 남았습니다</span>
+    </div>
+
+    <div class="grid2">
+      <!-- A -->
+      <div class="panel card-lite">
+        <span class="pno">01</span>
+        <h3>언급 148건 ≠ 목소리 148개</h3>
+        <p class="lead">완전 동일 문장, 어미만 바꾼 문장, 같은 스레드의 되받은 답글을 묶어 대표 1건만 남깁니다. 남은 건 독립 관측 11. 이 비율이 인플레이션입니다.</p>
+        <div class="viz">
+          <div class="echo-wrap" id="echo">
+            <span class="lab l">언급 <b class="num">148</b></span>
+            <span class="lab r">독립 관측</span>
+            <span class="infl">×13.5 inflation</span>
+            <div class="count"><b class="num" id="echoN">148</b><small>독립 관측</small></div>
+          </div>
+          <div class="merge">
+            <div class="col">
+              <div class="l">정산 왜 이렇게 늦어요<em>원문</em></div>
+              <div class="l">정산 왜 이렇게 늦어요<em>완전 동일</em></div>
+              <div class="l">정산 왜이렇게 늦나요ㅠ<em>어미 변형</em></div>
+              <div class="l">↳ 저도요 정산 늦음<em>스레드 답글</em></div>
+            </div>
+            <div class="arrow">→</div>
+            <div class="col"><div class="l rep1">정산 왜 이렇게 늦어요</div></div>
+          </div>
+        </div>
+        <div class="ctl"><button class="btn" id="echoPlay">에코 제거 재생</button><span class="stat">reason: exact · near · thread_echo</span></div>
+      </div>
+
+      <!-- B -->
+      <div class="panel card-lite">
+        <span class="pno">02</span>
+        <h3>불만이 아니라 행동으로 순위를 매김</h3>
+        <p class="lead">행동 사다리 5단. "짜증나요"는 맨 아래, "월 3만원 내고 딴 거 씁니다"는 맨 위. 그래서 언급 3위였던 CSV 수작업이 기회 1위로 올라옵니다.</p>
+        <div class="viz ladder" id="ladder">
+          <div class="rung top" style="--c:var(--c-pay)"><div class="name">결제<small>payment</small></div><div class="quote">"월 3만원 내고 딴 거 씁니다"</div><div class="w">순위 반영 ●●●●●</div></div>
+          <div class="rung" style="--c:var(--c-switch)"><div class="name">이탈<small>switching</small></div><div class="quote">"결국 쿠팡윙으로 옮겼어요"</div><div class="w">순위 반영 ●●●●</div></div>
+          <div class="rung" style="--c:var(--c-alt)"><div class="name">대안 탐색<small>alternative_search</small></div><div class="quote">"혹시 자동으로 해주는 툴 있나요?"</div><div class="w">순위 반영 ●●●</div></div>
+          <div class="rung" style="--c:var(--c-workaround)"><div class="name">우회<small>workaround</small></div><div class="quote">"매일 밤 엑셀 매크로 돌려요"</div><div class="w">순위 반영 ●●</div></div>
+          <div class="rung bottom" style="--c:var(--c-complaint)"><div class="name">불만<small>complaint</small></div><div class="quote">"짜증나요 진짜"</div><div class="w">순위 제외</div></div>
+        </div>
+        <p class="ladder-note">한 단은 <b>독립 관측 3건 이상</b>일 때만 인정합니다(<span class="num">min_rung_obs</span>). 발표의 아하 모먼트는 위 스테이지의 토글 한 번입니다.</p>
+      </div>
+
+      <!-- C -->
+      <div class="panel card-lite">
+        <span class="pno">03</span>
+        <h3>반박 근거를 같이 찾음</h3>
+        <p class="lead">"이미 업데이트로 해결됨", "무료 기능으로 충분함", "난 그런 적 없음" 3종을 따로 셉니다. 독립 관측의 30%를 넘으면 기회 등급을 자동으로 한 칸 내립니다.</p>
+        <div class="viz">
+          <div class="cex" data-pct="36" data-from="Medium" data-to="Low">
+            <div class="h">정산 지연 <span class="stat">독립 관측 11 · 반박 4</span><span class="bd Medium">Opportunity Medium</span></div>
+            <div class="cm"><div class="bg"></div><div class="fg"></div><div class="th"></div><span class="pct">0%</span></div>
+            <div class="ctypes"><span>이미 해결<b>3</b></span><span>대안으로 충분<b>1</b></span><span>경험 없음<b>0</b></span></div>
+            <div class="verdict"></div>
+          </div>
+          <div class="cex" data-pct="4" data-from="High" data-to="High">
+            <div class="h">주문 CSV 수작업 <span class="stat">독립 관측 52 · 반박 2</span><span class="bd High">Opportunity High</span></div>
+            <div class="cm"><div class="bg"></div><div class="fg"></div><div class="th"></div><span class="pct">0%</span></div>
+            <div class="ctypes"><span>이미 해결<b>1</b></span><span>대안으로 충분<b>1</b></span><span>경험 없음<b>0</b></span></div>
+            <div class="verdict"></div>
+          </div>
+        </div>
+        <div class="ctl"><button class="btn" id="ctrPlay">반박 비율 재생</button><span class="stat">counter_downgrade_ratio = 0.3 · 결과 보고 조정한 적 없음</span></div>
+      </div>
+
+      <!-- D -->
+      <div class="panel card-lite">
+        <span class="pno">04</span>
+        <h3>숫자는 코드가 세고, LLM은 라벨만 붙임</h3>
+        <p class="lead">LLM에게 "몇 건이야?"를 물으면 그럴듯한 숫자를 지어냅니다. 그래서 LLM은 문장 하나당 라벨과 인용문만 내고, 집계·중복 제거·순위는 전부 일반 코드가 합니다.</p>
+        <div class="viz">
+          <div class="lanes">
+            <div class="lane">
+              <div class="lh"><i style="background:var(--c-alt)"></i>LLM 이 하는 일</div>
+              <ul>
+                <li><b>주제 이름</b> 붙이기</li>
+                <li>문장마다 <b>라벨</b> (우회 / 이탈 / 반박…)</li>
+                <li>라벨의 근거 <b>인용문</b> 1개</li>
+                <li class="no">몇 건인지 세기</li>
+                <li class="no">순위 매기기</li>
+              </ul>
+            </div>
+            <div class="lane">
+              <div class="lh"><i style="background:var(--ink)"></i>코드가 하는 일</div>
+              <ul>
+                <li>중복 제거 · <b>독립 관측</b> 세기</li>
+                <li>사다리 합계 · <b>반박 비율</b></li>
+                <li>임계값으로 <b>밴드 · 순위</b></li>
+                <li><b>인용문 원문 대조</b>, 없으면 폐기</li>
+                <li>이유 문장 생성</li>
+              </ul>
+            </div>
+          </div>
+          <div class="verify">
+            <div class="orig" id="orig"><span class="src">youtube · 댓글 원문</span><span id="origText"></span></div>
+            <div class="qlist" id="qlist"></div>
+            <div class="foot">q1 실측: 신호·반박 <b>337</b>건 중 <b>22</b>건(<b>6.5%</b>)이 원문에 없어 코드가 버렸습니다. 이 목업의 대조도 같은 규칙(공백 제거 후 부분 문자열)으로 실제로 돌아갑니다.</div>
+          </div>
+        </div>
+        <div class="ctl"><button class="btn" id="vPlay">인용문 대조 재생</button></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="notes">
+    <h3>구현 메모 (코드 수정은 아직 없음)</h3>
+    <ol>
+      <li>스테이지는 <code>Hero.tsx</code>의 좌우 두 표를 <b>한 목록 + data-step 상태</b>로 합친 것입니다. 카드 순서는 flex <code>order</code>와 FLIP(transform) 으로만 바뀌고 DOM은 그대로라 드로어 연결이 유지됩니다.</li>
+      <li>막대 3겹은 이미 있는 값으로 그립니다: 점선 = <code>raw_mentions</code>, 회색 = <code>independent_observations</code>, 색 분절 = <code>ladder</code>. 새 필드 없음.</li>
+      <li>단계 캡션의 숫자(148→11, 36%)는 <code>ranking_reasons</code>와 <code>inflation</code>, <code>counter_evidence / independent_observations</code>에서 그대로 읽습니다.</li>
+      <li>이 목업의 데이터는 발표 대본용 예시입니다. 실측 q2는 inflation 1.0(212→207)이라 1단계 "에코 제거" 장면이 거의 안 보입니다. 에코 장면을 살리려면 스레드 반복이 있는 수집본이 필요합니다.</li>
+      <li>4번 패널의 인용문 대조는 <code>findQuoteRange</code>와 같은 규칙으로 목업 안에서 실제로 실행됩니다.</li>
+    </ol>
+  </section>
+</div>
+
+<script>
+/* ================= data (발표 대본용 예시) ================= */
+const RUNGS=['complaint','workaround','alternative_search','switching','payment'];
+const RL={complaint:'불만',workaround:'우회',alternative_search:'대안 탐색',switching:'이탈',payment:'결제'};
+const RC={complaint:'var(--c-complaint)',workaround:'var(--c-workaround)',alternative_search:'var(--c-alt)',switching:'var(--c-switch)',payment:'var(--c-pay)'};
+const MIN_RUNG_OBS=3;
+const T=[
+ {id:'settle',title:'정산 지연',raw:148,ind:11,lad:{complaint:7,workaround:3,alternative_search:1,switching:0,payment:0},ctr:4,before:1,after:5,band0:'Medium',band:'Low',echo:'같은 영상 댓글창에서 "저도요"가 137번'},
+ {id:'ads',title:'광고비 대비 매출',raw:96,ind:41,lad:{complaint:30,workaround:6,alternative_search:3,switching:2,payment:0},ctr:5,before:2,after:2,band0:'Medium',band:'Medium'},
+ {id:'csv',title:'주문 CSV 수작업',raw:63,ind:52,lad:{complaint:20,workaround:14,alternative_search:9,switching:6,payment:3},ctr:2,before:3,after:1,band0:'High',band:'High',quote:'월 3만원 내고 딴 거 씁니다'},
+ {id:'cs',title:'고객 문의 응대',raw:44,ind:30,lad:{complaint:21,workaround:5,alternative_search:2,switching:1,payment:1},ctr:3,before:4,after:3,band0:'Medium',band:'Medium'},
+ {id:'stock',title:'재고 동기화',raw:27,ind:19,lad:{complaint:10,workaround:4,alternative_search:3,switching:2,payment:0},ctr:1,before:5,after:4,band0:'Medium',band:'Medium'},
+ {id:'photo',title:'상품 사진 촬영',raw:15,ind:14,lad:{complaint:12,workaround:1,alternative_search:1,switching:0,payment:0},ctr:2,before:6,after:6,band0:'Low',band:'Low'},
+];
+const MAX=Math.max(...T.map(t=>t.raw));
+const sup=t=>RUNGS.slice(1).reduce((a,r)=>a+t.lad[r],0);
+const topRung=t=>{for(let i=RUNGS.length-1;i>=1;i--) if(t.lad[RUNGS[i]]>=MIN_RUNG_OBS) return RUNGS[i]; return null};
+const pct=t=>Math.round(t.ctr/t.ind*100);
+
+const CAP=[
+ ['언급 순위. 크롤링 도구가 보여주는 화면입니다.','많이 말한 순서. 점선 막대가 호가창에 쌓인 주문입니다.'],
+ ['에코 제거. 같은 말은 한 번만 셉니다.','완전 동일 · 어미 변형 · 스레드 답글을 대표 1건으로. 정산 지연 148 → 11, 인플레이션 ×13.5.'],
+ ['행동 가중. 불만은 맨 아랫단, 순위에 안 셉니다.','우회 → 대안 탐색 → 이탈 → 결제만 남깁니다. 색이 있는 부분이 실제로 움직인 사람입니다.'],
+ ['반박 하향. 지지 근거만 모으지 않습니다.','"이미 해결됨 / 무료로 충분 / 난 그런 적 없음"이 30%를 넘으면 한 칸 내립니다. 정산 지연 36%.'],
+ ['검증 순위. 언급 3위 CSV 수작업이 기회 1위.','언급 1위였던 정산 지연은 5위. 시끄러운 것과 사람들이 돈을 쓰는 것은 다른 문제였습니다.'],
+];
+
+/* ================= helpers ================= */
+const $=(s,r=document)=>r.querySelector(s);
+const $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function tween(el,from,to,ms=700,fmt=v=>Math.round(v)){
+  if(reduced){el.textContent=fmt(to);return}
+  const t0=performance.now();
+  (function f(now){const p=Math.max(0,Math.min(1,(now-t0)/ms));const e=1-Math.pow(1-p,3);el.textContent=fmt(from+(to-from)*e);if(p<1)requestAnimationFrame(f)})(t0);
+}
+
+/* ================= hero order book ================= */
+(function(){
+  const rows=[...T].sort((a,b)=>b.raw-a.raw).map(t=>{
+    const ask=t.raw/MAX*100, fill=sup(t)/MAX*100*3; // 체결은 시각적 강조를 위해 3배 스케일
+    const flick=t.raw/t.ind>2?'flicker':'';
+    return `<div class="orow"><span class="label">${t.title}</span><span class="t"><i class="ask ${flick}" style="width:${ask}%"></i><i class="fill" style="width:${Math.min(fill,ask)}%"></i></span><span class="n num">${t.raw}</span></div>`;
+  }).join('');
+  $('#book').innerHTML=rows;
+})();
+
+/* ================= funnel count-up ================= */
+new IntersectionObserver((es,o)=>{es.forEach(e=>{if(!e.isIntersecting)return;o.unobserve(e.target);
+  $$('.v',e.target).forEach((el,i)=>setTimeout(()=>tween(el,0,+el.dataset.to,900),i*180));
+  $$('.bar i',e.target).forEach((el,i)=>setTimeout(()=>el.style.width=el.dataset.w+'%',i*180+100));
+})},{threshold:.4}).observe($('#funnel'));
+
+/* ================= stage ================= */
+const stage=$('#stage'), cards=$('#cards'), caption=$('#caption');
+let step=0, playing=false;
+
+function reasons(t){
+  const tr=topRung(t);
+  const ladStr=RUNGS.filter(r=>t.lad[r]>0).map(r=>`${r} ${t.lad[r]}`).join(' / ');
+  const p=pct(t);
+  return [
+    `독립 관측 <b>${t.ind}건</b> (언급 ${t.raw}건, 인플레이션 ${(t.raw/t.ind).toFixed(1)}x)`,
+    `${ladStr} — 최고단: <b>${tr?RL[tr]:'없음 (3건 이상인 단 없음)'}</b>`,
+    `반박 <b>${t.ctr}건 (${p}%)</b> — ${p>=30?'<b>Opportunity 한 단계 하향</b>':'하향 조정 없음'}`,
+    `→ Opportunity <b>${t.band}</b>`,
+  ];
+}
+function render(){
+  cards.innerHTML=T.map(t=>{
+    const d=t.before-t.after;
+    const segs=RUNGS.map(r=>`<span class="s ${r}" style="--n:${t.lad[r]};--c:${RC[r]}"></span>`).join('');
+    const lad=RUNGS.slice(1).filter(r=>t.lad[r]>0).map(r=>`<i style="--c:${RC[r]}">${RL[r]} ${t.lad[r]}</i>`).join('');
+    const p=pct(t);
+    return `<li class="card" data-id="${t.id}" style="order:${t.before}">
+      <div class="rank"><div class="n"><span class="old">${t.before}</span><span class="new">${t.after}</span></div>
+        <span class="delta ${d>0?'up':d<0?'down':'same'}">${d>0?'▲'+d:d<0?'▼'+(-d):'＝'}</span></div>
+      <div class="main">
+        <div class="row1"><span class="title">${t.title}</span>
+          <span class="chip infl">×${(t.raw/t.ind).toFixed(1)} 인플레이션</span>
+          <span class="chip ctr">반박 ${p}% ▼ 하향</span>
+          <span class="band ${t.band0}" data-b0="${t.band0}" data-b1="${t.band}">${t.band0}</span></div>
+        <div class="track" style="--raw:${t.raw/MAX*100}%;--ind:${t.ind/MAX*100}%">
+          <div class="bar-raw"></div><div class="echo"></div><div class="bar-ind">${segs}</div></div>
+        <div class="meter" style="--ctr:${p}%"><div class="bg"></div><div class="fg"></div><div class="th"></div><span class="lab">${p}%</span></div>
+      </div>
+      <div class="nums"><div class="big num"><s></s><span class="v">${t.raw}</span></div><div class="sub"></div><div class="lad">${lad}</div></div>
+      <div class="reasons"><ol>${reasons(t).map(r=>`<li>${r}</li>`).join('')}</ol></div>
+    </li>`;
+  }).join('');
+  $$('.card').forEach(c=>c.addEventListener('click',()=>{if(step===4)c.classList.toggle('open')}));
+}
+render();
+
+function setCaption(i){caption.innerHTML=`<div class="swap">${CAP[i][0]}<small>${CAP[i][1]}</small></div>`}
+
+function applyNums(i){
+  T.forEach(t=>{
+    const c=$(`.card[data-id="${t.id}"]`), v=$('.big .v',c), s=$('.big s',c), sub=$('.sub',c);
+    const cur=+v.textContent||0;
+    if(i===0){tween(v,cur,t.raw,600);s.textContent='';sub.textContent='언급';}
+    else if(i===1){tween(v,cur,t.ind,800);s.textContent=t.raw;sub.textContent='독립 관측';}
+    else {const n=sup(t);tween(v,cur,n,600);s.textContent='';sub.textContent=`행동 신호 (${RUNGS.slice(1).filter(r=>t.lad[r]>=MIN_RUNG_OBS).length}단 인정)`;}
+  });
+}
+function applyChips(i){
+  T.forEach(t=>{
+    const c=$(`.card[data-id="${t.id}"]`);
+    $('.chip.infl',c).classList.toggle('show',i>=1&&t.raw/t.ind>=3);
+    const down=pct(t)>=30;
+    $('.chip.ctr',c).classList.toggle('show',i>=3&&down);
+    const b=$('.band',c);
+    const want=i>=3?b.dataset.b1:b.dataset.b0;
+    b.classList.toggle('show',i>=2);
+    if(b.textContent!==want){b.className=`band ${want} show stamp`;b.textContent=want;setTimeout(()=>b.classList.remove('stamp'),600)}
+    c.classList.toggle('hot',i===4&&t.after===1);
+    c.classList.toggle('cold',i>=3&&down);
+    if(i<4)c.classList.remove('open');
+  });
+}
+function reorder(i){
+  const list=$$('.card');
+  const first=new Map(list.map(c=>[c,c.getBoundingClientRect().top]));
+  list.forEach(c=>{const t=T.find(x=>x.id===c.dataset.id);c.style.order=i===4?t.after:t.before});
+  list.forEach(c=>{const dy=first.get(c)-c.getBoundingClientRect().top;if(!dy)return;c.style.transition='none';c.style.transform=`translateY(${dy}px)`;});
+  requestAnimationFrame(()=>requestAnimationFrame(()=>list.forEach(c=>{c.style.transition='transform .75s cubic-bezier(.2,.8,.2,1),border-color .5s,background .5s,box-shadow .5s';c.style.transform=''})));
+}
+/* slope chart */
+const svg=$('#slope');
+let slopeState=T.map(()=>0); // 0 = flat, 1 = moved
+let slotY=[];
+function measureSlots(){const top=cards.getBoundingClientRect().top;slotY=[];$$('.card').forEach(c=>{const t=T.find(x=>x.id===c.dataset.id);const r=c.getBoundingClientRect();slotY[t.before]=r.top-top+r.height/2});}
+function slopeY(r){const lo=Math.floor(r),hi=Math.ceil(r);return slotY[lo]+(slotY[hi]-slotY[lo])*(r-lo)}
+function drawSlope(p){ // p: 0..1 progress toward "after"
+  const lines=T.map(t=>{
+    const y0=slopeY(t.before), y1=slopeY(t.before+(t.after-t.before)*p);
+    const moved=t.before!==t.after;
+    const col=t.after===1?'var(--high)':(pct(t)>=30?'var(--c-counter)':moved?'rgba(236,234,228,.75)':'rgba(139,146,156,.35)');
+    const w=moved?(t.after===1?3:2):1.2;
+    return `<path d="M14 ${y0} C 110 ${y0}, 140 ${y1}, 236 ${y1}" stroke="${col}" stroke-width="${w}"/>
+      <circle cx="14" cy="${y0}" r="3" fill="${col}"/><circle cx="236" cy="${y1}" r="3" fill="${col}"/>
+      <text x="0" y="${y0+3.5}" style="font-size:9px">${t.before}</text><text x="243" y="${y1+3.5}" style="font-size:9px">${p>.5?t.after:''}</text>`;
+  }).join('');
+  svg.innerHTML=lines;
+}
+function animSlope(to){
+  if(reduced){drawSlope(to);return}
+  const from=to?0:1, t0=performance.now();
+  (function f(now){const p=Math.max(0,Math.min(1,(now-t0)/750));const e=1-Math.pow(1-p,3);drawSlope(from+(to-from)*e);if(p<1)requestAnimationFrame(f)})(t0);
+}
+function sizeSlope(){const h=cards.getBoundingClientRect().height;svg.setAttribute('viewBox',`0 0 250 ${h}`);svg.style.height=h+'px';if(step!==4)measureSlots();drawSlope(step===4?1:0)}
+sizeSlope();addEventListener('resize',sizeSlope);
+
+function go(i){
+  const prev=step; step=i;
+  stage.dataset.step=i;
+  setCaption(i); applyNums(i); applyChips(i);
+  if((prev===4)!==(i===4)){reorder(i);animSlope(i===4?1:0)}
+  $$('#steps button').forEach(b=>{const s=+b.dataset.s;b.classList.toggle('now',s===i);b.classList.toggle('done',s<i)});
+  const seg=$('#seg');seg.classList.toggle('right',i===4);
+  $$('button',seg).forEach(b=>b.classList.toggle('on',(b.dataset.view==='verified')===(i===4)));
+}
+async function play(from=0){
+  if(playing)return;playing=true;$('#play').disabled=true;
+  for(let i=from;i<=4;i++){go(i);if(i<4)await sleep(i===0?1200:2000)}
+  playing=false;$('#play').disabled=false;
+}
+$$('#steps button').forEach(b=>b.addEventListener('click',()=>{if(!playing)go(+b.dataset.s)}));
+$('#play').addEventListener('click',()=>{go(0);setTimeout(()=>play(1),300)});
+$$('#seg button').forEach(b=>b.addEventListener('click',()=>{
+  if(playing)return;
+  if(b.dataset.view==='raw')go(0);
+  else{ if(step===0)play(1); else go(4); }   // 토글 한 번 = 아하 모먼트 (단계가 자동 재생)
+}));
+go(+(new URLSearchParams(location.search).get('step'))||0);
+
+/* ================= A. echo dots ================= */
+(function(){
+  const wrap=$('#echo'), sizes=[62,31,18,12,9,5,4,3,2,1,1]; // 합 148, 11개 그룹
+  const dots=[];
+  sizes.forEach((n,g)=>{for(let k=0;k<n;k++)dots.push({g,k})});
+  const W=()=>wrap.clientWidth, H=()=>wrap.clientHeight;
+  function layout(){
+    const cols=19, gw=(W()*0.62-40)/cols, gh=(H()-70)/Math.ceil(dots.length/cols);
+    dots.forEach((d,i)=>{d.x0=16+(i%cols)*gw;d.y0=32+Math.floor(i/cols)*gh;
+      d.x1=W()*0.62+40+Math.min(d.k,6)*2; d.y1=32+d.g*((H()-70)/(sizes.length-1))+Math.min(d.k,6)*1.2;});
+  }
+  layout();
+  wrap.querySelectorAll('.dot').forEach(e=>e.remove());
+  dots.forEach(d=>{d.el=document.createElement('i');d.el.className='dot';wrap.appendChild(d.el)});
+  function reset(){wrap.classList.remove('done');layout();dots.forEach(d=>{d.el.className='dot';d.el.style.transform=`translate(${d.x0}px,${d.y0}px)`});$('#echoN').textContent=148}
+  reset();
+  let busy=false;
+  async function run(){
+    if(busy)return;busy=true;reset();await sleep(400);
+    // 그룹별로 순차 병합
+    for(let g=0;g<sizes.length;g++){
+      dots.filter(d=>d.g===g).forEach(d=>{d.el.style.transform=`translate(${d.x1}px,${d.y1}px)`;d.el.classList.toggle('ghost',d.k>0);d.el.classList.toggle('rep',d.k===0)});
+      await sleep(g<3?420:160);
+    }
+    tween($('#echoN'),148,11,1100);
+    await sleep(900);wrap.classList.add('done');busy=false;
+  }
+  $('#echoPlay').addEventListener('click',run);
+  new IntersectionObserver((es,o)=>{if(es[0].isIntersecting){o.disconnect();setTimeout(run,300)}},{threshold:.5}).observe(wrap);
+  addEventListener('resize',()=>{if(!busy)reset()});
+})();
+
+/* ================= B. ladder reveal ================= */
+new IntersectionObserver((es,o)=>{if(es[0].isIntersecting){o.disconnect();const l=$('#ladder');const r=$$('.rung',l).reverse();r.forEach((el,i)=>{el.style.transitionDelay=(i*140)+'ms'});l.classList.add('in')}},{threshold:.4}).observe($('#ladder'));
+
+/* ================= C. counter meters ================= */
+(function(){
+  let busy=false;
+  async function run(){
+    if(busy)return;busy=true;
+    const exs=$$('.cex');
+    exs.forEach(ex=>{$('.fg',ex).style.width='0';$('.pct',ex).style.left='0';$('.pct',ex).textContent='0%';$('.verdict',ex).textContent='';const b=$('.bd',ex);b.className=`bd ${ex.dataset.from}`;b.textContent='Opportunity '+ex.dataset.from});
+    await sleep(300);
+    exs.forEach(ex=>{const p=+ex.dataset.pct;$('.fg',ex).style.width=p+'%';$('.pct',ex).style.left=p+'%';tween($('.pct',ex),0,p,1200,v=>Math.round(v)+'%')});
+    await sleep(1350);
+    exs.forEach(ex=>{const p=+ex.dataset.pct,b=$('.bd',ex),v=$('.verdict',ex);
+      if(p>=30){b.className=`bd ${ex.dataset.to} stamp`;b.textContent='Opportunity '+ex.dataset.to;v.innerHTML=`<b>${p}% ≥ 30%</b> → ${ex.dataset.from} 에서 ${ex.dataset.to} 로 한 단계 하향`}
+      else v.innerHTML=`${p}% &lt; 30% → 하향 없음, ${ex.dataset.to} 유지`});
+    busy=false;
+  }
+  $('#ctrPlay').addEventListener('click',run);
+  new IntersectionObserver((es,o)=>{if(es[0].isIntersecting){o.disconnect();setTimeout(run,200)}},{threshold:.5}).observe($('.cex'));
+})();
+
+/* ================= D. quote verification (실제 규칙으로 실행) ================= */
+(function(){
+  const text='정산이 매번 2주씩 밀려서 결국 월 3만원 내고 셀러허브 정산 알림 쓰고 있어요. 네이버 고객센터는 답이 없고요.';
+  const quotes=[
+    {ty:'payment',c:'var(--c-pay)',q:'월 3만원 내고 셀러허브 정산 알림 쓰고 있어요'},
+    {ty:'complaint',c:'var(--c-complaint)',q:'정산이 매번 2주씩 밀려서'},
+    {ty:'switching',c:'var(--c-switch)',q:'네이버 정산 포기하고 쿠팡으로 옮겼어요'},
+  ];
+  // components/EvidenceDrawer.tsx 의 findQuoteRange 와 같은 규칙: 공백 제거 후 부분 문자열 위치를 원문 범위로 되돌린다
+  function findRange(t,q){const target=q.replace(/\s+/g,'');if(!target)return null;const idx=[];let s='';for(let i=0;i<t.length;i++){if(/\s/.test(t[i]))continue;idx.push(i);s+=t[i]}const st=s.indexOf(target);if(st<0)return null;return [idx[st],idx[st+target.length-1]+1]}
+  const origEl=$('#origText'), list=$('#qlist');
+  function reset(){origEl.textContent=text;list.innerHTML=quotes.map((x,i)=>`<div class="ql" data-i="${i}"><span class="ty" style="--c:${x.c}">${x.ty}</span><span class="qt">"${x.q}"</span><span class="res">대기</span></div>`).join('')}
+  reset();
+  let busy=false;
+  async function run(){
+    if(busy)return;busy=true;reset();await sleep(300);
+    for(let i=0;i<quotes.length;i++){
+      const row=$(`.ql[data-i="${i}"]`), r=findRange(text,quotes[i].q);
+      $('.res',row).textContent='대조 중…';await sleep(500);
+      if(r){origEl.innerHTML=text.slice(0,r[0])+'<mark>'+text.slice(r[0],r[1])+'</mark>'+text.slice(r[1]);row.classList.add('ok');$('.res',row).textContent='✓ 채택'}
+      else{row.classList.add('bad');$('.res',row).textContent='✗ 원문에 없음 · 폐기'}
+      await sleep(900);
+    }
+    busy=false;
+  }
+  $('#vPlay').addEventListener('click',run);
+  new IntersectionObserver((es,o)=>{if(es[0].isIntersecting){o.disconnect();setTimeout(run,200)}},{threshold:.5}).observe($('.verify'));
+})();
+</script>
+</body>
+</html>
