@@ -1,0 +1,28 @@
+
+> workspace@0.1.0 run:fixture
+> node --env-file-if-exists=.env.local --import tsx scripts/run.ts --fixture
+
+.env.local not found. Continuing without it.
+· normalize 80건
+· dedup
+· themes 대표 40건 중 표본 40건
+· classify 주제 3개 · 배치 2회
+· rank 클러스터 3개
+· done fixture
+저장: data/runs/fixture.json
+질문: 네이버 스마트스토어 셀러들이 반복적으로 겪는 운영 문제는?
+언급 80 → 독립 관측 40 → 행동 신호 17 → 기회 3   (LLM: mock, dropped quotes: 0)
+RAW RANK                           VERIFIED RANK
+#1 배송 지연 (40)              →   #1 정산/재고 CSV 수작업  15→13 · top: switching · O:High C:Medium
+#2 CS 반복 문의 (25)           →   #2 CS 반복 문의          25→17 · top: workaround · O:Medium C:Medium
+#3 정산/재고 CSV 수작업 (15)   →   #3 배송 지연             40→10 · top: complaint · O:Low C:Low  ⚠ 인플레이션 4.0x
+--- 1위 이유 ---
+독립 관측 13건 (언급 15건, 인플레이션 1.2x)
+workaround 6 / alternative_search 3 / switching 5 / payment 2 — 최고단: switching
+소스 그룹 2개, 소스 아이템 12개
+반박 0건 (0%) — 하향 조정 없음
+→ Opportunity High / Confidence Medium
+--- 집계 ---
+c3 · 독립 관측 13 · 소스 그룹 2 · same_item_ratio 0.15 · 인플레이션 1.2x · top_rung switching · counter 합계 0
+c2 · 독립 관측 17 · 소스 그룹 2 · same_item_ratio 0.24 · 인플레이션 1.5x · top_rung workaround · counter 합계 0
+c1 · 독립 관측 10 · 소스 그룹 2 · same_item_ratio 0.80 · 인플레이션 4.0x · top_rung complaint · counter 합계 3
