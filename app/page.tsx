@@ -14,6 +14,7 @@ interface QuestionItem {
 interface RunRequest {
   question: string;
   slug?: string;
+  query?: string;
 }
 
 const QUESTIONS: QuestionItem[] = questions;
@@ -23,6 +24,7 @@ export default function AskPage() {
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [customQuestion, setCustomQuestion] = useState("");
+  const [customQuery, setCustomQuery] = useState("");
 
   // 질문을 보내고 run_id 를 받으면 바로 결과 화면으로 이동한다. 파이프라인은 서버가 뒤에서 돌린다.
   const startRun = async (body: RunRequest) => {
@@ -52,7 +54,8 @@ export default function AskPage() {
       setError("질문을 입력해 주세요.");
       return;
     }
-    void startRun({ question });
+    // 검색어를 비우면 질문 문장을 그대로 검색한다. 질문 문장은 검색어로 약하니 채우는 쪽이 낫다.
+    void startRun({ question, query: customQuery.trim() || undefined });
   };
 
   return (
@@ -84,23 +87,37 @@ export default function AskPage() {
 
         <details className="mt-6 rounded-xl border border-zinc-200 bg-white px-5 py-4">
           <summary className="cursor-pointer text-sm font-medium text-zinc-700">직접 입력</summary>
-          <form onSubmit={submitCustom} className="mt-3 flex gap-2">
+          <form onSubmit={submitCustom} className="mt-3 flex flex-col gap-2">
             <input
               type="text"
               value={customQuestion}
               onChange={(event) => setCustomQuestion(event.target.value)}
-              placeholder="예: 셀러들이 광고비 때문에 겪는 문제는?"
+              placeholder="질문 (예: 셀러들이 광고비 때문에 겪는 문제는?)"
               maxLength={300}
               disabled={pending}
-              className="flex-1 rounded-lg border border-zinc-300 px-3 py-2 text-sm outline-none focus:border-zinc-500"
+              className="rounded-lg border border-zinc-300 px-3 py-2 text-sm outline-none focus:border-zinc-500"
             />
-            <button
-              type="submit"
-              disabled={pending}
-              className="rounded-lg bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-700 disabled:cursor-wait disabled:opacity-60"
-            >
-              실행
-            </button>
+            <div className="flex gap-2">
+              <input
+                type="text"
+                value={customQuery}
+                onChange={(event) => setCustomQuery(event.target.value)}
+                placeholder="YouTube 검색어 (예: 스마트스토어 광고비)"
+                maxLength={300}
+                disabled={pending}
+                className="flex-1 rounded-lg border border-zinc-300 px-3 py-2 text-sm outline-none focus:border-zinc-500"
+              />
+              <button
+                type="submit"
+                disabled={pending}
+                className="rounded-lg bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-700 disabled:cursor-wait disabled:opacity-60"
+              >
+                실행
+              </button>
+            </div>
+            <p className="text-xs text-zinc-500">
+              직접 입력은 YouTube에서 새로 수집해 분석합니다. 결과까지 몇 분 걸립니다.
+            </p>
           </form>
         </details>
 

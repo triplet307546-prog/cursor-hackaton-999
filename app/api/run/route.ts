@@ -6,6 +6,7 @@ import { join } from "node:path";
 import { after, NextResponse } from "next/server";
 
 import { runPipeline, type PipelineStep } from "@/lib/pipeline/run";
+import { collectEvidence, redact } from "@/lib/sources/youtube";
 import type {
   Evidence,
   ResearchRun,
@@ -24,7 +25,12 @@ const MAX_QUESTION_LENGTH = 300;
 interface RunRequest {
   question: string;
   slug?: "q1" | "q2" | "q3";
+  // YouTube 검색어. 질문 문장은 검색어로 나쁘므로 따로 받는다(config/questions.json 의 label/query 와 같은 구분).
+  query?: string;
 }
+
+// LLM 호출 간격(6초)이 프로세스 전역 변수라 라이브 실행이 겹치면 병렬 호출이 된다. 한 번에 하나만 돈다.
+let liveRunning = false;
 
 // 화면 스테퍼가 읽는 상태 파일. step 은 PipelineStep 값이고 'queued' 는 시작 전 한 번만 쓴다.
 interface RunStatus {
@@ -71,7 +77,11 @@ function parseRequest(body: unknown): RunRequest | null {
   if (body === null || typeof body !== "object") {
     return null;
   }
-  const { question, slug } = body as { question?: unknown; slug?: unknown };
+  const { question, slug, query } = body as {
+    question?: unknown;
+    slug?: unknown;
+    query?: unknown;
+  };
   if (typeof question !== "string") {
     return null;
   }
@@ -82,7 +92,20 @@ function parseRequest(body: unknown): RunRequest | null {
   if (slug !== undefined && (typeof slug !== "string" || !SLUG_PATTERN.test(slug))) {
     return null;
   }
-  return { question: trimmed, slug: slug as RunRequest["slug"] };
+  // 검색어는 그대로 API URL 의 q 로 나가므로 질문과 같은 기준으로 검사한다.
+  if (
+    query !== undefined &&
+    (typeof query !== "string" ||
+      query.trim() === "" ||
+      query.trim().length > MAX_QUESTION_LENGTH)
+  ) {
+    return null;
+  }
+  return {
+    question: trimmed,
+    slug: slug as RunRequest["slug"],
+    query: typeof query === "string" ? query.trim() : undefined,
+  };
 }
 
 // slug 별 캐시 → 공용 캐시 순으로 찾는다. 둘 다 없으면 null (fixture 로 돈다).
@@ -154,19 +177,81 @@ async function runFixture(id: string, question: string): Promise<void> {
   writeRun(id, run);
 }
 
-async function executeRun(id: string, request: RunRequest): Promise<void> {
+function positiveEnv(name: string, fallback: number): number {
+  const parsed = Number.parseInt(process.env[name] ?? "", 10);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
+}
+
+// slug 가 붙은 시연 질문 3개는 캐시 그대로다. 라이브는 직접 입력(slug 없음) + 키가 있을 때만.
+function wantsLive(request: RunRequest): boolean {
+  return request.slug === undefined && Boolean(process.env.YOUTUBE_API_KEY);
+}
+
+async function runLive(id: string, request: RunRequest): Promise<void> {
+  const cfg = await readJson<ScoringConfig>(CONFIG_PATH);
+  const query = request.query ?? request.question;
+
+  writeStatus(id, { step: "queued", detail: `YouTube 검색: ${query}`, done: false });
+  const evidence = await collectEvidence(
+    query,
+    {
+      // 기본값은 fetch:youtube CLI 와 같다. 줄여서 돌리려면 LIVE_* 환경변수로 덮는다.
+      videos: positiveEnv("LIVE_VIDEOS", 6),
+      perVideo: positiveEnv("LIVE_PER_VIDEO", 40),
+      maxTotal: positiveEnv("LIVE_MAX_TOTAL", 400),
+    },
+    (done, total) => {
+      writeStatus(id, {
+        step: "queued",
+        detail: `댓글 수집 ${done}/${total}편`,
+        done: false,
+      });
+    },
+  );
+
+  if (evidence.length === 0) {
+    throw new Error(`"${query}" 로 모은 댓글이 0건입니다. 검색어를 바꿔 보세요.`);
+  }
+
+  const run = await runPipeline(
+    {
+      question: request.question,
+      evidence,
+      sources: sourcesFromEvidence(evidence),
+      mode: "live",
+      run_id: id,
+    },
+    cfg,
+    (step, detail) => {
+      writeStatus(id, { step, detail, done: false });
+    },
+  );
+
+  writeRun(id, run);
+}
+
+async function executeRun(id: string, request: RunRequest, live: boolean): Promise<void> {
   try {
-    const now = new Date();
-    const cachedPath = findCachedPath(request.slug);
-    if (cachedPath !== null) {
-      await copyCachedRun(id, request.question, cachedPath, now);
+    if (live) {
+      await runLive(id, request);
     } else {
-      await runFixture(id, request.question);
+      const now = new Date();
+      const cachedPath = findCachedPath(request.slug);
+      if (cachedPath !== null) {
+        await copyCachedRun(id, request.question, cachedPath, now);
+      } else {
+        await runFixture(id, request.question);
+      }
     }
     writeStatus(id, { step: "done", detail: id, done: true });
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
-    writeStatus(id, { step: "done", done: true, error: message });
+    // 오류 메시지에 API 키가 섞여 화면·파일로 나가지 않게 가린다.
+    writeStatus(id, { step: "done", done: true, error: redact(message) });
+  } finally {
+    if (live) {
+      liveRunning = false;
+    }
   }
 }
 
@@ -186,11 +271,21 @@ export async function POST(request: Request): Promise<NextResponse> {
     );
   }
 
+  const live = wantsLive(parsed);
+  if (live && liveRunning) {
+    return NextResponse.json(
+      { error: "라이브 수집이 이미 돌고 있습니다. 끝난 뒤에 다시 실행해 주세요." },
+      { status: 409 },
+    );
+  }
+  // after() 는 응답 뒤에 돌므로 플래그는 여기서 세운다. 두 요청이 연달아 와도 하나만 통과한다.
+  liveRunning = liveRunning || live;
+
   const id = createRunId(new Date());
   writeStatus(id, { step: "queued", done: false });
 
   after(async () => {
-    await executeRun(id, parsed);
+    await executeRun(id, parsed, live);
   });
 
   return NextResponse.json({ run_id: id });

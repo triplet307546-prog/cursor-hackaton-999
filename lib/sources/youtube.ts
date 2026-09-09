@@ -163,3 +163,50 @@ export function resolveQuery(
   }
   return fromConfig;
 }
+
+export interface CollectOptions {
+  videos: number;
+  perVideo: number;
+  maxTotal: number;
+}
+
+/**
+ * 검색 → 영상별 댓글 수집. 웹 라이브 실행이 쓴다.
+ * 댓글이 꺼진 영상은 건너뛰고, quota 가 끊기면 거기까지 모은 것으로 끝낸다.
+ * 상한(maxTotal)은 스레드 단위로 끊는다. 중간에서 자르면 답글이 부모 없이 남아 스레드 에코 판정이 흔들린다.
+ * CLI(scripts/fetch-youtube.ts)는 videos_<slug>.json 재사용과 quota 로그가 붙은 자체 루프를 쓴다.
+ */
+export async function collectEvidence(
+  query: string,
+  options: CollectOptions,
+  onProgress?: (done: number, total: number) => void,
+): Promise<Evidence[]> {
+  const videoIds = await searchVideos(query, options.videos);
+  const collected: Evidence[] = [];
+
+  for (const [index, videoId] of videoIds.entries()) {
+    onProgress?.(index + 1, videoIds.length);
+    try {
+      for (const item of await fetchThreads(videoId, options.perVideo)) {
+        collected.push(...toEvidence(videoId, item));
+        // 스레드 단위로 끊는다. 한 스레드 중간에서 자르면 답글이 부모 없이 남는다.
+        if (collected.length >= options.maxTotal) {
+          break;
+        }
+      }
+    } catch (error) {
+      if (error instanceof YouTubeApiError && error.reason === "commentsDisabled") {
+        continue;
+      }
+      if (error instanceof YouTubeApiError && error.reason === "quotaExceeded") {
+        break;
+      }
+      throw error;
+    }
+    if (collected.length >= options.maxTotal) {
+      break;
+    }
+  }
+
+  return collected;
+}
