@@ -4,6 +4,8 @@ import scoringConfig from "../config/scoring.json";
 import demoJson from "../data/fixtures/demo.json";
 import {
   PIPELINE_STEPS,
+  aggregateCluster,
+  buildFunnel,
   runPipeline,
   selectThemeSample,
   type PipelineStep,
@@ -84,6 +86,18 @@ describe("runPipeline (fixture)", () => {
     expect(steps).toEqual([...PIPELINE_STEPS]);
   });
 
+  it("'rank' 알림은 집계가 끝난 뒤(클러스터 수를 알 때) 보낸다", async () => {
+    const details = new Map<PipelineStep, string | undefined>();
+    const run = await runPipeline(
+      { question: "q", evidence: fixtureEvidence, sources: [], mode: "fixture" },
+      cfg,
+      (step, detail) => {
+        details.set(step, detail);
+      },
+    );
+    expect(details.get("rank")).toBe(`클러스터 ${run.clusters.length}개`);
+  });
+
   it("run_id 는 입력값을 쓰고, 없으면 새로 만든다", async () => {
     const withId = await runFixture([], "fixture");
     expect(withId.run_id).toBe("fixture");
@@ -140,6 +154,57 @@ describe("runPipeline (fixture)", () => {
       expect(cluster.same_item_ratio).toBeGreaterThan(0);
       expect(cluster.same_item_ratio).toBeLessThanOrEqual(1);
     }
+  });
+});
+
+describe("buildFunnel / aggregateCluster — confidence 문턱의 적용 범위", () => {
+  const base = fixtureEvidence[0];
+  const lowConfidenceWorkaround: Evidence = {
+    ...base,
+    evidence_id: "rep-low",
+    is_group_representative: true,
+    pain_cluster_id: "c1",
+    signals: [
+      { type: "workaround", quote: "q", confidence: 0.4, used_in_ranking: false },
+    ],
+  };
+  const highConfidenceComplaint: Evidence = {
+    ...base,
+    evidence_id: "rep-complaint",
+    is_group_representative: true,
+    pain_cluster_id: "c1",
+    signals: [
+      { type: "complaint", quote: "q", confidence: 0.9, used_in_ranking: true },
+    ],
+  };
+  const member: Evidence = {
+    ...base,
+    evidence_id: "member",
+    is_group_representative: false,
+    pain_cluster_id: "c1",
+    signals: [
+      { type: "switching", quote: "q", confidence: 0.9, used_in_ranking: true },
+    ],
+  };
+  const evidence = [lowConfidenceWorkaround, highConfidenceComplaint, member];
+
+  it("funnel.behavior_signals 는 대표의 workaround 이상 신호를 confidence 와 무관하게 센다", () => {
+    const funnel = buildFunnel(evidence, []);
+    expect(funnel.independent_observations).toBe(2);
+    expect(funnel.behavior_signals).toBe(1);
+  });
+
+  it("supporting_evidence 와 ladder 는 used_in_ranking 신호만 센다", () => {
+    const cluster = aggregateCluster(
+      { cluster_id: "c1", title: "t", description: "d" },
+      evidence,
+      cfg,
+    );
+    expect(cluster.raw_mentions).toBe(3);
+    expect(cluster.independent_observations).toBe(2);
+    expect(cluster.supporting_evidence).toBe(0);
+    expect(cluster.ladder.workaround).toBe(0);
+    expect(cluster.ladder.complaint).toBe(1);
   });
 });
 

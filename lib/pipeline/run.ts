@@ -101,10 +101,18 @@ export function selectThemeSample(
     .slice(0, limit);
 }
 
-function hasBehaviorSignal(item: Evidence): boolean {
-  const minIndex = rungIndex(BEHAVIOR_MIN_RUNG);
+function isBehaviorRung(type: SignalType): boolean {
+  return rungIndex(type) >= rungIndex(BEHAVIOR_MIN_RUNG);
+}
+
+// 퍼널의 "행동 신호"는 원문 검증을 통과한 신호면 모두 센다. confidence 문턱은 순위(ladder)에만 적용한다.
+function hasAnyBehaviorSignal(item: Evidence): boolean {
+  return item.signals.some((signal) => isBehaviorRung(signal.type));
+}
+
+function hasRankingBehaviorSignal(item: Evidence): boolean {
   return item.signals.some(
-    (signal) => signal.used_in_ranking && rungIndex(signal.type) >= minIndex,
+    (signal) => signal.used_in_ranking && isBehaviorRung(signal.type),
   );
 }
 
@@ -187,7 +195,7 @@ export function aggregateCluster(
     ladder,
     top_rung: topRung(ladder, cfg.min_rung_obs),
     counter: buildCounter(representatives),
-    supporting_evidence: representatives.filter(hasBehaviorSignal).length,
+    supporting_evidence: representatives.filter(hasRankingBehaviorSignal).length,
     counter_evidence: representatives.filter((item) => item.counter.length > 0)
       .length,
     // 밴드·순위·이유는 rank / explain 이 채운다.
@@ -228,7 +236,7 @@ export function buildFunnel(
   return {
     raw_mentions: evidence.length,
     independent_observations: representatives.length,
-    behavior_signals: representatives.filter(hasBehaviorSignal).length,
+    behavior_signals: representatives.filter(hasAnyBehaviorSignal).length,
     opportunities: clusters.length,
   };
 }
@@ -267,11 +275,10 @@ export async function runPipeline(
   setUsageContext({ run_id: runId, phase: "classify" });
   const classified = await classifyAll(deduplicated, themes, cfg, mode);
 
-  report("rank");
-  const clusters = rank(
-    aggregateClusters(classified.evidence, themes, cfg),
-    cfg,
-  ).map((cluster) => ({
+  // 집계는 PipelineStep 에 없는 단계라 'rank' 알림은 실제 rank() 직전에 보낸다.
+  const aggregated = aggregateClusters(classified.evidence, themes, cfg);
+  report("rank", `클러스터 ${aggregated.length}개`);
+  const clusters = rank(aggregated, cfg).map((cluster) => ({
     ...cluster,
     ranking_reasons: explain(cluster, cfg),
   }));
