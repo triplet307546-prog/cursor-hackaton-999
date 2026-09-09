@@ -11,7 +11,8 @@
     "run:fixture": "node --env-file-if-exists=.env.local --import tsx scripts/run.ts --fixture",
     "run:cached": "node --env-file-if-exists=.env.local --import tsx scripts/run.ts --cached",
     "run:raw": "node --env-file-if-exists=.env.local --import tsx scripts/run.ts --raw",
-    "fetch:youtube": "node --env-file-if-exists=.env.local --import tsx scripts/fetch-youtube.ts"
+    "fetch:youtube": "node --env-file-if-exists=.env.local --import tsx scripts/fetch-youtube.ts",
+    "dedup:check": "node --import tsx scripts/dedup-check.ts"
   },
   "dependencies": {
     "next": "16.3.4",
