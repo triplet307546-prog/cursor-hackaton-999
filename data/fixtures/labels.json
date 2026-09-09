@@ -1,0 +1,556 @@
+{
+  "themes": [
+    {
+      "cluster_id": "c1",
+      "title": "배송 지연",
+      "description": "집하·발송이 늦어 고객 항의가 반복되는 배송 지연"
+    },
+    {
+      "cluster_id": "c2",
+      "title": "CS 반복 문의",
+      "description": "같은 질문을 반복해서 안내해야 하는 고객 문의"
+    },
+    {
+      "cluster_id": "c3",
+      "title": "정산/재고 CSV 수작업",
+      "description": "정산·재고 CSV를 엑셀로 수작업 정리하는 부담"
+    }
+  ],
+  "labels": {
+    "del-ex1-01": {
+      "evidence_id": "del-ex1-01",
+      "pain_cluster_id": "c1",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "complaint",
+          "quote": "사흘째 택배사 집하가 안 돼서 출고 약속을 ",
+          "confidence": 0.86
+        }
+      ],
+      "counter": []
+    },
+    "del-ex2-01": {
+      "evidence_id": "del-ex2-01",
+      "pain_cluster_id": "c1",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "complaint",
+          "quote": "이틀째 물류 이동이 없어서 고객에게 지연 안",
+          "confidence": 0.84
+        }
+      ],
+      "counter": []
+    },
+    "del-ne1-01": {
+      "evidence_id": "del-ne1-01",
+      "pain_cluster_id": "c1",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "complaint",
+          "quote": "집하가 계속 늦어져 고객 항의를 제가 전부 ",
+          "confidence": 0.88
+        }
+      ],
+      "counter": []
+    },
+    "del-ne2-01": {
+      "evidence_id": "del-ne2-01",
+      "pain_cluster_id": "c1",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "complaint",
+          "quote": "기사님 방문이 늦어서 배송 지연 문의가 계속",
+          "confidence": 0.82
+        }
+      ],
+      "counter": []
+    },
+    "del-ne3-01": {
+      "evidence_id": "del-ne3-01",
+      "pain_cluster_id": "c1",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "complaint",
+          "quote": "집하까지 밀려서 발송 지연 안내만 반복하고 ",
+          "confidence": 0.8
+        }
+      ],
+      "counter": []
+    },
+    "del-ne4-01": {
+      "evidence_id": "del-ne4-01",
+      "pain_cluster_id": "c1",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "complaint",
+          "quote": "실제 배송이 늦다며 게시판에 항의를 계속 남",
+          "confidence": 0.85
+        }
+      ],
+      "counter": []
+    },
+    "del-single-01": {
+      "evidence_id": "del-single-01",
+      "pain_cluster_id": "c1",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "complaint",
+          "quote": "조회 화면이 밤새 그대로라 구매자에게 설명할",
+          "confidence": 0.78
+        }
+      ],
+      "counter": []
+    },
+    "del-single-02": {
+      "evidence_id": "del-single-02",
+      "pain_cluster_id": "c1",
+      "is_noise": false,
+      "signals": [],
+      "counter": [
+        {
+          "type": "already_solved",
+          "quote": " 집하 시간이 고정돼서 이미 많이 개선됐어요",
+          "confidence": 0.83
+        }
+      ]
+    },
+    "del-single-03": {
+      "evidence_id": "del-single-03",
+      "pain_cluster_id": "c1",
+      "is_noise": false,
+      "signals": [],
+      "counter": [
+        {
+          "type": "alternative_sufficient",
+          "quote": " 쓰면 지연 안내가 자동으로 나가서 되던데요",
+          "confidence": 0.81
+        }
+      ]
+    },
+    "del-single-04": {
+      "evidence_id": "del-single-04",
+      "pain_cluster_id": "c1",
+      "is_noise": false,
+      "signals": [],
+      "counter": [
+        {
+          "type": "alternative_sufficient",
+          "quote": "동 쓰면 지연 주문만 모아서 볼 수 있던데요",
+          "confidence": 0.79
+        }
+      ]
+    },
+    "cs-ne1-01": {
+      "evidence_id": "cs-ne1-01",
+      "pain_cluster_id": "c2",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "complaint",
+          "quote": "같은 배송 질문이 계속 올라와 하루 종일 똑",
+          "confidence": 0.87
+        }
+      ],
+      "counter": []
+    },
+    "cs-ne2-01": {
+      "evidence_id": "cs-ne2-01",
+      "pain_cluster_id": "c2",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "complaint",
+          "quote": "같은 질문이 들어와 매번 처음부터 설명하고 ",
+          "confidence": 0.85
+        }
+      ],
+      "counter": []
+    },
+    "cs-single-01": {
+      "evidence_id": "cs-single-01",
+      "pain_cluster_id": "c2",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "workaround",
+          "quote": " 내용은 매크로를 만들어서 답변하고 있습니다",
+          "confidence": 0.84
+        }
+      ],
+      "counter": []
+    },
+    "cs-single-02": {
+      "evidence_id": "cs-single-02",
+      "pain_cluster_id": "c2",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "workaround",
+          "quote": "단축 문구를 저장해 두고 복사해서 답하고 있",
+          "confidence": 0.82
+        }
+      ],
+      "counter": []
+    },
+    "cs-single-03": {
+      "evidence_id": "cs-single-03",
+      "pain_cluster_id": "c2",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "workaround",
+          "quote": "메모장에 문장을 써 두고 매번 붙여 넣습니다",
+          "confidence": 0.8
+        }
+      ],
+      "counter": []
+    },
+    "cs-single-04": {
+      "evidence_id": "cs-single-04",
+      "pain_cluster_id": "c2",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "workaround",
+          "quote": "답변 양식을 미리 작성해 두고 항목만 바꿔서",
+          "confidence": 0.81
+        }
+      ],
+      "counter": []
+    },
+    "cs-single-05": {
+      "evidence_id": "cs-single-05",
+      "pain_cluster_id": "c2",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "complaint",
+          "quote": " 사이즈 문의가 하루에도 여러 번 들어옵니다",
+          "confidence": 0.77
+        }
+      ],
+      "counter": []
+    },
+    "cs-single-06": {
+      "evidence_id": "cs-single-06",
+      "pain_cluster_id": "c2",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "complaint",
+          "quote": "같은 분이 채팅과 게시판에 연달아 물어봅니다",
+          "confidence": 0.76
+        }
+      ],
+      "counter": []
+    },
+    "cs-single-07": {
+      "evidence_id": "cs-single-07",
+      "pain_cluster_id": "c2",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "complaint",
+          "quote": "여서 월요일 오전에는 답변만 하다가 끝납니다",
+          "confidence": 0.75
+        }
+      ],
+      "counter": []
+    },
+    "cs-single-08": {
+      "evidence_id": "cs-single-08",
+      "pain_cluster_id": "c2",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "complaint",
+          "quote": "번호를 찾느라 답변 시간이 너무 오래 걸려요",
+          "confidence": 0.78
+        }
+      ],
+      "counter": []
+    },
+    "cs-single-09": {
+      "evidence_id": "cs-single-09",
+      "pain_cluster_id": "c2",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "complaint",
+          "quote": "지 않고 언제 오냐는 문의가 계속 이어집니다",
+          "confidence": 0.8
+        }
+      ],
+      "counter": []
+    },
+    "cs-single-10": {
+      "evidence_id": "cs-single-10",
+      "pain_cluster_id": "c2",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "complaint",
+          "quote": "도 묶음 배송이 되는지 매번 다시 물어보네요",
+          "confidence": 0.79
+        }
+      ],
+      "counter": []
+    },
+    "cs-single-11": {
+      "evidence_id": "cs-single-11",
+      "pain_cluster_id": "c2",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "complaint",
+          "quote": "조립 방법을 묻는 문의가 줄지 않아 답답합니",
+          "confidence": 0.77
+        }
+      ],
+      "counter": []
+    },
+    "cs-single-12": {
+      "evidence_id": "cs-single-12",
+      "pain_cluster_id": "c2",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "complaint",
+          "quote": "진행 상황을 묻는 연락이 많아 다른 일을 시",
+          "confidence": 0.74
+        }
+      ],
+      "counter": []
+    },
+    "cs-single-13": {
+      "evidence_id": "cs-single-13",
+      "pain_cluster_id": "c2",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "complaint",
+          "quote": "가 반복돼 같은 문장을 계속 입력하고 있어요",
+          "confidence": 0.76
+        }
+      ],
+      "counter": []
+    },
+    "cs-single-14": {
+      "evidence_id": "cs-single-14",
+      "pain_cluster_id": "c2",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "complaint",
+          "quote": "다음 날 처리할 내용이 계속 밀리고 있습니다",
+          "confidence": 0.73
+        }
+      ],
+      "counter": []
+    },
+    "cs-single-15": {
+      "evidence_id": "cs-single-15",
+      "pain_cluster_id": "c2",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "complaint",
+          "quote": " 화면과 다르다는 질문이 반복해서 들어옵니다",
+          "confidence": 0.75
+        }
+      ],
+      "counter": []
+    },
+    "csv-ex1-01": {
+      "evidence_id": "csv-ex1-01",
+      "pain_cluster_id": "c3",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "workaround",
+          "quote": "엑셀로 따로 정리해서 주문별 수수료를 다시 ",
+          "confidence": 0.88
+        }
+      ],
+      "counter": []
+    },
+    "csv-ex2-01": {
+      "evidence_id": "csv-ex2-01",
+      "pain_cluster_id": "c3",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "workaround",
+          "quote": "창고 파일과 수동으로 합친 다음 품절 수량을",
+          "confidence": 0.86
+        }
+      ],
+      "counter": []
+    },
+    "csv-single-01": {
+      "evidence_id": "csv-single-01",
+      "pain_cluster_id": "c3",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "alternative_search",
+          "quote": "간을 줄이려고 A사 관리 서비스로 갈아탔어요",
+          "confidence": 0.74
+        },
+        {
+          "type": "switching",
+          "quote": "간을 줄이려고 A사 관리 서비스로 갈아탔어요",
+          "confidence": 0.9
+        }
+      ],
+      "counter": []
+    },
+    "csv-single-02": {
+      "evidence_id": "csv-single-02",
+      "pain_cluster_id": "c3",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "alternative_search",
+          "quote": "옮기다 자꾸 틀려서 OO툴로 아예 갈아탔어요",
+          "confidence": 0.72
+        },
+        {
+          "type": "switching",
+          "quote": "옮기다 자꾸 틀려서 OO툴로 아예 갈아탔어요",
+          "confidence": 0.89
+        }
+      ],
+      "counter": []
+    },
+    "csv-single-03": {
+      "evidence_id": "csv-single-03",
+      "pain_cluster_id": "c3",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "switching",
+          "quote": " 버거워서 A사 방식으로 바꿔서 쓰고 있어요",
+          "confidence": 0.87
+        }
+      ],
+      "counter": []
+    },
+    "csv-single-04": {
+      "evidence_id": "csv-single-04",
+      "pain_cluster_id": "c3",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "workaround",
+          "quote": "수수료를 대조하는 데 하루가 걸려서 다른 관",
+          "confidence": 0.8
+        },
+        {
+          "type": "switching",
+          "quote": " 하루가 걸려서 다른 관리 도구로 갈아탔어요",
+          "confidence": 0.88
+        }
+      ],
+      "counter": []
+    },
+    "csv-single-05": {
+      "evidence_id": "csv-single-05",
+      "pain_cluster_id": "c3",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "switching",
+          "quote": "어져 재고를 자동 반영하는 OO툴로 옮겼어요",
+          "confidence": 0.85
+        }
+      ],
+      "counter": []
+    },
+    "csv-single-06": {
+      "evidence_id": "csv-single-06",
+      "pain_cluster_id": "c3",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "payment",
+          "quote": "주는 서비스에 월 3만원 내고 쓰고 있습니다",
+          "confidence": 0.9
+        }
+      ],
+      "counter": []
+    },
+    "csv-single-07": {
+      "evidence_id": "csv-single-07",
+      "pain_cluster_id": "c3",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "payment",
+          "quote": " 매달 2만원 결제해서 정산 도구를 사용해요",
+          "confidence": 0.9
+        }
+      ],
+      "counter": []
+    },
+    "csv-single-08": {
+      "evidence_id": "csv-single-08",
+      "pain_cluster_id": "c3",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "alternative_search",
+          "quote": "일을 한 번에 자동으로 합쳐 주는 툴 없나요",
+          "confidence": 0.83
+        }
+      ],
+      "counter": []
+    },
+    "csv-single-09": {
+      "evidence_id": "csv-single-09",
+      "pain_cluster_id": "c3",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "workaround",
+          "quote": "정산 결과를 엑셀로 따로 정리해 두고 있습니",
+          "confidence": 0.81
+        }
+      ],
+      "counter": []
+    },
+    "csv-single-10": {
+      "evidence_id": "csv-single-10",
+      "pain_cluster_id": "c3",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "workaround",
+          "quote": "간단한 스크립트로 순서를 맞춘 뒤 업로드합니",
+          "confidence": 0.78
+        }
+      ],
+      "counter": []
+    },
+    "csv-single-11": {
+      "evidence_id": "csv-single-11",
+      "pain_cluster_id": "c3",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "workaround",
+          "quote": "OO툴에 올려 품목 코드를 맞춘 뒤 다시 등",
+          "confidence": 0.77
+        }
+      ],
+      "counter": []
+    }
+  }
+}
