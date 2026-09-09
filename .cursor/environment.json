@@ -1,0 +1,4 @@
+{
+  "name": "PainRadar",
+  "install": "npm ci"
+}

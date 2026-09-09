@@ -1,0 +1,13 @@
+{
+  "min_rung_obs": 3,
+  "opp_high": { "min_ind": 10, "min_source_groups": 1, "min_rung": "switching" },
+  "opp_medium": { "min_ind": 5, "min_rung": "workaround" },
+  "counter_downgrade_ratio": 0.3,
+  "conf_high": { "min_ind": 20, "min_source_groups": 2, "max_inflation": 3, "max_not_experienced": 0.2 },
+  "conf_medium": { "min_ind": 8 },
+  "same_item_penalty_ratio": 0.7,
+  "near_dup_threshold": 0.6,
+  "thread_echo_threshold": 0.4,
+  "signal_min_confidence": 0.6,
+  "batch_size": 20
+}
