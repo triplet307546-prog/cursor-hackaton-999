@@ -182,7 +182,7 @@ export default function RunPage() {
 
   return (
     <main className="min-h-screen bg-zinc-50 text-zinc-900">
-      <div className="mx-auto flex max-w-[1400px] flex-col gap-4 px-6 py-4">
+      <div className="flex flex-col gap-2 px-3 py-2">
         <div className="flex items-center gap-3 text-sm">
           <Link href="/" className="text-zinc-500 hover:text-zinc-900">
             ← 질문으로
