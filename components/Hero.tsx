@@ -79,11 +79,25 @@ function Badge({ label, band }: { label: string; band: Band }) {
 }
 
 function Funnel({ run, onSelect }: { run: ResearchRun; onSelect: SelectHandler }) {
+  // 첫 숫자(언급)는 무내용을 빼지 않으므로 두 번째 숫자와의 차이를 여기서 설명한다. 예전 run JSON 에는 값이 없다.
+  const { promo_dropped, contentless_dropped } = run.llm;
+  const exclusionCaption =
+    promo_dropped !== undefined && contentless_dropped !== undefined
+      ? `홍보 ${promo_dropped}건 · 무내용 ${contentless_dropped}건 제외`
+      : null;
+
   return (
     <section className="flex flex-wrap items-center gap-2 rounded-xl border border-zinc-200 bg-white px-5 py-3">
       {FUNNEL_STEPS.map((step, index) => (
         <Fragment key={step.key}>
-          {index > 0 && <span className="px-2 text-2xl text-zinc-300">→</span>}
+          {index > 0 && (
+            <span className="flex flex-col items-center px-2">
+              <span className="text-2xl text-zinc-300">→</span>
+              {index === 1 && exclusionCaption && (
+                <span className="whitespace-nowrap text-[10px] text-zinc-400">{exclusionCaption}</span>
+              )}
+            </span>
+          )}
           <button
             type="button"
             onClick={() => onSelect({ scope: "funnel", key: step.key })}
@@ -384,6 +398,9 @@ export default function Hero({ run }: { run: ResearchRun }) {
   // RAW RANK 는 rank_before(언급 많은 순), VERIFIED RANK 는 rank_after 순. 둘 다 JSON 값만 쓴다.
   const byBefore = [...run.clusters].sort((a, b) => a.rank_before - b.rank_before);
   const byAfter = [...run.clusters].sort((a, b) => a.rank_after - b.rank_after);
+  const signalsMatch =
+    run.clusters.length > 0 &&
+    run.clusters.every((cluster) => cluster.rank_before === cluster.rank_after);
 
   const toggleExpanded = (column: RankView) => (id: string) => {
     setExpanded((current) =>
@@ -399,6 +416,12 @@ export default function Hero({ run }: { run: ResearchRun }) {
       </header>
 
       <Funnel run={run} onSelect={setSelection} />
+
+      {signalsMatch && (
+        <div className="rounded-xl border border-emerald-300 bg-emerald-50 px-5 py-3 text-sm font-medium text-emerald-800">
+          언급 순위와 행동 순위가 일치합니다 — 시끄러운 문제가 실제 행동 문제입니다
+        </div>
+      )}
 
       <div className="grid grid-cols-2 gap-6">
         <RankColumn

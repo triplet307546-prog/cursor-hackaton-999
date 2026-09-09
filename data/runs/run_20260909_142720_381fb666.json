@@ -1,0 +1,2715 @@
+{
+  "run_id": "run_20260909_142720_381fb666",
+  "question": "온라인 셀러가 배송 문제로 겪는 고통은 뭘까?",
+  "created_at": "2026-09-09T05:27:21.052Z",
+  "mode": "fixture",
+  "sources": [
+    {
+      "source_group": "youtube",
+      "label": "YouTube 댓글",
+      "policy": "official_api",
+      "fetched": 60
+    },
+    {
+      "source_group": "naver_blog",
+      "label": "네이버 블로그",
+      "policy": "official_api",
+      "fetched": 20
+    }
+  ],
+  "funnel": {
+    "raw_mentions": 80,
+    "independent_observations": 40,
+    "behavior_signals": 17,
+    "opportunities": 3
+  },
+  "clusters": [
+    {
+      "cluster_id": "c3",
+      "title": "정산/재고 CSV 수작업",
+      "description": "정산·재고 CSV를 엑셀로 수작업 정리하는 부담",
+      "raw_mentions": 15,
+      "independent_observations": 13,
+      "source_groups": 2,
+      "source_items": 12,
+      "same_item_ratio": 0.15384615384615385,
+      "inflation": 1.1538461538461537,
+      "ladder": {
+        "complaint": 0,
+        "workaround": 6,
+        "alternative_search": 3,
+        "switching": 5,
+        "payment": 2
+      },
+      "top_rung": "switching",
+      "counter": {
+        "already_solved": 0,
+        "alternative_sufficient": 0,
+        "not_experienced": 0
+      },
+      "supporting_evidence": 13,
+      "counter_evidence": 0,
+      "opportunity": "High",
+      "confidence": "Medium",
+      "rank_before": 3,
+      "rank_after": 1,
+      "ranking_reasons": [
+        "독립 관측 13건 (언급 15건, 인플레이션 1.2x)",
+        "workaround 6 / alternative_search 3 / switching 5 / payment 2 — 최고단: switching",
+        "소스 그룹 2개, 소스 아이템 12개",
+        "반박 0건 (0%) — 하향 조정 없음",
+        "→ Opportunity High / Confidence Medium"
+      ],
+      "representative_ids": [
+        "csv-ex1-01",
+        "csv-ex2-01",
+        "csv-single-01",
+        "csv-single-02",
+        "csv-single-03",
+        "csv-single-04",
+        "csv-single-05",
+        "csv-single-06",
+        "csv-single-07",
+        "csv-single-08",
+        "csv-single-09",
+        "csv-single-10",
+        "csv-single-11"
+      ]
+    },
+    {
+      "cluster_id": "c2",
+      "title": "CS 반복 문의",
+      "description": "같은 질문을 반복해서 안내해야 하는 고객 문의",
+      "raw_mentions": 25,
+      "independent_observations": 17,
+      "source_groups": 2,
+      "source_items": 9,
+      "same_item_ratio": 0.23529411764705882,
+      "inflation": 1.4705882352941178,
+      "ladder": {
+        "complaint": 13,
+        "workaround": 4,
+        "alternative_search": 0,
+        "switching": 0,
+        "payment": 0
+      },
+      "top_rung": "workaround",
+      "counter": {
+        "already_solved": 0,
+        "alternative_sufficient": 0,
+        "not_experienced": 0
+      },
+      "supporting_evidence": 4,
+      "counter_evidence": 0,
+      "opportunity": "Medium",
+      "confidence": "Medium",
+      "rank_before": 2,
+      "rank_after": 2,
+      "ranking_reasons": [
+        "독립 관측 17건 (언급 25건, 인플레이션 1.5x)",
+        "complaint 13 / workaround 4 — 최고단: workaround",
+        "소스 그룹 2개, 소스 아이템 9개",
+        "반박 0건 (0%) — 하향 조정 없음",
+        "→ Opportunity Medium / Confidence Medium"
+      ],
+      "representative_ids": [
+        "cs-ne1-01",
+        "cs-ne2-01",
+        "cs-single-01",
+        "cs-single-02",
+        "cs-single-03",
+        "cs-single-04",
+        "cs-single-05",
+        "cs-single-06",
+        "cs-single-07",
+        "cs-single-08",
+        "cs-single-09",
+        "cs-single-10",
+        "cs-single-11",
+        "cs-single-12",
+        "cs-single-13",
+        "cs-single-14",
+        "cs-single-15"
+      ]
+    },
+    {
+      "cluster_id": "c1",
+      "title": "배송 지연",
+      "description": "집하·발송이 늦어 고객 항의가 반복되는 배송 지연",
+      "raw_mentions": 40,
+      "independent_observations": 10,
+      "source_groups": 2,
+      "source_items": 3,
+      "same_item_ratio": 0.8,
+      "inflation": 4,
+      "ladder": {
+        "complaint": 7,
+        "workaround": 0,
+        "alternative_search": 0,
+        "switching": 0,
+        "payment": 0
+      },
+      "top_rung": "complaint",
+      "counter": {
+        "already_solved": 1,
+        "alternative_sufficient": 2,
+        "not_experienced": 0
+      },
+      "supporting_evidence": 0,
+      "counter_evidence": 3,
+      "opportunity": "Low",
+      "confidence": "Low",
+      "rank_before": 1,
+      "rank_after": 3,
+      "ranking_reasons": [
+        "독립 관측 10건 (언급 40건, 인플레이션 4.0x)",
+        "complaint 7 — 최고단: complaint",
+        "소스 그룹 2개, 소스 아이템 3개 — 단일 소스 편중",
+        "반박 3건 (30%) — 하향 대상이나 이미 Low",
+        "→ Opportunity Low / Confidence Low"
+      ],
+      "representative_ids": [
+        "del-ex1-01",
+        "del-ex2-01",
+        "del-ne1-01",
+        "del-ne2-01",
+        "del-ne3-01",
+        "del-ne4-01",
+        "del-single-01",
+        "del-single-02",
+        "del-single-03",
+        "del-single-04"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "del-ex1-01",
+      "source": "YouTube 댓글",
+      "source_group": "youtube",
+      "source_item_id": "yt-video-01",
+      "thread_id": "thread-del-ex1-01",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=yt-video-01&lc=del-ex1-01",
+      "published_at": "2026-05-01T09:00:00Z",
+      "text_raw": "송장은 등록됐는데 사흘째 택배사 집하가 안 돼서 출고 약속을 못 지키고 배송 문의만 계속 받고 있습니다",
+      "text_norm": "송장은 등록됐는데 사흘째 택배사 집하가 안 돼서 출고 약속을 못 지키고 배송 문의만 계속 받고 있습니다",
+      "engagement": {
+        "likes": 0,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-9b0692f36fdd",
+      "is_group_representative": true,
+      "pain_cluster_id": "c1",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "complaint",
+          "quote": "사흘째 택배사 집하가 안 돼서 출고 약속을 ",
+          "confidence": 0.86,
+          "used_in_ranking": true
+        }
+      ],
+      "counter": []
+    },
+    {
+      "evidence_id": "del-ex1-02",
+      "source": "YouTube 댓글",
+      "source_group": "youtube",
+      "source_item_id": "yt-video-02",
+      "thread_id": "thread-del-ex1-02",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=yt-video-02&lc=del-ex1-02",
+      "published_at": "2026-05-09T11:00:00Z",
+      "text_raw": "송장은 등록됐는데 사흘째 택배사 집하가 안 돼서 출고 약속을 못 지키고 배송 문의만 계속 받고 있습니다",
+      "text_norm": "송장은 등록됐는데 사흘째 택배사 집하가 안 돼서 출고 약속을 못 지키고 배송 문의만 계속 받고 있습니다",
+      "engagement": {
+        "likes": 1,
+        "replies": 1
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-9b0692f36fdd",
+      "is_group_representative": false,
+      "pain_cluster_id": "c1",
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "del-ex1-03",
+      "source": "YouTube 댓글",
+      "source_group": "youtube",
+      "source_item_id": "yt-video-03",
+      "thread_id": "thread-del-ex1-03",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=yt-video-03&lc=del-ex1-03",
+      "published_at": "2026-06-02T14:00:00Z",
+      "text_raw": "송장은 등록됐는데 사흘째 택배사 집하가 안 돼서 출고 약속을 못 지키고 배송 문의만 계속 받고 있습니다",
+      "text_norm": "송장은 등록됐는데 사흘째 택배사 집하가 안 돼서 출고 약속을 못 지키고 배송 문의만 계속 받고 있습니다",
+      "engagement": {
+        "likes": 2,
+        "replies": 2
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-9b0692f36fdd",
+      "is_group_representative": false,
+      "pain_cluster_id": "c1",
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "del-ex1-04",
+      "source": "YouTube 댓글",
+      "source_group": "youtube",
+      "source_item_id": "yt-video-04",
+      "thread_id": "thread-del-ex1-04",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=yt-video-04&lc=del-ex1-04",
+      "published_at": "2026-06-20T18:00:00Z",
+      "text_raw": "송장은 등록됐는데 사흘째 택배사 집하가 안 돼서 출고 약속을 못 지키고 배송 문의만 계속 받고 있습니다",
+      "text_norm": "송장은 등록됐는데 사흘째 택배사 집하가 안 돼서 출고 약속을 못 지키고 배송 문의만 계속 받고 있습니다",
+      "engagement": {
+        "likes": 3,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-9b0692f36fdd",
+      "is_group_representative": false,
+      "pain_cluster_id": "c1",
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "del-ex2-01",
+      "source": "YouTube 댓글",
+      "source_group": "youtube",
+      "source_item_id": "yt-video-01",
+      "thread_id": "thread-del-ex2-01",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=yt-video-01&lc=del-ex2-01",
+      "published_at": "2026-05-02T08:30:00Z",
+      "text_raw": "당일 발송으로 표시했지만 이틀째 물류 이동이 없어서 고객에게 지연 안내만 반복해서 보내고 있습니다",
+      "text_norm": "당일 발송으로 표시했지만 이틀째 물류 이동이 없어서 고객에게 지연 안내만 반복해서 보내고 있습니다",
+      "engagement": {
+        "likes": 4,
+        "replies": 1
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-baccd6a3972e",
+      "is_group_representative": true,
+      "pain_cluster_id": "c1",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "complaint",
+          "quote": "이틀째 물류 이동이 없어서 고객에게 지연 안",
+          "confidence": 0.84,
+          "used_in_ranking": true
+        }
+      ],
+      "counter": []
+    },
+    {
+      "evidence_id": "del-ex2-02",
+      "source": "YouTube 댓글",
+      "source_group": "youtube",
+      "source_item_id": "yt-video-02",
+      "thread_id": "thread-del-ex2-02",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=yt-video-02&lc=del-ex2-02",
+      "published_at": "2026-05-15T10:10:00Z",
+      "text_raw": "당일 발송으로 표시했지만 이틀째 물류 이동이 없어서 고객에게 지연 안내만 반복해서 보내고 있습니다",
+      "text_norm": "당일 발송으로 표시했지만 이틀째 물류 이동이 없어서 고객에게 지연 안내만 반복해서 보내고 있습니다",
+      "engagement": {
+        "likes": 5,
+        "replies": 2
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-baccd6a3972e",
+      "is_group_representative": false,
+      "pain_cluster_id": "c1",
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "del-ex2-03",
+      "source": "YouTube 댓글",
+      "source_group": "youtube",
+      "source_item_id": "yt-video-03",
+      "thread_id": "thread-del-ex2-03",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=yt-video-03&lc=del-ex2-03",
+      "published_at": "2026-06-11T13:20:00Z",
+      "text_raw": "당일 발송으로 표시했지만 이틀째 물류 이동이 없어서 고객에게 지연 안내만 반복해서 보내고 있습니다",
+      "text_norm": "당일 발송으로 표시했지만 이틀째 물류 이동이 없어서 고객에게 지연 안내만 반복해서 보내고 있습니다",
+      "engagement": {
+        "likes": 6,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-baccd6a3972e",
+      "is_group_representative": false,
+      "pain_cluster_id": "c1",
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "del-ex2-04",
+      "source": "YouTube 댓글",
+      "source_group": "youtube",
+      "source_item_id": "yt-video-05",
+      "thread_id": "thread-del-ex2-04",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=yt-video-05&lc=del-ex2-04",
+      "published_at": "2026-07-03T17:45:00Z",
+      "text_raw": "당일 발송으로 표시했지만 이틀째 물류 이동이 없어서 고객에게 지연 안내만 반복해서 보내고 있습니다",
+      "text_norm": "당일 발송으로 표시했지만 이틀째 물류 이동이 없어서 고객에게 지연 안내만 반복해서 보내고 있습니다",
+      "engagement": {
+        "likes": 7,
+        "replies": 1
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-baccd6a3972e",
+      "is_group_representative": false,
+      "pain_cluster_id": "c1",
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "del-ne1-01",
+      "source": "YouTube 댓글",
+      "source_group": "youtube",
+      "source_item_id": "yt-video-01",
+      "thread_id": "thread-del-ne1-01",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=yt-video-01&lc=del-ne1-01",
+      "published_at": "2026-05-03T07:30:00Z",
+      "text_raw": "오늘 출고 처리를 마쳤는데 택배사 집하가 계속 늦어져 고객 항의를 제가 전부 받고 있습니다",
+      "text_norm": "오늘 출고 처리를 마쳤는데 택배사 집하가 계속 늦어져 고객 항의를 제가 전부 받고 있습니다",
+      "engagement": {
+        "likes": 8,
+        "replies": 2
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-ede87096c458",
+      "is_group_representative": true,
+      "pain_cluster_id": "c1",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "complaint",
+          "quote": "집하가 계속 늦어져 고객 항의를 제가 전부 ",
+          "confidence": 0.88,
+          "used_in_ranking": true
+        }
+      ],
+      "counter": []
+    },
+    {
+      "evidence_id": "del-ne1-02",
+      "source": "YouTube 댓글",
+      "source_group": "youtube",
+      "source_item_id": "yt-video-02",
+      "thread_id": "thread-del-ne1-02",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=yt-video-02&lc=del-ne1-02",
+      "published_at": "2026-05-18T09:20:00Z",
+      "text_raw": "오늘 출고 처리는 마쳤는데 택배사 집하가 계속 늦어져 고객 항의를 제가 전부 받고 있어요",
+      "text_norm": "오늘 출고 처리는 마쳤는데 택배사 집하가 계속 늦어져 고객 항의를 제가 전부 받고 있어요",
+      "engagement": {
+        "likes": 0,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-ede87096c458",
+      "is_group_representative": false,
+      "pain_cluster_id": "c1",
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "del-ne1-03",
+      "source": "YouTube 댓글",
+      "source_group": "youtube",
+      "source_item_id": "yt-video-03",
+      "thread_id": "thread-del-ne1-03",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=yt-video-03&lc=del-ne1-03",
+      "published_at": "2026-06-04T12:00:00Z",
+      "text_raw": "오늘 출고 처리를 마쳤지만 택배사 집하가 계속 늦어져 고객 항의를 제가 전부 받고 있습니다",
+      "text_norm": "오늘 출고 처리를 마쳤지만 택배사 집하가 계속 늦어져 고객 항의를 제가 전부 받고 있습니다",
+      "engagement": {
+        "likes": 1,
+        "replies": 1
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-ede87096c458",
+      "is_group_representative": false,
+      "pain_cluster_id": "c1",
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "del-ne1-04",
+      "source": "YouTube 댓글",
+      "source_group": "youtube",
+      "source_item_id": "yt-video-04",
+      "thread_id": "thread-del-ne1-04",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=yt-video-04&lc=del-ne1-04",
+      "published_at": "2026-06-26T16:00:00Z",
+      "text_raw": "오늘 출고 처리를 마쳤는데 택배사 집하가 자꾸 늦어져 고객 항의를 제가 전부 받고 있습니다",
+      "text_norm": "오늘 출고 처리를 마쳤는데 택배사 집하가 자꾸 늦어져 고객 항의를 제가 전부 받고 있습니다",
+      "engagement": {
+        "likes": 2,
+        "replies": 2
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-ede87096c458",
+      "is_group_representative": false,
+      "pain_cluster_id": "c1",
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "del-ne1-05",
+      "source": "YouTube 댓글",
+      "source_group": "youtube",
+      "source_item_id": "yt-video-05",
+      "thread_id": "thread-del-ne1-05",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=yt-video-05&lc=del-ne1-05",
+      "published_at": "2026-07-08T20:00:00Z",
+      "text_raw": "오늘 출고 처리를 마쳤는데 택배사 집하가 계속 늦어서 고객 항의를 제가 전부 받고 있습니다",
+      "text_norm": "오늘 출고 처리를 마쳤는데 택배사 집하가 계속 늦어서 고객 항의를 제가 전부 받고 있습니다",
+      "engagement": {
+        "likes": 3,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-ede87096c458",
+      "is_group_representative": false,
+      "pain_cluster_id": "c1",
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "del-ne2-01",
+      "source": "YouTube 댓글",
+      "source_group": "youtube",
+      "source_item_id": "yt-video-01",
+      "thread_id": "thread-del-ne2-01",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=yt-video-01&lc=del-ne2-01",
+      "published_at": "2026-05-04T08:10:00Z",
+      "text_raw": "주문 마감 전에 포장을 끝내도 기사님 방문이 늦어서 배송 지연 문의가 계속 들어오고 있습니다",
+      "text_norm": "주문 마감 전에 포장을 끝내도 기사님 방문이 늦어서 배송 지연 문의가 계속 들어오고 있습니다",
+      "engagement": {
+        "likes": 4,
+        "replies": 1
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-329685606131",
+      "is_group_representative": true,
+      "pain_cluster_id": "c1",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "complaint",
+          "quote": "기사님 방문이 늦어서 배송 지연 문의가 계속",
+          "confidence": 0.82,
+          "used_in_ranking": true
+        }
+      ],
+      "counter": []
+    },
+    {
+      "evidence_id": "del-ne2-02",
+      "source": "YouTube 댓글",
+      "source_group": "youtube",
+      "source_item_id": "yt-video-02",
+      "thread_id": "thread-del-ne2-02",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=yt-video-02&lc=del-ne2-02",
+      "published_at": "2026-05-22T11:40:00Z",
+      "text_raw": "주문 마감 전에 포장은 끝내도 기사님 방문이 늦어서 배송 지연 문의가 계속 들어오고 있습니다",
+      "text_norm": "주문 마감 전에 포장은 끝내도 기사님 방문이 늦어서 배송 지연 문의가 계속 들어오고 있습니다",
+      "engagement": {
+        "likes": 5,
+        "replies": 2
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-329685606131",
+      "is_group_representative": false,
+      "pain_cluster_id": "c1",
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "del-ne2-03",
+      "source": "YouTube 댓글",
+      "source_group": "youtube",
+      "source_item_id": "yt-video-03",
+      "thread_id": "thread-del-ne2-03",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=yt-video-03&lc=del-ne2-03",
+      "published_at": "2026-06-12T15:15:00Z",
+      "text_raw": "주문 마감 전에 포장을 끝냈어도 기사님 방문이 늦어서 배송 지연 문의가 계속 들어오고 있습니다",
+      "text_norm": "주문 마감 전에 포장을 끝냈어도 기사님 방문이 늦어서 배송 지연 문의가 계속 들어오고 있습니다",
+      "engagement": {
+        "likes": 6,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-329685606131",
+      "is_group_representative": false,
+      "pain_cluster_id": "c1",
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "del-ne2-04",
+      "source": "YouTube 댓글",
+      "source_group": "youtube",
+      "source_item_id": "yt-video-04",
+      "thread_id": "thread-del-ne2-04",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=yt-video-04&lc=del-ne2-04",
+      "published_at": "2026-07-01T19:00:00Z",
+      "text_raw": "주문 마감 전에 포장을 끝내도 기사님 방문이 늦으니 배송 지연 문의가 계속 들어오고 있습니다",
+      "text_norm": "주문 마감 전에 포장을 끝내도 기사님 방문이 늦으니 배송 지연 문의가 계속 들어오고 있습니다",
+      "engagement": {
+        "likes": 7,
+        "replies": 1
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-329685606131",
+      "is_group_representative": false,
+      "pain_cluster_id": "c1",
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "del-ne2-05",
+      "source": "YouTube 댓글",
+      "source_group": "youtube",
+      "source_item_id": "yt-video-05",
+      "thread_id": "thread-del-ne2-05",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=yt-video-05&lc=del-ne2-05",
+      "published_at": "2026-07-17T21:10:00Z",
+      "text_raw": "주문 마감 전에 포장을 끝내도 기사님 방문이 늦어서 배송 지연 문의가 자꾸 들어오고 있습니다",
+      "text_norm": "주문 마감 전에 포장을 끝내도 기사님 방문이 늦어서 배송 지연 문의가 자꾸 들어오고 있습니다",
+      "engagement": {
+        "likes": 8,
+        "replies": 2
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-329685606131",
+      "is_group_representative": false,
+      "pain_cluster_id": "c1",
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "del-ne3-01",
+      "source": "YouTube 댓글",
+      "source_group": "youtube",
+      "source_item_id": "yt-video-01",
+      "thread_id": "thread-del-ne3-01",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=yt-video-01&lc=del-ne3-01",
+      "published_at": "2026-05-05T06:50:00Z",
+      "text_raw": "주말 주문이 월요일에 한꺼번에 몰리는데 집하까지 밀려서 발송 지연 안내만 반복하고 있습니다",
+      "text_norm": "주말 주문이 월요일에 한꺼번에 몰리는데 집하까지 밀려서 발송 지연 안내만 반복하고 있습니다",
+      "engagement": {
+        "likes": 0,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-3a4205bb4fd9",
+      "is_group_representative": true,
+      "pain_cluster_id": "c1",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "complaint",
+          "quote": "집하까지 밀려서 발송 지연 안내만 반복하고 ",
+          "confidence": 0.8,
+          "used_in_ranking": true
+        }
+      ],
+      "counter": []
+    },
+    {
+      "evidence_id": "del-ne3-02",
+      "source": "YouTube 댓글",
+      "source_group": "youtube",
+      "source_item_id": "yt-video-02",
+      "thread_id": "thread-del-ne3-02",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=yt-video-02&lc=del-ne3-02",
+      "published_at": "2026-05-26T10:30:00Z",
+      "text_raw": "주말 주문은 월요일에 한꺼번에 몰리는데 집하까지 밀려서 발송 지연 안내만 반복하고 있습니다",
+      "text_norm": "주말 주문은 월요일에 한꺼번에 몰리는데 집하까지 밀려서 발송 지연 안내만 반복하고 있습니다",
+      "engagement": {
+        "likes": 1,
+        "replies": 1
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-3a4205bb4fd9",
+      "is_group_representative": false,
+      "pain_cluster_id": "c1",
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "del-ne3-03",
+      "source": "YouTube 댓글",
+      "source_group": "youtube",
+      "source_item_id": "yt-video-03",
+      "thread_id": "thread-del-ne3-03",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=yt-video-03&lc=del-ne3-03",
+      "published_at": "2026-06-18T14:40:00Z",
+      "text_raw": "주말 주문이 월요일에 한꺼번에 몰리고 집하까지 밀려서 발송 지연 안내만 반복하고 있습니다",
+      "text_norm": "주말 주문이 월요일에 한꺼번에 몰리고 집하까지 밀려서 발송 지연 안내만 반복하고 있습니다",
+      "engagement": {
+        "likes": 2,
+        "replies": 2
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-3a4205bb4fd9",
+      "is_group_representative": false,
+      "pain_cluster_id": "c1",
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "del-ne3-04",
+      "source": "YouTube 댓글",
+      "source_group": "youtube",
+      "source_item_id": "yt-video-05",
+      "thread_id": "thread-del-ne3-04",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=yt-video-05&lc=del-ne3-04",
+      "published_at": "2026-07-11T18:25:00Z",
+      "text_raw": "주말 주문이 월요일에 한꺼번에 몰리는데 집하도 밀려서 발송 지연 안내만 반복하고 있습니다",
+      "text_norm": "주말 주문이 월요일에 한꺼번에 몰리는데 집하도 밀려서 발송 지연 안내만 반복하고 있습니다",
+      "engagement": {
+        "likes": 3,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-3a4205bb4fd9",
+      "is_group_representative": false,
+      "pain_cluster_id": "c1",
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "del-ne4-01",
+      "source": "네이버 블로그",
+      "source_group": "naver_blog",
+      "source_item_id": "nb-delivery-01",
+      "thread_id": "nb-delivery-01",
+      "parent_id": null,
+      "url": "https://blog.naver.com/painradar/nb-delivery-01",
+      "published_at": "2026-05-06T09:15:00Z",
+      "text_raw": "도착 예정일을 믿고 주문한 고객들이 실제 배송이 늦다며 게시판에 항의를 계속 남기고 있습니다",
+      "text_norm": "도착 예정일을 믿고 주문한 고객들이 실제 배송이 늦다며 게시판에 항의를 계속 남기고 있습니다",
+      "engagement": {
+        "likes": 4,
+        "replies": 1
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-7a9b31f82c20",
+      "is_group_representative": true,
+      "pain_cluster_id": "c1",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "complaint",
+          "quote": "실제 배송이 늦다며 게시판에 항의를 계속 남",
+          "confidence": 0.85,
+          "used_in_ranking": true
+        }
+      ],
+      "counter": []
+    },
+    {
+      "evidence_id": "del-ne4-02",
+      "source": "네이버 블로그",
+      "source_group": "naver_blog",
+      "source_item_id": "nb-delivery-02",
+      "thread_id": "nb-delivery-02",
+      "parent_id": null,
+      "url": "https://blog.naver.com/painradar/nb-delivery-02",
+      "published_at": "2026-05-29T12:35:00Z",
+      "text_raw": "도착 예정일을 믿고 주문한 고객들이 실제 배송은 늦다며 게시판에 항의를 계속 남기고 있습니다",
+      "text_norm": "도착 예정일을 믿고 주문한 고객들이 실제 배송은 늦다며 게시판에 항의를 계속 남기고 있습니다",
+      "engagement": {
+        "likes": 5,
+        "replies": 2
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-7a9b31f82c20",
+      "is_group_representative": false,
+      "pain_cluster_id": "c1",
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "del-ne4-03",
+      "source": "네이버 블로그",
+      "source_group": "naver_blog",
+      "source_item_id": "nb-delivery-03",
+      "thread_id": "nb-delivery-03",
+      "parent_id": null,
+      "url": "https://blog.naver.com/painradar/nb-delivery-03",
+      "published_at": "2026-06-22T16:50:00Z",
+      "text_raw": "도착 예정일을 믿고 주문한 고객들이 실제 배송이 늦다고 게시판에 항의를 계속 남기고 있습니다",
+      "text_norm": "도착 예정일을 믿고 주문한 고객들이 실제 배송이 늦다고 게시판에 항의를 계속 남기고 있습니다",
+      "engagement": {
+        "likes": 6,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-7a9b31f82c20",
+      "is_group_representative": false,
+      "pain_cluster_id": "c1",
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "del-ne4-04",
+      "source": "네이버 블로그",
+      "source_group": "naver_blog",
+      "source_item_id": "nb-delivery-04",
+      "thread_id": "nb-delivery-04",
+      "parent_id": null,
+      "url": "https://blog.naver.com/painradar/nb-delivery-04",
+      "published_at": "2026-07-20T20:05:00Z",
+      "text_raw": "도착 예정일을 믿고 주문한 고객들이 실제 배송이 늦다며 게시판에 항의를 자꾸 남기고 있습니다",
+      "text_norm": "도착 예정일을 믿고 주문한 고객들이 실제 배송이 늦다며 게시판에 항의를 자꾸 남기고 있습니다",
+      "engagement": {
+        "likes": 7,
+        "replies": 1
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-7a9b31f82c20",
+      "is_group_representative": false,
+      "pain_cluster_id": "c1",
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "del-echo-01",
+      "source": "YouTube 댓글",
+      "source_group": "youtube",
+      "source_item_id": "yt-video-01",
+      "thread_id": "thread-del-ex1-01",
+      "parent_id": "del-ex1-01",
+      "url": "https://www.youtube.com/watch?v=yt-video-01&lc=del-echo-01",
+      "published_at": "2026-05-02T09:20:00Z",
+      "text_raw": "송장은 등록됐는데 사흘째 택배사 집하가 안 돼서 출고 약속을 못 지키고 저도 구매자한테 매일 사과하고 있어요",
+      "text_norm": "송장은 등록됐는데 사흘째 택배사 집하가 안 돼서 출고 약속을 못 지키고 저도 구매자한테 매일 사과하고 있어요",
+      "engagement": {
+        "likes": 8,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-9b0692f36fdd",
+      "is_group_representative": false,
+      "pain_cluster_id": "c1",
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "del-echo-02",
+      "source": "YouTube 댓글",
+      "source_group": "youtube",
+      "source_item_id": "yt-video-02",
+      "thread_id": "thread-del-ex1-02",
+      "parent_id": "del-ex1-02",
+      "url": "https://www.youtube.com/watch?v=yt-video-02&lc=del-echo-02",
+      "published_at": "2026-05-10T13:10:00Z",
+      "text_raw": "송장은 등록됐는데 사흘째 택배사 집하가 안 돼서 출고 약속을 못 지키고 저희 매장도 취소 요청까지 받고 있어요",
+      "text_norm": "송장은 등록됐는데 사흘째 택배사 집하가 안 돼서 출고 약속을 못 지키고 저희 매장도 취소 요청까지 받고 있어요",
+      "engagement": {
+        "likes": 0,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-9b0692f36fdd",
+      "is_group_representative": false,
+      "pain_cluster_id": "c1",
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "del-echo-03",
+      "source": "YouTube 댓글",
+      "source_group": "youtube",
+      "source_item_id": "yt-video-01",
+      "thread_id": "thread-del-ex2-01",
+      "parent_id": "del-ex2-01",
+      "url": "https://www.youtube.com/watch?v=yt-video-01&lc=del-echo-03",
+      "published_at": "2026-05-03T10:30:00Z",
+      "text_raw": "당일 발송으로 표시했지만 이틀째 물류 이동이 없어서 고객에게 오늘도 언제 출발하냐는 연락이 왔네요",
+      "text_norm": "당일 발송으로 표시했지만 이틀째 물류 이동이 없어서 고객에게 오늘도 언제 출발하냐는 연락이 왔네요",
+      "engagement": {
+        "likes": 1,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-baccd6a3972e",
+      "is_group_representative": false,
+      "pain_cluster_id": "c1",
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "del-echo-04",
+      "source": "YouTube 댓글",
+      "source_group": "youtube",
+      "source_item_id": "yt-video-02",
+      "thread_id": "thread-del-ex2-02",
+      "parent_id": "del-ex2-02",
+      "url": "https://www.youtube.com/watch?v=yt-video-02&lc=del-echo-04",
+      "published_at": "2026-05-16T12:20:00Z",
+      "text_raw": "당일 발송으로 표시했지만 이틀째 물류 이동이 없어서 고객에게 죄송하다는 말밖에 할 수가 없네요",
+      "text_norm": "당일 발송으로 표시했지만 이틀째 물류 이동이 없어서 고객에게 죄송하다는 말밖에 할 수가 없네요",
+      "engagement": {
+        "likes": 2,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-baccd6a3972e",
+      "is_group_representative": false,
+      "pain_cluster_id": "c1",
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "del-echo-05",
+      "source": "YouTube 댓글",
+      "source_group": "youtube",
+      "source_item_id": "yt-video-01",
+      "thread_id": "thread-del-ne1-01",
+      "parent_id": "del-ne1-01",
+      "url": "https://www.youtube.com/watch?v=yt-video-01&lc=del-echo-05",
+      "published_at": "2026-05-04T09:40:00Z",
+      "text_raw": "오늘 출고 처리를 마쳤는데 택배사 집하가 계속 늦어져 고객 항의를 저도 혼자 감당하느라 진이 빠집니다",
+      "text_norm": "오늘 출고 처리를 마쳤는데 택배사 집하가 계속 늦어져 고객 항의를 저도 혼자 감당하느라 진이 빠집니다",
+      "engagement": {
+        "likes": 3,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-ede87096c458",
+      "is_group_representative": false,
+      "pain_cluster_id": "c1",
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "del-echo-06",
+      "source": "YouTube 댓글",
+      "source_group": "youtube",
+      "source_item_id": "yt-video-02",
+      "thread_id": "thread-del-ne1-02",
+      "parent_id": "del-ne1-02",
+      "url": "https://www.youtube.com/watch?v=yt-video-02&lc=del-echo-06",
+      "published_at": "2026-05-19T13:50:00Z",
+      "text_raw": "오늘 출고 처리는 마쳤는데 택배사 집하가 계속 늦어져 고객 연락 때문에 직원들까지 퇴근을 못 해요",
+      "text_norm": "오늘 출고 처리는 마쳤는데 택배사 집하가 계속 늦어져 고객 연락 때문에 직원들까지 퇴근을 못 해요",
+      "engagement": {
+        "likes": 4,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-ede87096c458",
+      "is_group_representative": false,
+      "pain_cluster_id": "c1",
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "del-echo-07",
+      "source": "YouTube 댓글",
+      "source_group": "youtube",
+      "source_item_id": "yt-video-01",
+      "thread_id": "thread-del-ne2-01",
+      "parent_id": "del-ne2-01",
+      "url": "https://www.youtube.com/watch?v=yt-video-01&lc=del-echo-07",
+      "published_at": "2026-05-05T10:20:00Z",
+      "text_raw": "주문 마감 전에 포장을 끝내도 기사님 방문이 늦어서 배송 지연 때문에 구매자 눈치만 보고 있습니다",
+      "text_norm": "주문 마감 전에 포장을 끝내도 기사님 방문이 늦어서 배송 지연 때문에 구매자 눈치만 보고 있습니다",
+      "engagement": {
+        "likes": 5,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-329685606131",
+      "is_group_representative": false,
+      "pain_cluster_id": "c1",
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "del-echo-08",
+      "source": "YouTube 댓글",
+      "source_group": "youtube",
+      "source_item_id": "yt-video-02",
+      "thread_id": "thread-del-ne2-02",
+      "parent_id": "del-ne2-02",
+      "url": "https://www.youtube.com/watch?v=yt-video-02&lc=del-echo-08",
+      "published_at": "2026-05-23T14:15:00Z",
+      "text_raw": "주문 마감 전에 포장은 끝내도 기사님 방문이 늦어서 배송 지연 때문에 환불 요청까지 들어오네요",
+      "text_norm": "주문 마감 전에 포장은 끝내도 기사님 방문이 늦어서 배송 지연 때문에 환불 요청까지 들어오네요",
+      "engagement": {
+        "likes": 6,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-329685606131",
+      "is_group_representative": false,
+      "pain_cluster_id": "c1",
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "del-echo-09",
+      "source": "YouTube 댓글",
+      "source_group": "youtube",
+      "source_item_id": "yt-video-01",
+      "thread_id": "thread-del-ne3-01",
+      "parent_id": "del-ne3-01",
+      "url": "https://www.youtube.com/watch?v=yt-video-01&lc=del-echo-09",
+      "published_at": "2026-05-06T08:10:00Z",
+      "text_raw": "주말 주문이 월요일에 한꺼번에 몰리는데 집하까지 밀려서 발송 건을 확인하느라 오전이 다 갑니다",
+      "text_norm": "주말 주문이 월요일에 한꺼번에 몰리는데 집하까지 밀려서 발송 건을 확인하느라 오전이 다 갑니다",
+      "engagement": {
+        "likes": 7,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-3a4205bb4fd9",
+      "is_group_representative": false,
+      "pain_cluster_id": "c1",
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "del-echo-10",
+      "source": "YouTube 댓글",
+      "source_group": "youtube",
+      "source_item_id": "yt-video-02",
+      "thread_id": "thread-del-ne3-02",
+      "parent_id": "del-ne3-02",
+      "url": "https://www.youtube.com/watch?v=yt-video-02&lc=del-echo-10",
+      "published_at": "2026-05-27T12:45:00Z",
+      "text_raw": "주말 주문은 월요일에 한꺼번에 몰리는데 집하까지 밀려서 발송 약속을 또 어기게 생겼습니다",
+      "text_norm": "주말 주문은 월요일에 한꺼번에 몰리는데 집하까지 밀려서 발송 약속을 또 어기게 생겼습니다",
+      "engagement": {
+        "likes": 8,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-3a4205bb4fd9",
+      "is_group_representative": false,
+      "pain_cluster_id": "c1",
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "del-single-01",
+      "source": "YouTube 댓글",
+      "source_group": "youtube",
+      "source_item_id": "yt-video-01",
+      "thread_id": "thread-del-single-01",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=yt-video-01&lc=del-single-01",
+      "published_at": "2026-06-01T08:00:00Z",
+      "text_raw": "출고 완료 버튼은 눌렀는데 조회 화면이 밤새 그대로라 구매자에게 설명할 말이 없습니다",
+      "text_norm": "출고 완료 버튼은 눌렀는데 조회 화면이 밤새 그대로라 구매자에게 설명할 말이 없습니다",
+      "engagement": {
+        "likes": 0,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-20dac9dd8d78",
+      "is_group_representative": true,
+      "pain_cluster_id": "c1",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "complaint",
+          "quote": "조회 화면이 밤새 그대로라 구매자에게 설명할",
+          "confidence": 0.78,
+          "used_in_ranking": true
+        }
+      ],
+      "counter": []
+    },
+    {
+      "evidence_id": "del-single-02",
+      "source": "YouTube 댓글",
+      "source_group": "youtube",
+      "source_item_id": "yt-video-01",
+      "thread_id": "thread-del-single-02",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=yt-video-01&lc=del-single-02",
+      "published_at": "2026-06-09T11:25:00Z",
+      "text_raw": "예전에는 발송이 자주 밀렸는데 지난달부터는 집하 시간이 고정돼서 이미 많이 개선됐어요",
+      "text_norm": "예전에는 발송이 자주 밀렸는데 지난달부터는 집하 시간이 고정돼서 이미 많이 개선됐어요",
+      "engagement": {
+        "likes": 1,
+        "replies": 1
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-a2690a1a482f",
+      "is_group_representative": true,
+      "pain_cluster_id": "c1",
+      "is_noise": false,
+      "signals": [],
+      "counter": [
+        {
+          "type": "already_solved",
+          "quote": " 집하 시간이 고정돼서 이미 많이 개선됐어요",
+          "confidence": 0.83
+        }
+      ]
+    },
+    {
+      "evidence_id": "del-single-03",
+      "source": "YouTube 댓글",
+      "source_group": "youtube",
+      "source_item_id": "yt-video-01",
+      "thread_id": "thread-del-single-03",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=yt-video-01&lc=del-single-03",
+      "published_at": "2026-07-02T15:30:00Z",
+      "text_raw": "배송 상태 때문에 계속 연락받았는데 OO툴 쓰면 지연 안내가 자동으로 나가서 되던데요",
+      "text_norm": "배송 상태 때문에 계속 연락받았는데 oo툴 쓰면 지연 안내가 자동으로 나가서 되던데요",
+      "engagement": {
+        "likes": 2,
+        "replies": 2
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-a11f01d8bafb",
+      "is_group_representative": true,
+      "pain_cluster_id": "c1",
+      "is_noise": false,
+      "signals": [],
+      "counter": [
+        {
+          "type": "alternative_sufficient",
+          "quote": " 쓰면 지연 안내가 자동으로 나가서 되던데요",
+          "confidence": 0.81
+        }
+      ]
+    },
+    {
+      "evidence_id": "del-single-04",
+      "source": "YouTube 댓글",
+      "source_group": "youtube",
+      "source_item_id": "yt-video-02",
+      "thread_id": "thread-del-single-04",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=yt-video-02&lc=del-single-04",
+      "published_at": "2026-08-01T19:10:00Z",
+      "text_raw": "택배 조회를 하나씩 보느라 힘들었는데 A사 연동 쓰면 지연 주문만 모아서 볼 수 있던데요",
+      "text_norm": "택배 조회를 하나씩 보느라 힘들었는데 a사 연동 쓰면 지연 주문만 모아서 볼 수 있던데요",
+      "engagement": {
+        "likes": 3,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-fa1a39bdc2df",
+      "is_group_representative": true,
+      "pain_cluster_id": "c1",
+      "is_noise": false,
+      "signals": [],
+      "counter": [
+        {
+          "type": "alternative_sufficient",
+          "quote": "동 쓰면 지연 주문만 모아서 볼 수 있던데요",
+          "confidence": 0.79
+        }
+      ]
+    },
+    {
+      "evidence_id": "cs-ne1-01",
+      "source": "YouTube 댓글",
+      "source_group": "youtube",
+      "source_item_id": "yt-video-02",
+      "thread_id": "thread-cs-ne1-01",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=yt-video-02&lc=cs-ne1-01",
+      "published_at": "2026-05-07T08:00:00Z",
+      "text_raw": "상품 문의에 답을 달아도 같은 배송 질문이 계속 올라와 하루 종일 똑같은 안내를 반복하고 있습니다",
+      "text_norm": "상품 문의에 답을 달아도 같은 배송 질문이 계속 올라와 하루 종일 똑같은 안내를 반복하고 있습니다",
+      "engagement": {
+        "likes": 4,
+        "replies": 1
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-fc9f58f1e4f9",
+      "is_group_representative": true,
+      "pain_cluster_id": "c2",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "complaint",
+          "quote": "같은 배송 질문이 계속 올라와 하루 종일 똑",
+          "confidence": 0.87,
+          "used_in_ranking": true
+        }
+      ],
+      "counter": []
+    },
+    {
+      "evidence_id": "cs-ne1-02",
+      "source": "YouTube 댓글",
+      "source_group": "youtube",
+      "source_item_id": "yt-video-03",
+      "thread_id": "thread-cs-ne1-02",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=yt-video-03&lc=cs-ne1-02",
+      "published_at": "2026-05-21T10:10:00Z",
+      "text_raw": "상품 문의에 답을 달아도 같은 배송 질문은 계속 올라와 하루 종일 똑같은 안내를 반복하고 있습니다",
+      "text_norm": "상품 문의에 답을 달아도 같은 배송 질문은 계속 올라와 하루 종일 똑같은 안내를 반복하고 있습니다",
+      "engagement": {
+        "likes": 5,
+        "replies": 2
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-fc9f58f1e4f9",
+      "is_group_representative": false,
+      "pain_cluster_id": "c2",
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "cs-ne1-03",
+      "source": "YouTube 댓글",
+      "source_group": "youtube",
+      "source_item_id": "yt-video-04",
+      "thread_id": "thread-cs-ne1-03",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=yt-video-04&lc=cs-ne1-03",
+      "published_at": "2026-06-07T12:20:00Z",
+      "text_raw": "상품 문의에 답을 달았어도 같은 배송 질문이 계속 올라와 하루 종일 똑같은 안내를 반복하고 있습니다",
+      "text_norm": "상품 문의에 답을 달았어도 같은 배송 질문이 계속 올라와 하루 종일 똑같은 안내를 반복하고 있습니다",
+      "engagement": {
+        "likes": 6,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-fc9f58f1e4f9",
+      "is_group_representative": false,
+      "pain_cluster_id": "c2",
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "cs-ne1-04",
+      "source": "YouTube 댓글",
+      "source_group": "youtube",
+      "source_item_id": "yt-video-05",
+      "thread_id": "thread-cs-ne1-04",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=yt-video-05&lc=cs-ne1-04",
+      "published_at": "2026-06-28T16:30:00Z",
+      "text_raw": "상품 문의에 답을 달아도 같은 배송 질문이 자꾸 올라와 하루 종일 똑같은 안내를 반복하고 있습니다",
+      "text_norm": "상품 문의에 답을 달아도 같은 배송 질문이 자꾸 올라와 하루 종일 똑같은 안내를 반복하고 있습니다",
+      "engagement": {
+        "likes": 7,
+        "replies": 1
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-fc9f58f1e4f9",
+      "is_group_representative": false,
+      "pain_cluster_id": "c2",
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "cs-ne1-05",
+      "source": "YouTube 댓글",
+      "source_group": "youtube",
+      "source_item_id": "yt-video-02",
+      "thread_id": "thread-cs-ne1-05",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=yt-video-02&lc=cs-ne1-05",
+      "published_at": "2026-07-19T20:40:00Z",
+      "text_raw": "상품 문의에 답을 달아도 같은 배송 질문이 계속 올라와 온종일 똑같은 안내를 반복하고 있습니다",
+      "text_norm": "상품 문의에 답을 달아도 같은 배송 질문이 계속 올라와 온종일 똑같은 안내를 반복하고 있습니다",
+      "engagement": {
+        "likes": 8,
+        "replies": 2
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-fc9f58f1e4f9",
+      "is_group_representative": false,
+      "pain_cluster_id": "c2",
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "cs-ne2-01",
+      "source": "YouTube 댓글",
+      "source_group": "youtube",
+      "source_item_id": "yt-video-03",
+      "thread_id": "thread-cs-ne2-01",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=yt-video-03&lc=cs-ne2-01",
+      "published_at": "2026-05-08T09:00:00Z",
+      "text_raw": "교환 절차를 상세히 적어 놨는데도 고객센터로 같은 질문이 들어와 매번 처음부터 설명하고 있습니다",
+      "text_norm": "교환 절차를 상세히 적어 놨는데도 고객센터로 같은 질문이 들어와 매번 처음부터 설명하고 있습니다",
+      "engagement": {
+        "likes": 0,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-ee195b0e93c6",
+      "is_group_representative": true,
+      "pain_cluster_id": "c2",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "complaint",
+          "quote": "같은 질문이 들어와 매번 처음부터 설명하고 ",
+          "confidence": 0.85,
+          "used_in_ranking": true
+        }
+      ],
+      "counter": []
+    },
+    {
+      "evidence_id": "cs-ne2-02",
+      "source": "YouTube 댓글",
+      "source_group": "youtube",
+      "source_item_id": "yt-video-04",
+      "thread_id": "thread-cs-ne2-02",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=yt-video-04&lc=cs-ne2-02",
+      "published_at": "2026-05-24T11:10:00Z",
+      "text_raw": "교환 절차는 상세히 적어 놨는데도 고객센터로 같은 질문이 들어와 매번 처음부터 설명하고 있습니다",
+      "text_norm": "교환 절차는 상세히 적어 놨는데도 고객센터로 같은 질문이 들어와 매번 처음부터 설명하고 있습니다",
+      "engagement": {
+        "likes": 1,
+        "replies": 1
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-ee195b0e93c6",
+      "is_group_representative": false,
+      "pain_cluster_id": "c2",
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "cs-ne2-03",
+      "source": "YouTube 댓글",
+      "source_group": "youtube",
+      "source_item_id": "yt-video-05",
+      "thread_id": "thread-cs-ne2-03",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=yt-video-05&lc=cs-ne2-03",
+      "published_at": "2026-06-10T13:20:00Z",
+      "text_raw": "교환 절차를 상세히 적어 뒀는데도 고객센터로 같은 질문이 들어와 매번 처음부터 설명하고 있습니다",
+      "text_norm": "교환 절차를 상세히 적어 뒀는데도 고객센터로 같은 질문이 들어와 매번 처음부터 설명하고 있습니다",
+      "engagement": {
+        "likes": 2,
+        "replies": 2
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-ee195b0e93c6",
+      "is_group_representative": false,
+      "pain_cluster_id": "c2",
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "cs-ne2-04",
+      "source": "YouTube 댓글",
+      "source_group": "youtube",
+      "source_item_id": "yt-video-02",
+      "thread_id": "thread-cs-ne2-04",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=yt-video-02&lc=cs-ne2-04",
+      "published_at": "2026-07-05T17:30:00Z",
+      "text_raw": "교환 절차를 상세히 적어 놨지만 고객센터로 같은 질문이 들어와 매번 처음부터 설명하고 있습니다",
+      "text_norm": "교환 절차를 상세히 적어 놨지만 고객센터로 같은 질문이 들어와 매번 처음부터 설명하고 있습니다",
+      "engagement": {
+        "likes": 3,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-ee195b0e93c6",
+      "is_group_representative": false,
+      "pain_cluster_id": "c2",
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "cs-ne2-05",
+      "source": "YouTube 댓글",
+      "source_group": "youtube",
+      "source_item_id": "yt-video-03",
+      "thread_id": "thread-cs-ne2-05",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=yt-video-03&lc=cs-ne2-05",
+      "published_at": "2026-07-27T21:40:00Z",
+      "text_raw": "교환 절차를 상세히 적어 놨는데도 고객센터로 같은 질문이 들어와 늘 처음부터 설명하고 있습니다",
+      "text_norm": "교환 절차를 상세히 적어 놨는데도 고객센터로 같은 질문이 들어와 늘 처음부터 설명하고 있습니다",
+      "engagement": {
+        "likes": 4,
+        "replies": 1
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-ee195b0e93c6",
+      "is_group_representative": false,
+      "pain_cluster_id": "c2",
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "cs-single-01",
+      "source": "YouTube 댓글",
+      "source_group": "youtube",
+      "source_item_id": "yt-video-02",
+      "thread_id": "thread-cs-single-01",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=yt-video-02&lc=cs-single-01",
+      "published_at": "2026-06-10T09:00:00Z",
+      "text_raw": "반복 문의가 너무 많아서 자주 묻는 내용은 매크로를 만들어서 답변하고 있습니다",
+      "text_norm": "반복 문의가 너무 많아서 자주 묻는 내용은 매크로를 만들어서 답변하고 있습니다",
+      "engagement": {
+        "likes": 5,
+        "replies": 2
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-655b81bc6f7c",
+      "is_group_representative": true,
+      "pain_cluster_id": "c2",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "workaround",
+          "quote": " 내용은 매크로를 만들어서 답변하고 있습니다",
+          "confidence": 0.84,
+          "used_in_ranking": true
+        }
+      ],
+      "counter": []
+    },
+    {
+      "evidence_id": "cs-single-02",
+      "source": "YouTube 댓글",
+      "source_group": "youtube",
+      "source_item_id": "yt-video-02",
+      "thread_id": "thread-cs-single-02",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=yt-video-02&lc=cs-single-02",
+      "published_at": "2026-06-11T09:00:00Z",
+      "text_raw": "옵션 변경 질문이 계속 와서 단축 문구를 저장해 두고 복사해서 답하고 있어요",
+      "text_norm": "옵션 변경 질문이 계속 와서 단축 문구를 저장해 두고 복사해서 답하고 있어요",
+      "engagement": {
+        "likes": 6,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-04a604d1a58d",
+      "is_group_representative": true,
+      "pain_cluster_id": "c2",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "workaround",
+          "quote": "단축 문구를 저장해 두고 복사해서 답하고 있",
+          "confidence": 0.82,
+          "used_in_ranking": true
+        }
+      ],
+      "counter": []
+    },
+    {
+      "evidence_id": "cs-single-03",
+      "source": "YouTube 댓글",
+      "source_group": "youtube",
+      "source_item_id": "yt-video-02",
+      "thread_id": "thread-cs-single-03",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=yt-video-02&lc=cs-single-03",
+      "published_at": "2026-06-12T09:00:00Z",
+      "text_raw": "반품 주소를 다시 묻는 분이 많아 메모장에 문장을 써 두고 매번 붙여 넣습니다",
+      "text_norm": "반품 주소를 다시 묻는 분이 많아 메모장에 문장을 써 두고 매번 붙여 넣습니다",
+      "engagement": {
+        "likes": 7,
+        "replies": 1
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-04968a953d93",
+      "is_group_representative": true,
+      "pain_cluster_id": "c2",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "workaround",
+          "quote": "메모장에 문장을 써 두고 매번 붙여 넣습니다",
+          "confidence": 0.8,
+          "used_in_ranking": true
+        }
+      ],
+      "counter": []
+    },
+    {
+      "evidence_id": "cs-single-04",
+      "source": "YouTube 댓글",
+      "source_group": "youtube",
+      "source_item_id": "yt-video-03",
+      "thread_id": "thread-cs-single-04",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=yt-video-03&lc=cs-single-04",
+      "published_at": "2026-06-13T09:00:00Z",
+      "text_raw": "문의가 몰리는 시간에는 답변 양식을 미리 작성해 두고 항목만 바꿔서 보냅니다",
+      "text_norm": "문의가 몰리는 시간에는 답변 양식을 미리 작성해 두고 항목만 바꿔서 보냅니다",
+      "engagement": {
+        "likes": 8,
+        "replies": 2
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-4e1655f99794",
+      "is_group_representative": true,
+      "pain_cluster_id": "c2",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "workaround",
+          "quote": "답변 양식을 미리 작성해 두고 항목만 바꿔서",
+          "confidence": 0.81,
+          "used_in_ranking": true
+        }
+      ],
+      "counter": []
+    },
+    {
+      "evidence_id": "cs-single-05",
+      "source": "YouTube 댓글",
+      "source_group": "youtube",
+      "source_item_id": "yt-video-03",
+      "thread_id": "thread-cs-single-05",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=yt-video-03&lc=cs-single-05",
+      "published_at": "2026-06-14T09:00:00Z",
+      "text_raw": "상세 페이지에 적어 둔 내용인데도 사이즈 문의가 하루에도 여러 번 들어옵니다",
+      "text_norm": "상세 페이지에 적어 둔 내용인데도 사이즈 문의가 하루에도 여러 번 들어옵니다",
+      "engagement": {
+        "likes": 0,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-2baabf00ea52",
+      "is_group_representative": true,
+      "pain_cluster_id": "c2",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "complaint",
+          "quote": " 사이즈 문의가 하루에도 여러 번 들어옵니다",
+          "confidence": 0.77,
+          "used_in_ranking": true
+        }
+      ],
+      "counter": []
+    },
+    {
+      "evidence_id": "cs-single-06",
+      "source": "YouTube 댓글",
+      "source_group": "youtube",
+      "source_item_id": "yt-video-03",
+      "thread_id": "thread-cs-single-06",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=yt-video-03&lc=cs-single-06",
+      "published_at": "2026-06-15T09:00:00Z",
+      "text_raw": "주문 취소 방법을 안내해도 같은 분이 채팅과 게시판에 연달아 물어봅니다",
+      "text_norm": "주문 취소 방법을 안내해도 같은 분이 채팅과 게시판에 연달아 물어봅니다",
+      "engagement": {
+        "likes": 1,
+        "replies": 1
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-87aa41c442ca",
+      "is_group_representative": true,
+      "pain_cluster_id": "c2",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "complaint",
+          "quote": "같은 분이 채팅과 게시판에 연달아 물어봅니다",
+          "confidence": 0.76,
+          "used_in_ranking": true
+        }
+      ],
+      "counter": []
+    },
+    {
+      "evidence_id": "cs-single-07",
+      "source": "YouTube 댓글",
+      "source_group": "youtube",
+      "source_item_id": "yt-video-04",
+      "thread_id": "thread-cs-single-07",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=yt-video-04&lc=cs-single-07",
+      "published_at": "2026-06-16T09:00:00Z",
+      "text_raw": "주말만 지나면 문의함이 쌓여서 월요일 오전에는 답변만 하다가 끝납니다",
+      "text_norm": "주말만 지나면 문의함이 쌓여서 월요일 오전에는 답변만 하다가 끝납니다",
+      "engagement": {
+        "likes": 2,
+        "replies": 2
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-c69824d9ca07",
+      "is_group_representative": true,
+      "pain_cluster_id": "c2",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "complaint",
+          "quote": "여서 월요일 오전에는 답변만 하다가 끝납니다",
+          "confidence": 0.75,
+          "used_in_ranking": true
+        }
+      ],
+      "counter": []
+    },
+    {
+      "evidence_id": "cs-single-08",
+      "source": "YouTube 댓글",
+      "source_group": "youtube",
+      "source_item_id": "yt-video-04",
+      "thread_id": "thread-cs-single-08",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=yt-video-04&lc=cs-single-08",
+      "published_at": "2026-06-17T09:00:00Z",
+      "text_raw": "고객마다 묻는 말은 비슷한데 주문 번호를 찾느라 답변 시간이 너무 오래 걸려요",
+      "text_norm": "고객마다 묻는 말은 비슷한데 주문 번호를 찾느라 답변 시간이 너무 오래 걸려요",
+      "engagement": {
+        "likes": 3,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-92ce7bdea608",
+      "is_group_representative": true,
+      "pain_cluster_id": "c2",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "complaint",
+          "quote": "번호를 찾느라 답변 시간이 너무 오래 걸려요",
+          "confidence": 0.78,
+          "used_in_ranking": true
+        }
+      ],
+      "counter": []
+    },
+    {
+      "evidence_id": "cs-single-09",
+      "source": "YouTube 댓글",
+      "source_group": "youtube",
+      "source_item_id": "yt-video-04",
+      "thread_id": "thread-cs-single-09",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=yt-video-04&lc=cs-single-09",
+      "published_at": "2026-07-18T09:00:00Z",
+      "text_raw": "품절 안내를 보냈는데 확인하지 않고 언제 오냐는 문의가 계속 이어집니다",
+      "text_norm": "품절 안내를 보냈는데 확인하지 않고 언제 오냐는 문의가 계속 이어집니다",
+      "engagement": {
+        "likes": 4,
+        "replies": 1
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-6aa6582e4d24",
+      "is_group_representative": true,
+      "pain_cluster_id": "c2",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "complaint",
+          "quote": "지 않고 언제 오냐는 문의가 계속 이어집니다",
+          "confidence": 0.8,
+          "used_in_ranking": true
+        }
+      ],
+      "counter": []
+    },
+    {
+      "evidence_id": "cs-single-10",
+      "source": "YouTube 댓글",
+      "source_group": "youtube",
+      "source_item_id": "yt-video-05",
+      "thread_id": "thread-cs-single-10",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=yt-video-05&lc=cs-single-10",
+      "published_at": "2026-07-19T09:00:00Z",
+      "text_raw": "배송비 조건을 상세히 써 놔도 묶음 배송이 되는지 매번 다시 물어보네요",
+      "text_norm": "배송비 조건을 상세히 써 놔도 묶음 배송이 되는지 매번 다시 물어보네요",
+      "engagement": {
+        "likes": 5,
+        "replies": 2
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-38a08b1c6495",
+      "is_group_representative": true,
+      "pain_cluster_id": "c2",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "complaint",
+          "quote": "도 묶음 배송이 되는지 매번 다시 물어보네요",
+          "confidence": 0.79,
+          "used_in_ranking": true
+        }
+      ],
+      "counter": []
+    },
+    {
+      "evidence_id": "cs-single-11",
+      "source": "네이버 블로그",
+      "source_group": "naver_blog",
+      "source_item_id": "nb-cs-01",
+      "thread_id": "nb-cs-01",
+      "parent_id": null,
+      "url": "https://blog.naver.com/painradar/nb-cs-01",
+      "published_at": "2026-07-20T09:00:00Z",
+      "text_raw": "사진까지 넣어 설명했는데 조립 방법을 묻는 문의가 줄지 않아 답답합니다",
+      "text_norm": "사진까지 넣어 설명했는데 조립 방법을 묻는 문의가 줄지 않아 답답합니다",
+      "engagement": {
+        "likes": 6,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-8be62f4203ab",
+      "is_group_representative": true,
+      "pain_cluster_id": "c2",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "complaint",
+          "quote": "조립 방법을 묻는 문의가 줄지 않아 답답합니",
+          "confidence": 0.77,
+          "used_in_ranking": true
+        }
+      ],
+      "counter": []
+    },
+    {
+      "evidence_id": "cs-single-12",
+      "source": "네이버 블로그",
+      "source_group": "naver_blog",
+      "source_item_id": "nb-cs-02",
+      "thread_id": "nb-cs-02",
+      "parent_id": null,
+      "url": "https://blog.naver.com/painradar/nb-cs-02",
+      "published_at": "2026-07-21T09:00:00Z",
+      "text_raw": "교환 접수 뒤 진행 상황을 묻는 연락이 많아 다른 일을 시작하기가 어렵습니다",
+      "text_norm": "교환 접수 뒤 진행 상황을 묻는 연락이 많아 다른 일을 시작하기가 어렵습니다",
+      "engagement": {
+        "likes": 7,
+        "replies": 1
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-854b723298fb",
+      "is_group_representative": true,
+      "pain_cluster_id": "c2",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "complaint",
+          "quote": "진행 상황을 묻는 연락이 많아 다른 일을 시",
+          "confidence": 0.74,
+          "used_in_ranking": true
+        }
+      ],
+      "counter": []
+    },
+    {
+      "evidence_id": "cs-single-13",
+      "source": "네이버 블로그",
+      "source_group": "naver_blog",
+      "source_item_id": "nb-cs-03",
+      "thread_id": "nb-cs-03",
+      "parent_id": null,
+      "url": "https://blog.naver.com/painradar/nb-cs-03",
+      "published_at": "2026-07-22T09:00:00Z",
+      "text_raw": "쿠폰 적용 조건을 읽지 않은 문의가 반복돼 같은 문장을 계속 입력하고 있어요",
+      "text_norm": "쿠폰 적용 조건을 읽지 않은 문의가 반복돼 같은 문장을 계속 입력하고 있어요",
+      "engagement": {
+        "likes": 8,
+        "replies": 2
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-d283dfcac593",
+      "is_group_representative": true,
+      "pain_cluster_id": "c2",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "complaint",
+          "quote": "가 반복돼 같은 문장을 계속 입력하고 있어요",
+          "confidence": 0.76,
+          "used_in_ranking": true
+        }
+      ],
+      "counter": []
+    },
+    {
+      "evidence_id": "cs-single-14",
+      "source": "네이버 블로그",
+      "source_group": "naver_blog",
+      "source_item_id": "nb-cs-04",
+      "thread_id": "nb-cs-04",
+      "parent_id": null,
+      "url": "https://blog.naver.com/painradar/nb-cs-04",
+      "published_at": "2026-07-23T09:00:00Z",
+      "text_raw": "문의 알림이 밤에도 이어져 다음 날 처리할 내용이 계속 밀리고 있습니다",
+      "text_norm": "문의 알림이 밤에도 이어져 다음 날 처리할 내용이 계속 밀리고 있습니다",
+      "engagement": {
+        "likes": 0,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-be194468641f",
+      "is_group_representative": true,
+      "pain_cluster_id": "c2",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "complaint",
+          "quote": "다음 날 처리할 내용이 계속 밀리고 있습니다",
+          "confidence": 0.73,
+          "used_in_ranking": true
+        }
+      ],
+      "counter": []
+    },
+    {
+      "evidence_id": "cs-single-15",
+      "source": "네이버 블로그",
+      "source_group": "naver_blog",
+      "source_item_id": "nb-cs-05",
+      "thread_id": "nb-cs-05",
+      "parent_id": null,
+      "url": "https://blog.naver.com/painradar/nb-cs-05",
+      "published_at": "2026-07-24T09:00:00Z",
+      "text_raw": "상품 색상 차이를 설명해도 화면과 다르다는 질문이 반복해서 들어옵니다",
+      "text_norm": "상품 색상 차이를 설명해도 화면과 다르다는 질문이 반복해서 들어옵니다",
+      "engagement": {
+        "likes": 1,
+        "replies": 1
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-38e9452c4f90",
+      "is_group_representative": true,
+      "pain_cluster_id": "c2",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "complaint",
+          "quote": " 화면과 다르다는 질문이 반복해서 들어옵니다",
+          "confidence": 0.75,
+          "used_in_ranking": true
+        }
+      ],
+      "counter": []
+    },
+    {
+      "evidence_id": "csv-ex1-01",
+      "source": "YouTube 댓글",
+      "source_group": "youtube",
+      "source_item_id": "yt-video-04",
+      "thread_id": "thread-csv-ex1-01",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=yt-video-04&lc=csv-ex1-01",
+      "published_at": "2026-05-10T08:00:00Z",
+      "text_raw": "정산 내역을 내려받을 때마다 엑셀로 따로 정리해서 주문별 수수료를 다시 맞추고 있습니다",
+      "text_norm": "정산 내역을 내려받을 때마다 엑셀로 따로 정리해서 주문별 수수료를 다시 맞추고 있습니다",
+      "engagement": {
+        "likes": 2,
+        "replies": 2
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-f36f41619c0d",
+      "is_group_representative": true,
+      "pain_cluster_id": "c3",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "workaround",
+          "quote": "엑셀로 따로 정리해서 주문별 수수료를 다시 ",
+          "confidence": 0.88,
+          "used_in_ranking": true
+        }
+      ],
+      "counter": []
+    },
+    {
+      "evidence_id": "csv-ex1-02",
+      "source": "YouTube 댓글",
+      "source_group": "youtube",
+      "source_item_id": "yt-video-05",
+      "thread_id": "thread-csv-ex1-02",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=yt-video-05&lc=csv-ex1-02",
+      "published_at": "2026-06-14T12:00:00Z",
+      "text_raw": "정산 내역을 내려받을 때마다 엑셀로 따로 정리해서 주문별 수수료를 다시 맞추고 있습니다",
+      "text_norm": "정산 내역을 내려받을 때마다 엑셀로 따로 정리해서 주문별 수수료를 다시 맞추고 있습니다",
+      "engagement": {
+        "likes": 3,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-f36f41619c0d",
+      "is_group_representative": false,
+      "pain_cluster_id": "c3",
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "csv-ex2-01",
+      "source": "네이버 블로그",
+      "source_group": "naver_blog",
+      "source_item_id": "nb-csv-01",
+      "thread_id": "nb-csv-01",
+      "parent_id": null,
+      "url": "https://blog.naver.com/painradar/nb-csv-01",
+      "published_at": "2026-05-11T09:00:00Z",
+      "text_raw": "재고 CSV를 내려받아 창고 파일과 수동으로 합친 다음 품절 수량을 하나씩 수정하고 있습니다",
+      "text_norm": "재고 csv를 내려받아 창고 파일과 수동으로 합친 다음 품절 수량을 하나씩 수정하고 있습니다",
+      "engagement": {
+        "likes": 4,
+        "replies": 1
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-175f8fbe941f",
+      "is_group_representative": true,
+      "pain_cluster_id": "c3",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "workaround",
+          "quote": "창고 파일과 수동으로 합친 다음 품절 수량을",
+          "confidence": 0.86,
+          "used_in_ranking": true
+        }
+      ],
+      "counter": []
+    },
+    {
+      "evidence_id": "csv-ex2-02",
+      "source": "네이버 블로그",
+      "source_group": "naver_blog",
+      "source_item_id": "nb-csv-02",
+      "thread_id": "nb-csv-02",
+      "parent_id": null,
+      "url": "https://blog.naver.com/painradar/nb-csv-02",
+      "published_at": "2026-06-16T13:00:00Z",
+      "text_raw": "재고 CSV를 내려받아 창고 파일과 수동으로 합친 다음 품절 수량을 하나씩 수정하고 있습니다",
+      "text_norm": "재고 csv를 내려받아 창고 파일과 수동으로 합친 다음 품절 수량을 하나씩 수정하고 있습니다",
+      "engagement": {
+        "likes": 5,
+        "replies": 2
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-175f8fbe941f",
+      "is_group_representative": false,
+      "pain_cluster_id": "c3",
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "csv-single-01",
+      "source": "YouTube 댓글",
+      "source_group": "youtube",
+      "source_item_id": "yt-video-04",
+      "thread_id": "thread-csv-single-01",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=yt-video-04&lc=csv-single-01",
+      "published_at": "2026-06-12T10:00:00Z",
+      "text_raw": "정산표를 매일 맞추는 시간을 줄이려고 A사 관리 서비스로 갈아탔어요",
+      "text_norm": "정산표를 매일 맞추는 시간을 줄이려고 a사 관리 서비스로 갈아탔어요",
+      "engagement": {
+        "likes": 6,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-249f9f52b3e6",
+      "is_group_representative": true,
+      "pain_cluster_id": "c3",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "alternative_search",
+          "quote": "간을 줄이려고 A사 관리 서비스로 갈아탔어요",
+          "confidence": 0.74,
+          "used_in_ranking": true
+        },
+        {
+          "type": "switching",
+          "quote": "간을 줄이려고 A사 관리 서비스로 갈아탔어요",
+          "confidence": 0.9,
+          "used_in_ranking": true
+        }
+      ],
+      "counter": []
+    },
+    {
+      "evidence_id": "csv-single-02",
+      "source": "YouTube 댓글",
+      "source_group": "youtube",
+      "source_item_id": "yt-video-05",
+      "thread_id": "thread-csv-single-02",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=yt-video-05&lc=csv-single-02",
+      "published_at": "2026-06-13T10:00:00Z",
+      "text_raw": "재고 숫자를 손으로 옮기다 자꾸 틀려서 OO툴로 아예 갈아탔어요",
+      "text_norm": "재고 숫자를 손으로 옮기다 자꾸 틀려서 oo툴로 아예 갈아탔어요",
+      "engagement": {
+        "likes": 7,
+        "replies": 1
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-3ed71b7bac0c",
+      "is_group_representative": true,
+      "pain_cluster_id": "c3",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "alternative_search",
+          "quote": "옮기다 자꾸 틀려서 OO툴로 아예 갈아탔어요",
+          "confidence": 0.72,
+          "used_in_ranking": true
+        },
+        {
+          "type": "switching",
+          "quote": "옮기다 자꾸 틀려서 OO툴로 아예 갈아탔어요",
+          "confidence": 0.89,
+          "used_in_ranking": true
+        }
+      ],
+      "counter": []
+    },
+    {
+      "evidence_id": "csv-single-03",
+      "source": "네이버 블로그",
+      "source_group": "naver_blog",
+      "source_item_id": "nb-csv-03",
+      "thread_id": "nb-csv-03",
+      "parent_id": null,
+      "url": "https://blog.naver.com/painradar/nb-csv-03",
+      "published_at": "2026-06-14T10:00:00Z",
+      "text_raw": "여러 창고 CSV를 합치는 일이 버거워서 A사 방식으로 바꿔서 쓰고 있어요",
+      "text_norm": "여러 창고 csv를 합치는 일이 버거워서 a사 방식으로 바꿔서 쓰고 있어요",
+      "engagement": {
+        "likes": 8,
+        "replies": 2
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-c754fd3e835b",
+      "is_group_representative": true,
+      "pain_cluster_id": "c3",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "switching",
+          "quote": " 버거워서 A사 방식으로 바꿔서 쓰고 있어요",
+          "confidence": 0.87,
+          "used_in_ranking": true
+        }
+      ],
+      "counter": []
+    },
+    {
+      "evidence_id": "csv-single-04",
+      "source": "네이버 블로그",
+      "source_group": "naver_blog",
+      "source_item_id": "nb-csv-04",
+      "thread_id": "nb-csv-04",
+      "parent_id": null,
+      "url": "https://blog.naver.com/painradar/nb-csv-04",
+      "published_at": "2026-06-15T10:00:00Z",
+      "text_raw": "주문별 수수료를 대조하는 데 하루가 걸려서 다른 관리 도구로 갈아탔어요",
+      "text_norm": "주문별 수수료를 대조하는 데 하루가 걸려서 다른 관리 도구로 갈아탔어요",
+      "engagement": {
+        "likes": 0,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-80ee5cb92f2c",
+      "is_group_representative": true,
+      "pain_cluster_id": "c3",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "workaround",
+          "quote": "수수료를 대조하는 데 하루가 걸려서 다른 관",
+          "confidence": 0.8,
+          "used_in_ranking": true
+        },
+        {
+          "type": "switching",
+          "quote": " 하루가 걸려서 다른 관리 도구로 갈아탔어요",
+          "confidence": 0.88,
+          "used_in_ranking": true
+        }
+      ],
+      "counter": []
+    },
+    {
+      "evidence_id": "csv-single-05",
+      "source": "네이버 블로그",
+      "source_group": "naver_blog",
+      "source_item_id": "nb-csv-05",
+      "thread_id": "nb-csv-05",
+      "parent_id": null,
+      "url": "https://blog.naver.com/painradar/nb-csv-05",
+      "published_at": "2026-06-16T10:00:00Z",
+      "text_raw": "품절 반영이 자꾸 늦어져 재고를 자동 반영하는 OO툴로 옮겼어요",
+      "text_norm": "품절 반영이 자꾸 늦어져 재고를 자동 반영하는 oo툴로 옮겼어요",
+      "engagement": {
+        "likes": 1,
+        "replies": 1
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-a27a7273da50",
+      "is_group_representative": true,
+      "pain_cluster_id": "c3",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "switching",
+          "quote": "어져 재고를 자동 반영하는 OO툴로 옮겼어요",
+          "confidence": 0.85,
+          "used_in_ranking": true
+        }
+      ],
+      "counter": []
+    },
+    {
+      "evidence_id": "csv-single-06",
+      "source": "네이버 블로그",
+      "source_group": "naver_blog",
+      "source_item_id": "nb-csv-06",
+      "thread_id": "nb-csv-06",
+      "parent_id": null,
+      "url": "https://blog.naver.com/painradar/nb-csv-06",
+      "published_at": "2026-08-17T10:00:00Z",
+      "text_raw": "정산 금액을 자동으로 맞춰 주는 서비스에 월 3만원 내고 쓰고 있습니다",
+      "text_norm": "정산 금액을 자동으로 맞춰 주는 서비스에 월 3만원 내고 쓰고 있습니다",
+      "engagement": {
+        "likes": 2,
+        "replies": 2
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-e43896d5aacd",
+      "is_group_representative": true,
+      "pain_cluster_id": "c3",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "payment",
+          "quote": "주는 서비스에 월 3만원 내고 쓰고 있습니다",
+          "confidence": 0.9,
+          "used_in_ranking": true
+        }
+      ],
+      "counter": []
+    },
+    {
+      "evidence_id": "csv-single-07",
+      "source": "네이버 블로그",
+      "source_group": "naver_blog",
+      "source_item_id": "nb-csv-07",
+      "thread_id": "nb-csv-07",
+      "parent_id": null,
+      "url": "https://blog.naver.com/painradar/nb-csv-07",
+      "published_at": "2026-08-18T10:00:00Z",
+      "text_raw": "엑셀 복사 작업을 없애려고 매달 2만원 결제해서 정산 도구를 사용해요",
+      "text_norm": "엑셀 복사 작업을 없애려고 매달 2만원 결제해서 정산 도구를 사용해요",
+      "engagement": {
+        "likes": 3,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-dfc2e9849d57",
+      "is_group_representative": true,
+      "pain_cluster_id": "c3",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "payment",
+          "quote": " 매달 2만원 결제해서 정산 도구를 사용해요",
+          "confidence": 0.9,
+          "used_in_ranking": true
+        }
+      ],
+      "counter": []
+    },
+    {
+      "evidence_id": "csv-single-08",
+      "source": "네이버 블로그",
+      "source_group": "naver_blog",
+      "source_item_id": "nb-csv-08",
+      "thread_id": "nb-csv-08",
+      "parent_id": null,
+      "url": "https://blog.naver.com/painradar/nb-csv-08",
+      "published_at": "2026-08-19T10:00:00Z",
+      "text_raw": "판매처별 재고 파일을 한 번에 자동으로 합쳐 주는 툴 없나요",
+      "text_norm": "판매처별 재고 파일을 한 번에 자동으로 합쳐 주는 툴 없나요",
+      "engagement": {
+        "likes": 4,
+        "replies": 1
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-6ae4bc06a073",
+      "is_group_representative": true,
+      "pain_cluster_id": "c3",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "alternative_search",
+          "quote": "일을 한 번에 자동으로 합쳐 주는 툴 없나요",
+          "confidence": 0.83,
+          "used_in_ranking": true
+        }
+      ],
+      "counter": []
+    },
+    {
+      "evidence_id": "csv-single-09",
+      "source": "네이버 블로그",
+      "source_group": "naver_blog",
+      "source_item_id": "nb-csv-09",
+      "thread_id": "nb-csv-09",
+      "parent_id": null,
+      "url": "https://blog.naver.com/painradar/nb-csv-09",
+      "published_at": "2026-08-20T10:00:00Z",
+      "text_raw": "입금액이 맞는지 확인하려고 정산 결과를 엑셀로 따로 정리해 두고 있습니다",
+      "text_norm": "입금액이 맞는지 확인하려고 정산 결과를 엑셀로 따로 정리해 두고 있습니다",
+      "engagement": {
+        "likes": 5,
+        "replies": 2
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-9d2f33d7e692",
+      "is_group_representative": true,
+      "pain_cluster_id": "c3",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "workaround",
+          "quote": "정산 결과를 엑셀로 따로 정리해 두고 있습니",
+          "confidence": 0.81,
+          "used_in_ranking": true
+        }
+      ],
+      "counter": []
+    },
+    {
+      "evidence_id": "csv-single-10",
+      "source": "네이버 블로그",
+      "source_group": "naver_blog",
+      "source_item_id": "nb-csv-10",
+      "thread_id": "nb-csv-10",
+      "parent_id": null,
+      "url": "https://blog.naver.com/painradar/nb-csv-10",
+      "published_at": "2026-08-21T10:00:00Z",
+      "text_raw": "CSV 열 순서가 매번 달라서 간단한 스크립트로 순서를 맞춘 뒤 업로드합니다",
+      "text_norm": "csv 열 순서가 매번 달라서 간단한 스크립트로 순서를 맞춘 뒤 업로드합니다",
+      "engagement": {
+        "likes": 6,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-ae35a65f7e4f",
+      "is_group_representative": true,
+      "pain_cluster_id": "c3",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "workaround",
+          "quote": "간단한 스크립트로 순서를 맞춘 뒤 업로드합니",
+          "confidence": 0.78,
+          "used_in_ranking": true
+        }
+      ],
+      "counter": []
+    },
+    {
+      "evidence_id": "csv-single-11",
+      "source": "네이버 블로그",
+      "source_group": "naver_blog",
+      "source_item_id": "nb-csv-11",
+      "thread_id": "nb-csv-11",
+      "parent_id": null,
+      "url": "https://blog.naver.com/painradar/nb-csv-11",
+      "published_at": "2026-08-22T10:00:00Z",
+      "text_raw": "재고 파일을 내려받으면 OO툴에 올려 품목 코드를 맞춘 뒤 다시 등록하고 있어요",
+      "text_norm": "재고 파일을 내려받으면 oo툴에 올려 품목 코드를 맞춘 뒤 다시 등록하고 있어요",
+      "engagement": {
+        "likes": 7,
+        "replies": 1
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-1cce6fa96dcf",
+      "is_group_representative": true,
+      "pain_cluster_id": "c3",
+      "is_noise": false,
+      "signals": [
+        {
+          "type": "workaround",
+          "quote": "OO툴에 올려 품목 코드를 맞춘 뒤 다시 등",
+          "confidence": 0.77,
+          "used_in_ranking": true
+        }
+      ],
+      "counter": []
+    }
+  ],
+  "dedup_groups": [
+    {
+      "group_id": "dedup-fc9f58f1e4f9",
+      "representative_id": "cs-ne1-01",
+      "member_ids": [
+        "cs-ne1-01",
+        "cs-ne1-02",
+        "cs-ne1-03",
+        "cs-ne1-04",
+        "cs-ne1-05"
+      ],
+      "reason": "near"
+    },
+    {
+      "group_id": "dedup-ee195b0e93c6",
+      "representative_id": "cs-ne2-01",
+      "member_ids": [
+        "cs-ne2-01",
+        "cs-ne2-02",
+        "cs-ne2-03",
+        "cs-ne2-04",
+        "cs-ne2-05"
+      ],
+      "reason": "near"
+    },
+    {
+      "group_id": "dedup-655b81bc6f7c",
+      "representative_id": "cs-single-01",
+      "member_ids": [
+        "cs-single-01"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-04a604d1a58d",
+      "representative_id": "cs-single-02",
+      "member_ids": [
+        "cs-single-02"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-04968a953d93",
+      "representative_id": "cs-single-03",
+      "member_ids": [
+        "cs-single-03"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-4e1655f99794",
+      "representative_id": "cs-single-04",
+      "member_ids": [
+        "cs-single-04"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-2baabf00ea52",
+      "representative_id": "cs-single-05",
+      "member_ids": [
+        "cs-single-05"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-87aa41c442ca",
+      "representative_id": "cs-single-06",
+      "member_ids": [
+        "cs-single-06"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-c69824d9ca07",
+      "representative_id": "cs-single-07",
+      "member_ids": [
+        "cs-single-07"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-92ce7bdea608",
+      "representative_id": "cs-single-08",
+      "member_ids": [
+        "cs-single-08"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-6aa6582e4d24",
+      "representative_id": "cs-single-09",
+      "member_ids": [
+        "cs-single-09"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-38a08b1c6495",
+      "representative_id": "cs-single-10",
+      "member_ids": [
+        "cs-single-10"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-8be62f4203ab",
+      "representative_id": "cs-single-11",
+      "member_ids": [
+        "cs-single-11"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-854b723298fb",
+      "representative_id": "cs-single-12",
+      "member_ids": [
+        "cs-single-12"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-d283dfcac593",
+      "representative_id": "cs-single-13",
+      "member_ids": [
+        "cs-single-13"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-be194468641f",
+      "representative_id": "cs-single-14",
+      "member_ids": [
+        "cs-single-14"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-38e9452c4f90",
+      "representative_id": "cs-single-15",
+      "member_ids": [
+        "cs-single-15"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-f36f41619c0d",
+      "representative_id": "csv-ex1-01",
+      "member_ids": [
+        "csv-ex1-01",
+        "csv-ex1-02"
+      ],
+      "reason": "exact"
+    },
+    {
+      "group_id": "dedup-175f8fbe941f",
+      "representative_id": "csv-ex2-01",
+      "member_ids": [
+        "csv-ex2-01",
+        "csv-ex2-02"
+      ],
+      "reason": "exact"
+    },
+    {
+      "group_id": "dedup-249f9f52b3e6",
+      "representative_id": "csv-single-01",
+      "member_ids": [
+        "csv-single-01"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-3ed71b7bac0c",
+      "representative_id": "csv-single-02",
+      "member_ids": [
+        "csv-single-02"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-c754fd3e835b",
+      "representative_id": "csv-single-03",
+      "member_ids": [
+        "csv-single-03"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-80ee5cb92f2c",
+      "representative_id": "csv-single-04",
+      "member_ids": [
+        "csv-single-04"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-a27a7273da50",
+      "representative_id": "csv-single-05",
+      "member_ids": [
+        "csv-single-05"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-e43896d5aacd",
+      "representative_id": "csv-single-06",
+      "member_ids": [
+        "csv-single-06"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-dfc2e9849d57",
+      "representative_id": "csv-single-07",
+      "member_ids": [
+        "csv-single-07"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-6ae4bc06a073",
+      "representative_id": "csv-single-08",
+      "member_ids": [
+        "csv-single-08"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-9d2f33d7e692",
+      "representative_id": "csv-single-09",
+      "member_ids": [
+        "csv-single-09"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-ae35a65f7e4f",
+      "representative_id": "csv-single-10",
+      "member_ids": [
+        "csv-single-10"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-1cce6fa96dcf",
+      "representative_id": "csv-single-11",
+      "member_ids": [
+        "csv-single-11"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-9b0692f36fdd",
+      "representative_id": "del-ex1-01",
+      "member_ids": [
+        "del-echo-01",
+        "del-echo-02",
+        "del-ex1-01",
+        "del-ex1-02",
+        "del-ex1-03",
+        "del-ex1-04"
+      ],
+      "reason": "exact"
+    },
+    {
+      "group_id": "dedup-baccd6a3972e",
+      "representative_id": "del-ex2-01",
+      "member_ids": [
+        "del-echo-03",
+        "del-echo-04",
+        "del-ex2-01",
+        "del-ex2-02",
+        "del-ex2-03",
+        "del-ex2-04"
+      ],
+      "reason": "exact"
+    },
+    {
+      "group_id": "dedup-ede87096c458",
+      "representative_id": "del-ne1-01",
+      "member_ids": [
+        "del-echo-05",
+        "del-echo-06",
+        "del-ne1-01",
+        "del-ne1-02",
+        "del-ne1-03",
+        "del-ne1-04",
+        "del-ne1-05"
+      ],
+      "reason": "near"
+    },
+    {
+      "group_id": "dedup-329685606131",
+      "representative_id": "del-ne2-01",
+      "member_ids": [
+        "del-echo-07",
+        "del-echo-08",
+        "del-ne2-01",
+        "del-ne2-02",
+        "del-ne2-03",
+        "del-ne2-04",
+        "del-ne2-05"
+      ],
+      "reason": "near"
+    },
+    {
+      "group_id": "dedup-3a4205bb4fd9",
+      "representative_id": "del-ne3-01",
+      "member_ids": [
+        "del-echo-09",
+        "del-echo-10",
+        "del-ne3-01",
+        "del-ne3-02",
+        "del-ne3-03",
+        "del-ne3-04"
+      ],
+      "reason": "near"
+    },
+    {
+      "group_id": "dedup-7a9b31f82c20",
+      "representative_id": "del-ne4-01",
+      "member_ids": [
+        "del-ne4-01",
+        "del-ne4-02",
+        "del-ne4-03",
+        "del-ne4-04"
+      ],
+      "reason": "near"
+    },
+    {
+      "group_id": "dedup-20dac9dd8d78",
+      "representative_id": "del-single-01",
+      "member_ids": [
+        "del-single-01"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-a2690a1a482f",
+      "representative_id": "del-single-02",
+      "member_ids": [
+        "del-single-02"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-a11f01d8bafb",
+      "representative_id": "del-single-03",
+      "member_ids": [
+        "del-single-03"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-fa1a39bdc2df",
+      "representative_id": "del-single-04",
+      "member_ids": [
+        "del-single-04"
+      ],
+      "reason": "single"
+    }
+  ],
+  "config_snapshot": {
+    "min_rung_obs": 3,
+    "opp_high": {
+      "min_ind": 10,
+      "min_source_groups": 1,
+      "min_rung": "switching"
+    },
+    "opp_medium": {
+      "min_ind": 5,
+      "min_rung": "workaround"
+    },
+    "counter_downgrade_ratio": 0.3,
+    "conf_high": {
+      "min_ind": 20,
+      "min_source_groups": 2,
+      "max_inflation": 3,
+      "max_not_experienced": 0.2
+    },
+    "conf_medium": {
+      "min_ind": 8
+    },
+    "same_item_penalty_ratio": 0.7,
+    "near_dup_threshold": 0.6,
+    "thread_echo_threshold": 0.4,
+    "signal_min_confidence": 0.6,
+    "batch_size": 20
+  },
+  "llm": {
+    "mode": "mock",
+    "dropped_quotes": 0
+  }
+}

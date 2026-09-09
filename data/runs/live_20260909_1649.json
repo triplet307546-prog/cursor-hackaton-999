@@ -1,0 +1,1979 @@
+{
+  "run_id": "live_20260909_1649",
+  "question": "네이버 스마트스토어 셀러들이 반복적으로 겪는 운영 문제는?",
+  "created_at": "2026-09-09T07:49:53.199Z",
+  "mode": "live",
+  "sources": [
+    {
+      "source_group": "youtube",
+      "label": "youtube_q1.json",
+      "policy": "official_api",
+      "fetched": 62,
+      "note": "data/raw/youtube_q1.json"
+    }
+  ],
+  "funnel": {
+    "raw_mentions": 62,
+    "independent_observations": 62,
+    "behavior_signals": 0,
+    "opportunities": 0
+  },
+  "clusters": [],
+  "evidence": [
+    {
+      "evidence_id": "yt:UgwwZDcIH7SMJHztjEB4AaABAg",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:1Wio-XyLZKM",
+      "thread_id": "yt:UgwwZDcIH7SMJHztjEB4AaABAg",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=1Wio-XyLZKM&lc=UgwwZDcIH7SMJHztjEB4AaABAg",
+      "published_at": "2026-08-13T10:30:58Z",
+      "text_raw": "Thanks for sharing this ❤",
+      "text_norm": "thanks for sharing this ❤",
+      "engagement": {
+        "likes": 0,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-ef9bad75234b",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:UgxKSZiJm_P_D8ypoVJ4AaABAg",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:1Wio-XyLZKM",
+      "thread_id": "yt:UgxKSZiJm_P_D8ypoVJ4AaABAg",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=1Wio-XyLZKM&lc=UgxKSZiJm_P_D8ypoVJ4AaABAg",
+      "published_at": "2026-08-13T06:04:28Z",
+      "text_raw": "Interesting comparison! The battle between Coupang and Smart Store is definitely worth watching",
+      "text_norm": "interesting comparison! the battle between coupang and smart store is definitely worth watching",
+      "engagement": {
+        "likes": 0,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-abb43d52fe44",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:Ugx4DgahfK7W0iiXhh94AaABAg",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:1Wio-XyLZKM",
+      "thread_id": "yt:Ugx4DgahfK7W0iiXhh94AaABAg",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=1Wio-XyLZKM&lc=Ugx4DgahfK7W0iiXhh94AaABAg",
+      "published_at": "2026-08-13T05:46:07Z",
+      "text_raw": "Wow very nice and amazing and wonderful good job ❤❤❤❤❤❤❤",
+      "text_norm": "wow very nice and amazing and wonderful good job ❤",
+      "engagement": {
+        "likes": 0,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-85a4d56f75d7",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:UgxG5JfovUVF4XuVebR4AaABAg",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:1Wio-XyLZKM",
+      "thread_id": "yt:UgxG5JfovUVF4XuVebR4AaABAg",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=1Wio-XyLZKM&lc=UgxG5JfovUVF4XuVebR4AaABAg",
+      "published_at": "2026-08-13T07:13:39Z",
+      "text_raw": "If Coupang is like a high-stakes casino slot machine, Smart Store feels like a game of chess. Realizing how easily Coupang can pull the rug out from under you with capital and sudden algorithm shifts was a real eye-opener. The idea of trading that chaos for control, strategy, and actual 'self-efficacy' makes total sense. Can't wait to see the real-world tag setup breakdown in the next video",
+      "text_norm": "if coupang is like a high-stakes casino slot machine, smart store feels like a game of chess. realizing how easily coupang can pull the rug out from under you with capital and sudden algorithm shifts was a real eye-opener. the idea of trading that chaos for control, strategy, and actual 'self-efficacy' makes total sense. can't wait to see the real-world tag setup breakdown in the next video",
+      "engagement": {
+        "likes": 0,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-8504530f7324",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:Ugy7BUSqUxchl3O8s1F4AaABAg",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:1Wio-XyLZKM",
+      "thread_id": "yt:Ugy7BUSqUxchl3O8s1F4AaABAg",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=1Wio-XyLZKM&lc=Ugy7BUSqUxchl3O8s1F4AaABAg",
+      "published_at": "2026-08-13T05:54:11Z",
+      "text_raw": "11년 연속 1위의 노하우가 많은 도움이 되겠어요.",
+      "text_norm": "11년 연속 1위의 노하우가 많은 도움이 되겠어요.",
+      "engagement": {
+        "likes": 0,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-ec0bed0f5da4",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:UgyDN_cWPZoDd1zOiSV4AaABAg",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:RVpk9r_ojiI",
+      "thread_id": "yt:UgyDN_cWPZoDd1zOiSV4AaABAg",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=RVpk9r_ojiI&lc=UgyDN_cWPZoDd1zOiSV4AaABAg",
+      "published_at": "2025-07-28T16:08:21Z",
+      "text_raw": "말이 안 되는게 뭔 고객응대 이런걸로 힘들었다는데 한건 팔고 뭔가 힘들었다는 건지? 좀 그럴듯한 스토리를 써보라고 밖에는 못 하겠음.\n아무리 들어도 대충 짜맞춘 소설로 들리는데.",
+      "text_norm": "말이 안 되는게 뭔 고객응대 이런걸로 힘들었다는데 한건 팔고 뭔가 힘들었다는 건지? 좀 그럴듯한 스토리를 써보라고 밖에는 못 하겠음. 아무리 들어도 대충 짜맞춘 소설로 들리는데.",
+      "engagement": {
+        "likes": 0,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-67545f68a268",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:UgyDN_cWPZoDd1zOiSV4AaABAg.AL7aSbUwRqRALBrj4r_S3a",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:RVpk9r_ojiI",
+      "thread_id": "yt:UgyDN_cWPZoDd1zOiSV4AaABAg",
+      "parent_id": "yt:UgyDN_cWPZoDd1zOiSV4AaABAg",
+      "url": "https://www.youtube.com/watch?v=RVpk9r_ojiI&lc=UgyDN_cWPZoDd1zOiSV4AaABAg.AL7aSbUwRqRALBrj4r_S3a",
+      "published_at": "2025-07-30T07:56:15Z",
+      "text_raw": "다 넌줄 아냐",
+      "text_norm": "다 넌줄 아냐",
+      "engagement": {
+        "likes": 0,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-328dc3aa3c80",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:Ugx58RlhEPnS-FLQeoB4AaABAg",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:YuPKBCvDlsQ",
+      "thread_id": "yt:Ugx58RlhEPnS-FLQeoB4AaABAg",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=YuPKBCvDlsQ&lc=Ugx58RlhEPnS-FLQeoB4AaABAg",
+      "published_at": "2026-05-23T11:53:15Z",
+      "text_raw": "핸드메이드 제품은 인건비 생각하면 비싸게 팔아야 하는데 현실은 공장제품과 싸워야 해서 쉽지 않죠. 포장도 예쁘게 하셔서 포장비도 많이 들었을 것 같고 라벨도 테무나  그런 데서 만들어오신 거 아니면  한국에서 직조라벨로 만들면 비싸긴 해요. 근데 사실 그냥 프린팅 라벨도 소량 제작시 개당 가격 생각하면 비싸요.. ㅜㅜ 온라인에서만 판매하셨나요? 오프마켓은 안 나가보셨나요? 그런 곳 가면 직장 다니면서 취미로 핸드메이드로 만들어서 나오시는 분들 있는데 이런 분들 중 일부가 가격을 다 흐려놔요... 본업이 아니기 때문에 가격을 너무 싸게...  그래도 여기저기 입점도 하시고 부지런히 하셨네요. 이번엔 문 닫으셨지만 다음번엔 더 잘 하실 수 있을 것 같아요. \n저는 사진 찍고 올리는 게 너무 힘들어서... ㅜㅜ\n저는 바이어스 마감이 제일 하기 싫은데 .. 바이어스 랍바로 하는 거 아니면 힘들어서요. ^^",
+      "text_norm": "핸드메이드 제품은 인건비 생각하면 비싸게 팔아야 하는데 현실은 공장제품과 싸워야 해서 쉽지 않죠. 포장도 예쁘게 하셔서 포장비도 많이 들었을 것 같고 라벨도 테무나 그런 데서 만들어오신 거 아니면 한국에서 직조라벨로 만들면 비싸긴 해요. 근데 사실 그냥 프린팅 라벨도 소량 제작시 개당 가격 생각하면 비싸요. ᅮᅮ 온라인에서만 판매하셨나요? 오프마켓은 안 나가보셨나요? 그런 곳 가면 직장 다니면서 취미로 핸드메이드로 만들어서 나오시는 분들 있는데 이런 분들 중 일부가 가격을 다 흐려놔요. 본업이 아니기 때문에 가격을 너무 싸게. 그래도 여기저기 입점도 하시고 부지런히 하셨네요. 이번엔 문 닫으셨지만 다음번엔 더 잘 하실 수 있을 것 같아요. 저는 사진 찍고 올리는 게 너무 힘들어서. ᅮᅮ 저는 바이어스 마감이 제일 하기 싫은데 . 바이어스 랍바로 하는 거 아니면 힘들어서요. ^",
+      "engagement": {
+        "likes": 101,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-121f6ba02bc6",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:Ugx58RlhEPnS-FLQeoB4AaABAg.AX91woiwPpkA_ZbwfVhD5e",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:YuPKBCvDlsQ",
+      "thread_id": "yt:Ugx58RlhEPnS-FLQeoB4AaABAg",
+      "parent_id": "yt:Ugx58RlhEPnS-FLQeoB4AaABAg",
+      "url": "https://www.youtube.com/watch?v=YuPKBCvDlsQ&lc=Ugx58RlhEPnS-FLQeoB4AaABAg.AX91woiwPpkA_ZbwfVhD5e",
+      "published_at": "2026-08-16T09:10:59Z",
+      "text_raw": "비싸면 안사죠\n  취미로 하는분이 흐려솧는다는데 취미다들은 땅퍼서 만들어파나요?취미건 본업이건 브랜드가되면 가능합니다. 내가 브랜드가되야죠.이것은마케팅의 힘입니다",
+      "text_norm": "비싸면 안사죠 취미로 하는분이 흐려솧는다는데 취미다들은 땅퍼서 만들어파나요?취미건 본업이건 브랜드가되면 가능합니다. 내가 브랜드가되야죠.이것은마케팅의 힘입니다",
+      "engagement": {
+        "likes": 4,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-9cec78ed5f49",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:UgzavT33gBie79Hcmo94AaABAg",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:YuPKBCvDlsQ",
+      "thread_id": "yt:UgzavT33gBie79Hcmo94AaABAg",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=YuPKBCvDlsQ&lc=UgzavT33gBie79Hcmo94AaABAg",
+      "published_at": "2026-05-21T08:47:09Z",
+      "text_raw": "저도 핸드메이드 창업 생각 자체를 안한 건 아니지만 수익이 많이 나지 않을 것 같아서 구경만 했었어요. 프리랜서로 돈 버는 것도 대단하시네요.",
+      "text_norm": "저도 핸드메이드 창업 생각 자체를 안한 건 아니지만 수익이 많이 나지 않을 것 같아서 구경만 했었어요. 프리랜서로 돈 버는 것도 대단하시네요.",
+      "engagement": {
+        "likes": 32,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-1663e65cf251",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:UgxeQH-65tJXutUnawJ4AaABAg",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:YuPKBCvDlsQ",
+      "thread_id": "yt:UgxeQH-65tJXutUnawJ4AaABAg",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=YuPKBCvDlsQ&lc=UgxeQH-65tJXutUnawJ4AaABAg",
+      "published_at": "2026-08-15T08:07:16Z",
+      "text_raw": "디자이너가 물건을 파는건 다른일이야 힘들어 ...",
+      "text_norm": "디자이너가 물건을 파는건 다른일이야 힘들어 .",
+      "engagement": {
+        "likes": 5,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-3e55cb30f1bb",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:UgzbLnSL99Qwc2Q_8Qx4AaABAg",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:YuPKBCvDlsQ",
+      "thread_id": "yt:UgzbLnSL99Qwc2Q_8Qx4AaABAg",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=YuPKBCvDlsQ&lc=UgzbLnSL99Qwc2Q_8Qx4AaABAg",
+      "published_at": "2026-05-20T03:20:29Z",
+      "text_raw": "제품 기획쪽으로 잘맞으실것같아요😊",
+      "text_norm": "제품 기획쪽으로 잘맞으실것같아요😊",
+      "engagement": {
+        "likes": 8,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-dc02fb33cc81",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:Ugwx5tmbdxrp7uNNGuB4AaABAg",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:YuPKBCvDlsQ",
+      "thread_id": "yt:Ugwx5tmbdxrp7uNNGuB4AaABAg",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=YuPKBCvDlsQ&lc=Ugwx5tmbdxrp7uNNGuB4AaABAg",
+      "published_at": "2026-05-18T02:10:55Z",
+      "text_raw": "부족한 완벽 주의자. 너무 공감가는 표현이네요~",
+      "text_norm": "부족한 완벽 주의자. 너무 공감가는 표현이네요~",
+      "engagement": {
+        "likes": 35,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-a158b3d5efe1",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:Ugwx5tmbdxrp7uNNGuB4AaABAg.AWw7KDgl_SLAX-Lg3MfxNN",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:YuPKBCvDlsQ",
+      "thread_id": "yt:Ugwx5tmbdxrp7uNNGuB4AaABAg",
+      "parent_id": "yt:Ugwx5tmbdxrp7uNNGuB4AaABAg",
+      "url": "https://www.youtube.com/watch?v=YuPKBCvDlsQ&lc=Ugwx5tmbdxrp7uNNGuB4AaABAg.AWw7KDgl_SLAX-Lg3MfxNN",
+      "published_at": "2026-05-19T17:33:19Z",
+      "text_raw": "화이팅입니다 💪🏻",
+      "text_norm": "화이팅입니다 💪🏻",
+      "engagement": {
+        "likes": 1,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-926a2fd34671",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": true,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:UgyuVv8g9kQXCfonAid4AaABAg",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:YuPKBCvDlsQ",
+      "thread_id": "yt:UgyuVv8g9kQXCfonAid4AaABAg",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=YuPKBCvDlsQ&lc=UgyuVv8g9kQXCfonAid4AaABAg",
+      "published_at": "2026-08-17T05:26:52Z",
+      "text_raw": "저두 주변에서 공방차리거나 수선집, 핸드메이드 제품 만들어 판매해보라는 말 많이 들었었는데... \n한 20년 넘게 재봉하면서 깨달은 점은 \n제 자신의 명을 갈아넣어서 겨우 아둥바둥 핸드메이드 제품 만들어 판매해놨자 수익을 내기는 커녕 마진도 못 남길 거 눈에 뻔히 보여서 핸드메이드 사업은 절대 하지 말아야겠다 결론 내렸었지요~ \n내 가족 옷 부지런히 만들어 입혔던게 가장 돈버는 거였다는걸 깨달았던게 가장 큰 이득이었어요~",
+      "text_norm": "저두 주변에서 공방차리거나 수선집, 핸드메이드 제품 만들어 판매해보라는 말 많이 들었었는데. 한 20년 넘게 재봉하면서 깨달은 점은 제 자신의 명을 갈아넣어서 겨우 아둥바둥 핸드메이드 제품 만들어 판매해놨자 수익을 내기는 커녕 마진도 못 남길 거 눈에 뻔히 보여서 핸드메이드 사업은 절대 하지 말아야겠다 결론 내렸었지요~ 내 가족 옷 부지런히 만들어 입혔던게 가장 돈버는 거였다는걸 깨달았던게 가장 큰 이득이었어요~",
+      "engagement": {
+        "likes": 9,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-b408f10a1284",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:UgyuVv8g9kQXCfonAid4AaABAg.A_an56vDjO6A_bnnopfnh3",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:YuPKBCvDlsQ",
+      "thread_id": "yt:UgyuVv8g9kQXCfonAid4AaABAg",
+      "parent_id": "yt:UgyuVv8g9kQXCfonAid4AaABAg",
+      "url": "https://www.youtube.com/watch?v=YuPKBCvDlsQ&lc=UgyuVv8g9kQXCfonAid4AaABAg.A_an56vDjO6A_bnnopfnh3",
+      "published_at": "2026-08-17T14:52:21Z",
+      "text_raw": "우와아 가족들 옷 만드시다니 너무 멋져요!\n직접 만든다는 의미에서 가장 보람찬 일이 아닐까 싶어요!!\n저도 재봉을 시작하고 돌이켜보면, 가장 의미 있던 순간들은 직접 만든 나만의 핸드메이드 상품을 지인들에게 선물했던 순간들이었던 거 같아요^^",
+      "text_norm": "우와아 가족들 옷 만드시다니 너무 멋져요! 직접 만든다는 의미에서 가장 보람찬 일이 아닐까 싶어요! 저도 재봉을 시작하고 돌이켜보면, 가장 의미 있던 순간들은 직접 만든 나만의 핸드메이드 상품을 지인들에게 선물했던 순간들이었던 거 같아요^",
+      "engagement": {
+        "likes": 0,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-0a2f6a3bb85d",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:UgzMmAqKNVR5aQhzJ_d4AaABAg",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:YuPKBCvDlsQ",
+      "thread_id": "yt:UgzMmAqKNVR5aQhzJ_d4AaABAg",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=YuPKBCvDlsQ&lc=UgzMmAqKNVR5aQhzJ_d4AaABAg",
+      "published_at": "2026-06-13T15:47:30Z",
+      "text_raw": "저도 수제로 하는 사업을 하는데 문제는 마케팅 브랜딩도 잇지만 만둘어야하고 그만큼 수익은 안나오고 회사 다니는거만 못한거같아요",
+      "text_norm": "저도 수제로 하는 사업을 하는데 문제는 마케팅 브랜딩도 잇지만 만둘어야하고 그만큼 수익은 안나오고 회사 다니는거만 못한거같아요",
+      "engagement": {
+        "likes": 3,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-45640cd0850c",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:Ugw01mWHirczsvHij0N4AaABAg",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:YuPKBCvDlsQ",
+      "thread_id": "yt:Ugw01mWHirczsvHij0N4AaABAg",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=YuPKBCvDlsQ&lc=Ugw01mWHirczsvHij0N4AaABAg",
+      "published_at": "2026-05-23T04:27:50Z",
+      "text_raw": "안녕하세요! 하월님 앞으로 이야기가 궁금해서 구독 좋아요 눌렀어요! 주방용품은 아니지만 저도 핸드메이드 창업을 생각하고 있습니다 :) 제품 하나 만드는데 얼마나 걸렸는지 궁금합니다 또 제품 포장 부자재는 어디에서 구입했는지도 궁금해요!",
+      "text_norm": "안녕하세요! 하월님 앞으로 이야기가 궁금해서 구독 좋아요 눌렀어요! 주방용품은 아니지만 저도 핸드메이드 창업을 생각하고 있습니다 :) 제품 하나 만드는데 얼마나 걸렸는지 궁금합니다 또 제품 포장 부자재는 어디에서 구입했는지도 궁금해요!",
+      "engagement": {
+        "likes": 2,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-02a328f696f9",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:UgzLk0R1JApc1SBmWxx4AaABAg",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:YuPKBCvDlsQ",
+      "thread_id": "yt:UgzLk0R1JApc1SBmWxx4AaABAg",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=YuPKBCvDlsQ&lc=UgzLk0R1JApc1SBmWxx4AaABAg",
+      "published_at": "2026-05-22T01:04:11Z",
+      "text_raw": "다른 건 모르지만 미싱은 좀 아는데 방구석 장롱 안에 모셔 놓은 제 미싱 보다 생산성이 떨어지는 미싱 쓰는거 보고 제가 반성 해야겠네요 난 자꾸 상위 기종으로 눈돌아 가는데 ㅎㅎㅎ",
+      "text_norm": "다른 건 모르지만 미싱은 좀 아는데 방구석 장롱 안에 모셔 놓은 제 미싱 보다 생산성이 떨어지는 미싱 쓰는거 보고 제가 반성 해야겠네요 난 자꾸 상위 기종으로 눈돌아 가는데 ㅎㅎ",
+      "engagement": {
+        "likes": 9,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-8b7a3fa667a0",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:Ugza8K9GZK23ud7lHNp4AaABAg",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:YuPKBCvDlsQ",
+      "thread_id": "yt:Ugza8K9GZK23ud7lHNp4AaABAg",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=YuPKBCvDlsQ&lc=Ugza8K9GZK23ud7lHNp4AaABAg",
+      "published_at": "2026-05-20T12:04:19Z",
+      "text_raw": "영상은 계속 만들어주셨으면 좋겠어요,, 감각적인 편집 좋그든요🩵",
+      "text_norm": "영상은 계속 만들어주셨으면 좋겠어요, 감각적인 편집 좋그든요🩵",
+      "engagement": {
+        "likes": 4,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-5425e9a8c36d",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:Ugza8K9GZK23ud7lHNp4AaABAg.AX1KpB8V45NAXCPMhtiK7x",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:YuPKBCvDlsQ",
+      "thread_id": "yt:Ugza8K9GZK23ud7lHNp4AaABAg",
+      "parent_id": "yt:Ugza8K9GZK23ud7lHNp4AaABAg",
+      "url": "https://www.youtube.com/watch?v=YuPKBCvDlsQ&lc=Ugza8K9GZK23ud7lHNp4AaABAg.AX1KpB8V45NAXCPMhtiK7x",
+      "published_at": "2026-05-24T19:15:38Z",
+      "text_raw": "힘이나요!! 꾸준히 업로드 예정이에요 :) 너어무 감사합니디🫶🏻 빠이팅!",
+      "text_norm": "힘이나요! 꾸준히 업로드 예정이에요 :) 너어무 감사합니디🫶🏻 빠이팅!",
+      "engagement": {
+        "likes": 0,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-42f8b7a76109",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:UgwDH-okguzTiOIqi_l4AaABAg",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:YuPKBCvDlsQ",
+      "thread_id": "yt:UgwDH-okguzTiOIqi_l4AaABAg",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=YuPKBCvDlsQ&lc=UgwDH-okguzTiOIqi_l4AaABAg",
+      "published_at": "2026-05-24T05:16:18Z",
+      "text_raw": "저도 경단녀에 손재주는 좀 있는편이라 손으로 수작업하는걸로 사업냈다가 인건비가 너무 안나오고 수익이 난다는 느낌도 없이 적자 행진만 가고 있어서 1년만 하고 그만두게 되었어요. 저랑 다 공통적인 생각을 하고 있어서 저만 이런게 아니구나 싶어서 공감도 되고 응원도 하게 되네요.\n다른일로 수익화 하고 계시다니 다음영상 너무 기대됩니다!!",
+      "text_norm": "저도 경단녀에 손재주는 좀 있는편이라 손으로 수작업하는걸로 사업냈다가 인건비가 너무 안나오고 수익이 난다는 느낌도 없이 적자 행진만 가고 있어서 1년만 하고 그만두게 되었어요. 저랑 다 공통적인 생각을 하고 있어서 저만 이런게 아니구나 싶어서 공감도 되고 응원도 하게 되네요. 다른일로 수익화 하고 계시다니 다음영상 너무 기대됩니다!",
+      "engagement": {
+        "likes": 26,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-54fdd0b63264",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:UgwDH-okguzTiOIqi_l4AaABAg.AXAuJLxkkV-AXZ_VlnKbgp",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:YuPKBCvDlsQ",
+      "thread_id": "yt:UgwDH-okguzTiOIqi_l4AaABAg",
+      "parent_id": "yt:UgwDH-okguzTiOIqi_l4AaABAg",
+      "url": "https://www.youtube.com/watch?v=YuPKBCvDlsQ&lc=UgwDH-okguzTiOIqi_l4AaABAg.AXAuJLxkkV-AXZ_VlnKbgp",
+      "published_at": "2026-06-02T19:15:31Z",
+      "text_raw": "제가 현실을 잘 몰라서 이런걸 일로 해도될까 고민하고 있는 학생인데요\n저도 학교에서 미술하면 쟤다 할정도로 손재주가 있는편이라 핸드메이드 창업을 하고싶거든요\n혹시 컨셉을 하나 만들고 그 위주로 특별한 디자인을 해나가도 핸드메이드로 경쟁 보기가 힘드나요? 소비자 입장에서 봤을 때 핸드메이드인만큼 정말 예쁘네 싶으면 사고 이건 공장에서 만드는것도 비슷한거 많겠는데 하면 안살것같거든요",
+      "text_norm": "제가 현실을 잘 몰라서 이런걸 일로 해도될까 고민하고 있는 학생인데요 저도 학교에서 미술하면 쟤다 할정도로 손재주가 있는편이라 핸드메이드 창업을 하고싶거든요 혹시 컨셉을 하나 만들고 그 위주로 특별한 디자인을 해나가도 핸드메이드로 경쟁 보기가 힘드나요? 소비자 입장에서 봤을 때 핸드메이드인만큼 정말 예쁘네 싶으면 사고 이건 공장에서 만드는것도 비슷한거 많겠는데 하면 안살것같거든요",
+      "engagement": {
+        "likes": 1,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-b38c447e8a1b",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:UgwDH-okguzTiOIqi_l4AaABAg.AXAuJLxkkV-AXiMIvyXJ-w",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:YuPKBCvDlsQ",
+      "thread_id": "yt:UgwDH-okguzTiOIqi_l4AaABAg",
+      "parent_id": "yt:UgwDH-okguzTiOIqi_l4AaABAg",
+      "url": "https://www.youtube.com/watch?v=YuPKBCvDlsQ&lc=UgwDH-okguzTiOIqi_l4AaABAg.AXAuJLxkkV-AXiMIvyXJ-w",
+      "published_at": "2026-06-06T14:23:50Z",
+      "text_raw": "짧은 경험으로 말씀드린다면... 마케팅, 브랜딩이 더 중요한 거 같아요!\n물론 제 말이 정답은 아닙니다!\n음식이 맛있어서 입소문 난 식당이 있는 반면\n식당이 예쁘거나 음식이 예뻐 홍보로 유명해진 식당이 있는 거처럼 확률은 있지만 정답은 없는 거 같아요! 그리고 개인적으론 한 번 해보고 성공이든 실패든 경험을 해본다는 거 자체가 좋은 거 같습니다!",
+      "text_norm": "짧은 경험으로 말씀드린다면. 마케팅, 브랜딩이 더 중요한 거 같아요! 물론 제 말이 정답은 아닙니다! 음식이 맛있어서 입소문 난 식당이 있는 반면 식당이 예쁘거나 음식이 예뻐 홍보로 유명해진 식당이 있는 거처럼 확률은 있지만 정답은 없는 거 같아요! 그리고 개인적으론 한 번 해보고 성공이든 실패든 경험을 해본다는 거 자체가 좋은 거 같습니다!",
+      "engagement": {
+        "likes": 1,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-907fb63e5235",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:UgwDH-okguzTiOIqi_l4AaABAg.AXAuJLxkkV-AYEO2VJoQCb",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:YuPKBCvDlsQ",
+      "thread_id": "yt:UgwDH-okguzTiOIqi_l4AaABAg",
+      "parent_id": "yt:UgwDH-okguzTiOIqi_l4AaABAg",
+      "url": "https://www.youtube.com/watch?v=YuPKBCvDlsQ&lc=UgwDH-okguzTiOIqi_l4AaABAg.AXAuJLxkkV-AYEO2VJoQCb",
+      "published_at": "2026-06-19T10:14:00Z",
+      "text_raw": "​@user-qu7lm6fr5u하지마세요 나는20년을했지만 수입은기대못함",
+      "text_norm": "​ 나는20년을했지만 수입은기대못함",
+      "engagement": {
+        "likes": 0,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-8a9b432cb240",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:UgyuY7YB3xiGOymICxB4AaABAg",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:YuPKBCvDlsQ",
+      "thread_id": "yt:UgyuY7YB3xiGOymICxB4AaABAg",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=YuPKBCvDlsQ&lc=UgyuY7YB3xiGOymICxB4AaABAg",
+      "published_at": "2026-05-17T15:04:31Z",
+      "text_raw": "잘 봤어요~",
+      "text_norm": "잘 봤어요~",
+      "engagement": {
+        "likes": 2,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-af946b9b3586",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": true,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:UgyuY7YB3xiGOymICxB4AaABAg.AWuw3NvST9oAX-LKZANhTf",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:YuPKBCvDlsQ",
+      "thread_id": "yt:UgyuY7YB3xiGOymICxB4AaABAg",
+      "parent_id": "yt:UgyuY7YB3xiGOymICxB4AaABAg",
+      "url": "https://www.youtube.com/watch?v=YuPKBCvDlsQ&lc=UgyuY7YB3xiGOymICxB4AaABAg.AWuw3NvST9oAX-LKZANhTf",
+      "published_at": "2026-05-19T17:30:15Z",
+      "text_raw": "🫶🏻",
+      "text_norm": "🫶🏻",
+      "engagement": {
+        "likes": 0,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-b2f519f795fa",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:Ugx79mQ3muQo-IsUj0V4AaABAg",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:YuPKBCvDlsQ",
+      "thread_id": "yt:Ugx79mQ3muQo-IsUj0V4AaABAg",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=YuPKBCvDlsQ&lc=Ugx79mQ3muQo-IsUj0V4AaABAg",
+      "published_at": "2026-05-20T11:33:59Z",
+      "text_raw": "Q1. 앞으로의 진로에대한 계획이 궁금합니다\n\nQ2. 처음에 스토어를 운영하게된 계기도 궁금해요\n\nQ3. 사업하시면서 스스로에게 잘했다고 생각한점, 아쉬웠던점이 궁금해요",
+      "text_norm": "q1. 앞으로의 진로에대한 계획이 궁금합니다 q2. 처음에 스토어를 운영하게된 계기도 궁금해요 q3. 사업하시면서 스스로에게 잘했다고 생각한점, 아쉬웠던점이 궁금해요",
+      "engagement": {
+        "likes": 10,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-5bb5e52cc107",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:Ugz2hbj0c3BELaNw0rd4AaABAg",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:YuPKBCvDlsQ",
+      "thread_id": "yt:Ugz2hbj0c3BELaNw0rd4AaABAg",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=YuPKBCvDlsQ&lc=Ugz2hbj0c3BELaNw0rd4AaABAg",
+      "published_at": "2026-05-23T14:29:24Z",
+      "text_raw": "0:35 서랍장 정보 알려주세요~~\n저도 1인 계획 중인데 잘 알아봐야겠네요 ㅜㅜ 정보 감사해요❤",
+      "text_norm": "0:35 서랍장 정보 알려주세요~ 저도 1인 계획 중인데 잘 알아봐야겠네요 ᅮᅮ 정보 감사해요❤",
+      "engagement": {
+        "likes": 3,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-62776fbd7958",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:Ugz2hbj0c3BELaNw0rd4AaABAg.AX9JoRDHQIYAX9KkN8h_c5",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:YuPKBCvDlsQ",
+      "thread_id": "yt:Ugz2hbj0c3BELaNw0rd4AaABAg",
+      "parent_id": "yt:Ugz2hbj0c3BELaNw0rd4AaABAg",
+      "url": "https://www.youtube.com/watch?v=YuPKBCvDlsQ&lc=Ugz2hbj0c3BELaNw0rd4AaABAg.AX9JoRDHQIYAX9KkN8h_c5",
+      "published_at": "2026-05-23T14:37:35Z",
+      "text_raw": "홈인홈 - 마음에 드는 서랍장\n제품입니다! 영상에 상품 태그 되어있어요 😊\n감사합니다🩵",
+      "text_norm": "홈인홈 - 마음에 드는 서랍장 제품입니다! 영상에 상품 태그 되어있어요 😊 감사합니다🩵",
+      "engagement": {
+        "likes": 1,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-3243facf3a7c",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:Ugxrkf1T50iHI6yP6dx4AaABAg",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:YuPKBCvDlsQ",
+      "thread_id": "yt:Ugxrkf1T50iHI6yP6dx4AaABAg",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=YuPKBCvDlsQ&lc=Ugxrkf1T50iHI6yP6dx4AaABAg",
+      "published_at": "2026-08-13T09:19:12Z",
+      "text_raw": "눈물이..",
+      "text_norm": "눈물이.",
+      "engagement": {
+        "likes": 0,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-b0513a653773",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:UgwrdM5_-o3GbFohHR54AaABAg",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:YuPKBCvDlsQ",
+      "thread_id": "yt:UgwrdM5_-o3GbFohHR54AaABAg",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=YuPKBCvDlsQ&lc=UgwrdM5_-o3GbFohHR54AaABAg",
+      "published_at": "2026-05-27T12:46:00Z",
+      "text_raw": "디자인 보다 기획 md 가 맞는분 같네요.....😂😂😂",
+      "text_norm": "디자인 보다 기획 md 가 맞는분 같네요.😂",
+      "engagement": {
+        "likes": 6,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-be6924d37d62",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:Ugz-cfiLCpzAaoly5ud4AaABAg",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:YuPKBCvDlsQ",
+      "thread_id": "yt:Ugz-cfiLCpzAaoly5ud4AaABAg",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=YuPKBCvDlsQ&lc=Ugz-cfiLCpzAaoly5ud4AaABAg",
+      "published_at": "2026-05-17T12:45:50Z",
+      "text_raw": "솔직한 얘기 감사드려요 영상 너무 잘 봤습니다 종종 올게요",
+      "text_norm": "솔직한 얘기 감사드려요 영상 너무 잘 봤습니다 종종 올게요",
+      "engagement": {
+        "likes": 6,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-36fb33618ab5",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:Ugz-cfiLCpzAaoly5ud4AaABAg.AWugBe3T4i9AX-LJGd5GAH",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:YuPKBCvDlsQ",
+      "thread_id": "yt:Ugz-cfiLCpzAaoly5ud4AaABAg",
+      "parent_id": "yt:Ugz-cfiLCpzAaoly5ud4AaABAg",
+      "url": "https://www.youtube.com/watch?v=YuPKBCvDlsQ&lc=Ugz-cfiLCpzAaoly5ud4AaABAg.AWugBe3T4i9AX-LJGd5GAH",
+      "published_at": "2026-05-19T17:30:05Z",
+      "text_raw": "감사합니다 ☺️",
+      "text_norm": "감사합니다 ☺️",
+      "engagement": {
+        "likes": 0,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-b447436f71f8",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": true,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:UgzZVIoweGxb_KSCY2J4AaABAg",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:YuPKBCvDlsQ",
+      "thread_id": "yt:UgzZVIoweGxb_KSCY2J4AaABAg",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=YuPKBCvDlsQ&lc=UgzZVIoweGxb_KSCY2J4AaABAg",
+      "published_at": "2026-06-06T11:58:37Z",
+      "text_raw": "저도 1인 창업자로 매년매년 고민중이지만 손도 느린편이고 현실적으로 부딪치는게 많아서 실행 못하네요.\n몇몇분은 공장에 의뢰해서 대량으로 뽑지 않냐 라는 말들들 쉽게 하는데 공장관계자들과 조건들을 타협하면서 조율해야하고 \n또 대량으로 만들수록 내가 그만큼 공장에 납품비를 내야하는것도 많아지는게 현실이죠",
+      "text_norm": "저도 1인 창업자로 매년매년 고민중이지만 손도 느린편이고 현실적으로 부딪치는게 많아서 실행 못하네요. 몇몇분은 공장에 의뢰해서 대량으로 뽑지 않냐 라는 말들들 쉽게 하는데 공장관계자들과 조건들을 타협하면서 조율해야하고 또 대량으로 만들수록 내가 그만큼 공장에 납품비를 내야하는것도 많아지는게 현실이죠",
+      "engagement": {
+        "likes": 1,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-0b83c8de2e5f",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:UgzZVIoweGxb_KSCY2J4AaABAg.AXi5gMYIDEfAXiLMz-BGHP",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:YuPKBCvDlsQ",
+      "thread_id": "yt:UgzZVIoweGxb_KSCY2J4AaABAg",
+      "parent_id": "yt:UgzZVIoweGxb_KSCY2J4AaABAg",
+      "url": "https://www.youtube.com/watch?v=YuPKBCvDlsQ&lc=UgzZVIoweGxb_KSCY2J4AaABAg.AXi5gMYIDEfAXiLMz-BGHP",
+      "published_at": "2026-06-06T14:15:39Z",
+      "text_raw": "맞아요! 그리고 직접 만드는 게 좋아 시작한 거라, 공장을 후순위로 고려하게 되더라고요. 대량 건 때문에 공장 컨택한 적이 있는데, 말씀해 주신 대로 여러 조건이 있어 대량이 아니면 진행 못하겠다 싶었어요! 너무 공감되네요!",
+      "text_norm": "맞아요! 그리고 직접 만드는 게 좋아 시작한 거라, 공장을 후순위로 고려하게 되더라고요. 대량 건 때문에 공장 컨택한 적이 있는데, 말씀해 주신 대로 여러 조건이 있어 대량이 아니면 진행 못하겠다 싶었어요! 너무 공감되네요!",
+      "engagement": {
+        "likes": 0,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-56e68b26b064",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:UgwJW-An2yh91ilVZ794AaABAg",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:YuPKBCvDlsQ",
+      "thread_id": "yt:UgwJW-An2yh91ilVZ794AaABAg",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=YuPKBCvDlsQ&lc=UgwJW-An2yh91ilVZ794AaABAg",
+      "published_at": "2026-06-06T14:10:56Z",
+      "text_raw": "패키징박스도 제작하신건가요~? 어디서 제작하신건지 궁금해요❤",
+      "text_norm": "패키징박스도 제작하신건가요~? 어디서 제작하신건지 궁금해요❤",
+      "engagement": {
+        "likes": 0,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-3bb0dc13cde6",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:UgwJW-An2yh91ilVZ794AaABAg.AXiKpP2BySJAXiL_dniwFE",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:YuPKBCvDlsQ",
+      "thread_id": "yt:UgwJW-An2yh91ilVZ794AaABAg",
+      "parent_id": "yt:UgwJW-An2yh91ilVZ794AaABAg",
+      "url": "https://www.youtube.com/watch?v=YuPKBCvDlsQ&lc=UgwJW-An2yh91ilVZ794AaABAg.AXiKpP2BySJAXiL_dniwFE",
+      "published_at": "2026-06-06T14:17:31Z",
+      "text_raw": "샘플로 만들어본다고, 프린트만 주문해서 직접 만들어봤어요!",
+      "text_norm": "샘플로 만들어본다고, 프린트만 주문해서 직접 만들어봤어요!",
+      "engagement": {
+        "likes": 0,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-e6e6ec649879",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:UgwX16ldlC5GBaUcJHl4AaABAg",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:YuPKBCvDlsQ",
+      "thread_id": "yt:UgwX16ldlC5GBaUcJHl4AaABAg",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=YuPKBCvDlsQ&lc=UgwX16ldlC5GBaUcJHl4AaABAg",
+      "published_at": "2026-05-23T15:37:55Z",
+      "text_raw": "능력자신데.. 조심스럽게 말씀드리자면, 대량 판매 쇼핑몰과는\n맞지 않아요... 아이템은 좋아요.\n샘플만 본인이 제작해서 위탁생산\n하셨으면 되었어요.\n특히, 중국이우시장 4기에 가면\n님과 같은 제품 엄청 많고 단가도\n상상외로 저렴 합니다.\n방법을 연구해 보세요...",
+      "text_norm": "능력자신데. 조심스럽게 말씀드리자면, 대량 판매 쇼핑몰과는 맞지 않아요. 아이템은 좋아요. 샘플만 본인이 제작해서 위탁생산 하셨으면 되었어요. 특히, 중국이우시장 4기에 가면 님과 같은 제품 엄청 많고 단가도 상상외로 저렴 합니다. 방법을 연구해 보세요.",
+      "engagement": {
+        "likes": 12,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-7ee53aa38d1d",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:Ugxy81QVZqAOABHV9Wh4AaABAg",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:YuPKBCvDlsQ",
+      "thread_id": "yt:Ugxy81QVZqAOABHV9Wh4AaABAg",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=YuPKBCvDlsQ&lc=Ugxy81QVZqAOABHV9Wh4AaABAg",
+      "published_at": "2026-08-14T05:04:56Z",
+      "text_raw": "핸드메이드 유튭 영상을 통한 분들은 보통은 잘되시는것 같더라고요. 그중에서는 주문이 혼자 만들기엔 벅차서 공장에도 맡기기도 하고 알바도 구하시기도 하고 그러시던데 이게 참 그래요.. 같이 핸드메이드 장사 하는 입장에서 보면 공장의뢰가  부러운 마음이면서도 그렇게 따지면 메이드인 차이나 딱지붙은 것들도 다 어차피 핸드메이드인건데(공장도 기계가 만드는게아니라 다 수작업이잖아요?) 내가 만든게 더 좋아보이고 가격도 더 저렴한데도 유튜브라는 마케팅을 안하고서는 알릴수 없을만큼 핸드메이드 하시는분이 3년사이에 급격하게 늘어났어요 정말 말갖지도않은 물건을 파는 사람들이 잘팔리고 단골까지 생기는걸 보고는 정말 이해할수가 없는 구조였지만 될놈될, 팔자 이렇게 생각하게되더라고요 하.. 어떤마음이셨을지 알아서 토닥토닥 응원드려요",
+      "text_norm": "핸드메이드 유튭 영상을 통한 분들은 보통은 잘되시는것 같더라고요. 그중에서는 주문이 혼자 만들기엔 벅차서 공장에도 맡기기도 하고 알바도 구하시기도 하고 그러시던데 이게 참 그래요. 같이 핸드메이드 장사 하는 입장에서 보면 공장의뢰가 부러운 마음이면서도 그렇게 따지면 메이드인 차이나 딱지붙은 것들도 다 어차피 핸드메이드인건데(공장도 기계가 만드는게아니라 다 수작업이잖아요?) 내가 만든게 더 좋아보이고 가격도 더 저렴한데도 유튜브라는 마케팅을 안하고서는 알릴수 없을만큼 핸드메이드 하시는분이 3년사이에 급격하게 늘어났어요 정말 말갖지도않은 물건을 파는 사람들이 잘팔리고 단골까지 생기는걸 보고는 정말 이해할수가 없는 구조였지만 될놈될, 팔자 이렇게 생각하게되더라고요 하. 어떤마음이셨을지 알아서 토닥토닥 응원드려요",
+      "engagement": {
+        "likes": 1,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-4c667e151707",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:Ugxy81QVZqAOABHV9Wh4AaABAg.A_U1BoE7-zfA_boEG-oXog",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:YuPKBCvDlsQ",
+      "thread_id": "yt:Ugxy81QVZqAOABHV9Wh4AaABAg",
+      "parent_id": "yt:Ugxy81QVZqAOABHV9Wh4AaABAg",
+      "url": "https://www.youtube.com/watch?v=YuPKBCvDlsQ&lc=Ugxy81QVZqAOABHV9Wh4AaABAg.A_U1BoE7-zfA_boEG-oXog",
+      "published_at": "2026-08-17T14:56:06Z",
+      "text_raw": "응원 감사합니다!!",
+      "text_norm": "응원 감사합니다!",
+      "engagement": {
+        "likes": 0,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-f7795561f96b",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": true,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:UgzeyEaI1kOJ4AOGKih4AaABAg",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:YuPKBCvDlsQ",
+      "thread_id": "yt:UgzeyEaI1kOJ4AOGKih4AaABAg",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=YuPKBCvDlsQ&lc=UgzeyEaI1kOJ4AOGKih4AaABAg",
+      "published_at": "2026-05-19T00:07:43Z",
+      "text_raw": "영상 잘 보고있어요 너무 고생하셨어요 ㅠ 이제 시작하는 제 입장에서도 너무 공감갑니다.... 혹시 하나만 여쭤봐도 될까요 ? 물어볼곳이 없어서 ㅠ 상세페이지 워터마크는 어떻게 하셨나요? 따로 입히지 않으셨나요?  저는 포토샵에서 안하고 페이지에서 바로 사진으로 올리고있는데 정말 어렵네요 😂 관련해서 내용 알고계신 부분 있을까요?",
+      "text_norm": "영상 잘 보고있어요 너무 고생하셨어요 ᅲ 이제 시작하는 제 입장에서도 너무 공감갑니다. 혹시 하나만 여쭤봐도 될까요 ? 물어볼곳이 없어서 ᅲ 상세페이지 워터마크는 어떻게 하셨나요? 따로 입히지 않으셨나요? 저는 포토샵에서 안하고 페이지에서 바로 사진으로 올리고있는데 정말 어렵네요 😂 관련해서 내용 알고계신 부분 있을까요?",
+      "engagement": {
+        "likes": 0,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-dc1d0ca0a014",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:UgzeyEaI1kOJ4AOGKih4AaABAg.AWyU0lIHLuTAX-LZs7z-ga",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:YuPKBCvDlsQ",
+      "thread_id": "yt:UgzeyEaI1kOJ4AOGKih4AaABAg",
+      "parent_id": "yt:UgzeyEaI1kOJ4AOGKih4AaABAg",
+      "url": "https://www.youtube.com/watch?v=YuPKBCvDlsQ&lc=UgzeyEaI1kOJ4AOGKih4AaABAg.AWyU0lIHLuTAX-LZs7z-ga",
+      "published_at": "2026-05-19T17:32:21Z",
+      "text_raw": "워터마크는 따로 입히지 않았어요! 이미지 무단 사용때문에 워터마크를 하시려는 건가요?",
+      "text_norm": "워터마크는 따로 입히지 않았어요! 이미지 무단 사용때문에 워터마크를 하시려는 건가요?",
+      "engagement": {
+        "likes": 1,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-99c705ea64b4",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:UgzeyEaI1kOJ4AOGKih4AaABAg.AWyU0lIHLuTAXBY8IPcmRY",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:YuPKBCvDlsQ",
+      "thread_id": "yt:UgzeyEaI1kOJ4AOGKih4AaABAg",
+      "parent_id": "yt:UgzeyEaI1kOJ4AOGKih4AaABAg",
+      "url": "https://www.youtube.com/watch?v=YuPKBCvDlsQ&lc=UgzeyEaI1kOJ4AOGKih4AaABAg.AWyU0lIHLuTAXBY8IPcmRY",
+      "published_at": "2026-05-24T11:13:04Z",
+      "text_raw": "@Ohawol네! 그대로 빼껴서 쓰는 경우가 많다고 하길래 여쭤봤어요! ㅎㅎ 답변해주셔서 너무 감사합니다!",
+      "text_norm": "그대로 빼껴서 쓰는 경우가 많다고 하길래 여쭤봤어요! ᄒᄒ 답변해주셔서 너무 감사합니다!",
+      "engagement": {
+        "likes": 1,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-935e95d77e03",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:Ugy0UMGoRRv5Ce50fk54AaABAg",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:YuPKBCvDlsQ",
+      "thread_id": "yt:Ugy0UMGoRRv5Ce50fk54AaABAg",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=YuPKBCvDlsQ&lc=Ugy0UMGoRRv5Ce50fk54AaABAg",
+      "published_at": "2026-05-17T12:46:38Z",
+      "text_raw": "마진율은 보통 얼마나 잡으시는가요?",
+      "text_norm": "마진율은 보통 얼마나 잡으시는가요?",
+      "engagement": {
+        "likes": 4,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-2690b18dccbb",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:Ugy0UMGoRRv5Ce50fk54AaABAg.AWugHUdPGZYAX-LE0ObQEU",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:YuPKBCvDlsQ",
+      "thread_id": "yt:Ugy0UMGoRRv5Ce50fk54AaABAg",
+      "parent_id": "yt:Ugy0UMGoRRv5Ce50fk54AaABAg",
+      "url": "https://www.youtube.com/watch?v=YuPKBCvDlsQ&lc=Ugy0UMGoRRv5Ce50fk54AaABAg.AWugHUdPGZYAX-LE0ObQEU",
+      "published_at": "2026-05-19T17:29:22Z",
+      "text_raw": "얼마를 딱 정해놓지는 않았어요! 기회가 된다면 마진 관련 영상도 만들어볼게요! 감사합니다 :)",
+      "text_norm": "얼마를 딱 정해놓지는 않았어요! 기회가 된다면 마진 관련 영상도 만들어볼게요! 감사합니다 :)",
+      "engagement": {
+        "likes": 2,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-2d16a3cb9608",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:UgyW2v99oumg0jMgKNF4AaABAg",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:YuPKBCvDlsQ",
+      "thread_id": "yt:UgyW2v99oumg0jMgKNF4AaABAg",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=YuPKBCvDlsQ&lc=UgyW2v99oumg0jMgKNF4AaABAg",
+      "published_at": "2026-05-17T16:04:56Z",
+      "text_raw": "제품 다 너무 예쁜데 폐업이시라니 정말 아쉬우셨겠어요.. 다음 근황도 너무 궁금하네요~!",
+      "text_norm": "제품 다 너무 예쁜데 폐업이시라니 정말 아쉬우셨겠어요. 다음 근황도 너무 궁금하네요~!",
+      "engagement": {
+        "likes": 5,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-4665b1f61bab",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:UgyW2v99oumg0jMgKNF4AaABAg.AWv1yv1WuSnAX-LFGQ1XnT",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:YuPKBCvDlsQ",
+      "thread_id": "yt:UgyW2v99oumg0jMgKNF4AaABAg",
+      "parent_id": "yt:UgyW2v99oumg0jMgKNF4AaABAg",
+      "url": "https://www.youtube.com/watch?v=YuPKBCvDlsQ&lc=UgyW2v99oumg0jMgKNF4AaABAg.AWv1yv1WuSnAX-LFGQ1XnT",
+      "published_at": "2026-05-19T17:29:32Z",
+      "text_raw": "감사합니다 😊",
+      "text_norm": "감사합니다 😊",
+      "engagement": {
+        "likes": 0,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-6c6ff8f34aa1",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": true,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:UgyfnRoCVpIROH-hCMp4AaABAg",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:YuPKBCvDlsQ",
+      "thread_id": "yt:UgyfnRoCVpIROH-hCMp4AaABAg",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=YuPKBCvDlsQ&lc=UgyfnRoCVpIROH-hCMp4AaABAg",
+      "published_at": "2026-06-01T02:18:46Z",
+      "text_raw": "혹시 판매가 되기시작할때 공장에 맡기지 않으신 이유가 어떤것인지 궁금합니다..!",
+      "text_norm": "혹시 판매가 되기시작할때 공장에 맡기지 않으신 이유가 어떤것인지 궁금합니다.!",
+      "engagement": {
+        "likes": 0,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-350a3029f209",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:UgyiLsMIRGEjygYehWd4AaABAg",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:YuPKBCvDlsQ",
+      "thread_id": "yt:UgyiLsMIRGEjygYehWd4AaABAg",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=YuPKBCvDlsQ&lc=UgyiLsMIRGEjygYehWd4AaABAg",
+      "published_at": "2026-05-29T06:44:33Z",
+      "text_raw": "에이 그래도 사장님 소리 들었으니 한잔해요 ㅋㅋ",
+      "text_norm": "에이 그래도 사장님 소리 들었으니 한잔해요 ᄏᄏ",
+      "engagement": {
+        "likes": 0,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-2b73238b7a94",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:UgzVbupfCfu6f7wI3YB4AaABAg",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:tkb-uv3VZjI",
+      "thread_id": "yt:UgzVbupfCfu6f7wI3YB4AaABAg",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=tkb-uv3VZjI&lc=UgzVbupfCfu6f7wI3YB4AaABAg",
+      "published_at": "2023-04-09T02:01:23Z",
+      "text_raw": "창업 그만두시는 줄 알고 놀라서 들어왔네요🤣 자막에 배경색 있으면 읽기 더 편할거같아요",
+      "text_norm": "창업 그만두시는 줄 알고 놀라서 들어왔네요🤣 자막에 배경색 있으면 읽기 더 편할거같아요",
+      "engagement": {
+        "likes": 1,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-204398550249",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:UgzVbupfCfu6f7wI3YB4AaABAg.9oG_-JUZjuO9oHskgfvC-S",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:tkb-uv3VZjI",
+      "thread_id": "yt:UgzVbupfCfu6f7wI3YB4AaABAg",
+      "parent_id": "yt:UgzVbupfCfu6f7wI3YB4AaABAg",
+      "url": "https://www.youtube.com/watch?v=tkb-uv3VZjI&lc=UgzVbupfCfu6f7wI3YB4AaABAg.9oG_-JUZjuO9oHskgfvC-S",
+      "published_at": "2023-04-09T14:13:15Z",
+      "text_raw": "히히 넵 다음영상에서 참고할게요 감사합니당",
+      "text_norm": "히히 넵 다음영상에서 참고할게요 감사합니당",
+      "engagement": {
+        "likes": 0,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-bcc0935514f9",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": true,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:Ugx7LzAi7R_lhhM0jg14AaABAg",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:tkb-uv3VZjI",
+      "thread_id": "yt:Ugx7LzAi7R_lhhM0jg14AaABAg",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=tkb-uv3VZjI&lc=Ugx7LzAi7R_lhhM0jg14AaABAg",
+      "published_at": "2023-04-10T07:59:37Z",
+      "text_raw": "안녕하세요! 영상잘보고있습니다😊 혹시 아이디어스 입점 할수있었던 방법이 있을까요??ㅠㅠ 저도 인형꽃다발로 신청을 했는데 승인 거절을 받아서요..ㅜㅜ 저만의 차별화된 핸드메이드 구성도 추가했는데 부족하다고 하더라구요..ㅜㅜ 혹시 답변 부탁드려도될까요..??",
+      "text_norm": "안녕하세요! 영상잘보고있습니다😊 혹시 아이디어스 입점 할수있었던 방법이 있을까요?ᅲᅲ 저도 인형꽃다발로 신청을 했는데 승인 거절을 받아서요.ᅮᅮ 저만의 차별화된 핸드메이드 구성도 추가했는데 부족하다고 하더라구요.ᅮᅮ 혹시 답변 부탁드려도될까요.?",
+      "engagement": {
+        "likes": 0,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-f32193e2e9d5",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:Ugx7LzAi7R_lhhM0jg14AaABAg.9oJmmuxS8hM9oMwf4nAHYF",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:tkb-uv3VZjI",
+      "thread_id": "yt:Ugx7LzAi7R_lhhM0jg14AaABAg",
+      "parent_id": "yt:Ugx7LzAi7R_lhhM0jg14AaABAg",
+      "url": "https://www.youtube.com/watch?v=tkb-uv3VZjI&lc=Ugx7LzAi7R_lhhM0jg14AaABAg.9oJmmuxS8hM9oMwf4nAHYF",
+      "published_at": "2023-04-11T13:23:38Z",
+      "text_raw": "안녕하세요! 답변이 늦었습니다😅 혹시 부족한 점이 정확히 어떤 부분이었을까요..? 저는 피피티로 정리해서 보냈었습니다..!",
+      "text_norm": "안녕하세요! 답변이 늦었습니다😅 혹시 부족한 점이 정확히 어떤 부분이었을까요.? 저는 피피티로 정리해서 보냈었습니다.!",
+      "engagement": {
+        "likes": 0,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-0914db1c87f2",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:UgxEdbSqnndUVpG6YUp4AaABAg",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:n2jXI2dvuKA",
+      "thread_id": "yt:UgxEdbSqnndUVpG6YUp4AaABAg",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=n2jXI2dvuKA&lc=UgxEdbSqnndUVpG6YUp4AaABAg",
+      "published_at": "2022-01-09T04:50:31Z",
+      "text_raw": "저를 멘션 해주셨었네요 ??^^ 감사합니다. 누군가 영상에서 제 이름을 언급하니 식은땀이 줄 줄 .... 사정상 업로드를 못하다가 다시 돌아왔습니다. 더 좋은 정보로 찾아뵐게요 😍",
+      "text_norm": "저를 멘션 해주셨었네요 ?^ 감사합니다. 누군가 영상에서 제 이름을 언급하니 식은땀이 줄 줄 . 사정상 업로드를 못하다가 다시 돌아왔습니다. 더 좋은 정보로 찾아뵐게요 😍",
+      "engagement": {
+        "likes": 1,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-a6f5f874a8f8",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:UgzzuJjiecLhIk0hDrt4AaABAg",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:n2jXI2dvuKA",
+      "thread_id": "yt:UgzzuJjiecLhIk0hDrt4AaABAg",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=n2jXI2dvuKA&lc=UgzzuJjiecLhIk0hDrt4AaABAg",
+      "published_at": "2021-03-12T08:13:22Z",
+      "text_raw": "새미양 열심히 사는 모습\n보기 좋아요 ㅎㅎ\n\n일한뒤 휴식을 취해야\n재충전 할 수 있고 능률도\n더 오르고 삶의 질도 올라가니\n휴식은 꼭 있어야 해요\n\n과도기라 쉴 수 없었지만  \n정착되면 규칙적으로 쉬는\n날이 올거예요\n\n화이팅 해요\n\n주말 즐겁게 보내요  새미양~^^😀🥰😍",
+      "text_norm": "새미양 열심히 사는 모습 보기 좋아요 ᄒᄒ 일한뒤 휴식을 취해야 재충전 할 수 있고 능률도 더 오르고 삶의 질도 올라가니 휴식은 꼭 있어야 해요 과도기라 쉴 수 없었지만 정착되면 규칙적으로 쉬는 날이 올거예요 화이팅 해요 주말 즐겁게 보내요 새미양~^😀🥰😍",
+      "engagement": {
+        "likes": 3,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-8d99ad820af1",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:UgzzuJjiecLhIk0hDrt4AaABAg.9KmS0XJu2Mf9KrMZaCGBV4",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:n2jXI2dvuKA",
+      "thread_id": "yt:UgzzuJjiecLhIk0hDrt4AaABAg",
+      "parent_id": "yt:UgzzuJjiecLhIk0hDrt4AaABAg",
+      "url": "https://www.youtube.com/watch?v=n2jXI2dvuKA&lc=UgzzuJjiecLhIk0hDrt4AaABAg.9KmS0XJu2Mf9KrMZaCGBV4",
+      "published_at": "2021-03-14T06:01:55Z",
+      "text_raw": "언젠가 편하게 쉴 수 있는 날이 오겠죠?😭😭 좋은 주말 보내세요!",
+      "text_norm": "언젠가 편하게 쉴 수 있는 날이 오겠죠?😭 좋은 주말 보내세요!",
+      "engagement": {
+        "likes": 1,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-d614e5b78bc8",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:UgyiN5aa8hxtzFc9MAd4AaABAg",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:n2jXI2dvuKA",
+      "thread_id": "yt:UgyiN5aa8hxtzFc9MAd4AaABAg",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=n2jXI2dvuKA&lc=UgyiN5aa8hxtzFc9MAd4AaABAg",
+      "published_at": "2021-04-12T02:42:38Z",
+      "text_raw": "감사합니다👍🌸",
+      "text_norm": "감사합니다👍🌸",
+      "engagement": {
+        "likes": 1,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-be374fd8c5d2",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": true,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:UgyiN5aa8hxtzFc9MAd4AaABAg.9M0foI5SvjI9M1w5twvdau",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:n2jXI2dvuKA",
+      "thread_id": "yt:UgyiN5aa8hxtzFc9MAd4AaABAg",
+      "parent_id": "yt:UgyiN5aa8hxtzFc9MAd4AaABAg",
+      "url": "https://www.youtube.com/watch?v=n2jXI2dvuKA&lc=UgyiN5aa8hxtzFc9MAd4AaABAg.9M0foI5SvjI9M1w5twvdau",
+      "published_at": "2021-04-12T14:24:13Z",
+      "text_raw": "저두요🥰🖤",
+      "text_norm": "저두요🥰🖤",
+      "engagement": {
+        "likes": 0,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-ce332fab6add",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:UgxO3sh67E6fKV81cZZ4AaABAg",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:n2jXI2dvuKA",
+      "thread_id": "yt:UgxO3sh67E6fKV81cZZ4AaABAg",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=n2jXI2dvuKA&lc=UgxO3sh67E6fKV81cZZ4AaABAg",
+      "published_at": "2021-10-01T01:01:03Z",
+      "text_raw": "스마트스토어 뿌시기 재생목록중 세개가 왜 없나염? ㅜㅜ 세개 영상은 볼수가 없다고 나오는데염",
+      "text_norm": "스마트스토어 뿌시기 재생목록중 세개가 왜 없나염? ᅮᅮ 세개 영상은 볼수가 없다고 나오는데염",
+      "engagement": {
+        "likes": 0,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-4c98f4d884fe",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:UgxO3sh67E6fKV81cZZ4AaABAg.9SwNusPCpRk9SxTUfnrIee",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:n2jXI2dvuKA",
+      "thread_id": "yt:UgxO3sh67E6fKV81cZZ4AaABAg",
+      "parent_id": "yt:UgxO3sh67E6fKV81cZZ4AaABAg",
+      "url": "https://www.youtube.com/watch?v=n2jXI2dvuKA&lc=UgxO3sh67E6fKV81cZZ4AaABAg.9SwNusPCpRk9SxTUfnrIee",
+      "published_at": "2021-10-01T11:09:01Z",
+      "text_raw": "확인해보니 채널 주인분께서 비공개로 전환하신거 같아요 ㅠㅠ",
+      "text_norm": "확인해보니 채널 주인분께서 비공개로 전환하신거 같아요 ᅲᅲ",
+      "engagement": {
+        "likes": 1,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-5bbb45f9db02",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    },
+    {
+      "evidence_id": "yt:UgzDOPoqGyAVxeRFUl94AaABAg",
+      "source": "youtube_comment",
+      "source_group": "youtube",
+      "source_item_id": "yt:video:szsncZD7bGw",
+      "thread_id": "yt:UgzDOPoqGyAVxeRFUl94AaABAg",
+      "parent_id": null,
+      "url": "https://www.youtube.com/watch?v=szsncZD7bGw&lc=UgzDOPoqGyAVxeRFUl94AaABAg",
+      "published_at": "2026-09-01T00:11:31Z",
+      "text_raw": "호재인가요?",
+      "text_norm": "호재인가요?",
+      "engagement": {
+        "likes": 0,
+        "replies": 0
+      },
+      "access_policy": "official_api",
+      "dedup_group_id": "dedup-ac2b0a20f466",
+      "is_group_representative": true,
+      "pain_cluster_id": null,
+      "is_noise": false,
+      "signals": [],
+      "counter": []
+    }
+  ],
+  "dedup_groups": [
+    {
+      "group_id": "dedup-02a328f696f9",
+      "representative_id": "yt:Ugw01mWHirczsvHij0N4AaABAg",
+      "member_ids": [
+        "yt:Ugw01mWHirczsvHij0N4AaABAg"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-54fdd0b63264",
+      "representative_id": "yt:UgwDH-okguzTiOIqi_l4AaABAg",
+      "member_ids": [
+        "yt:UgwDH-okguzTiOIqi_l4AaABAg"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-907fb63e5235",
+      "representative_id": "yt:UgwDH-okguzTiOIqi_l4AaABAg.AXAuJLxkkV-AXiMIvyXJ-w",
+      "member_ids": [
+        "yt:UgwDH-okguzTiOIqi_l4AaABAg.AXAuJLxkkV-AXiMIvyXJ-w"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-b38c447e8a1b",
+      "representative_id": "yt:UgwDH-okguzTiOIqi_l4AaABAg.AXAuJLxkkV-AXZ_VlnKbgp",
+      "member_ids": [
+        "yt:UgwDH-okguzTiOIqi_l4AaABAg.AXAuJLxkkV-AXZ_VlnKbgp"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-8a9b432cb240",
+      "representative_id": "yt:UgwDH-okguzTiOIqi_l4AaABAg.AXAuJLxkkV-AYEO2VJoQCb",
+      "member_ids": [
+        "yt:UgwDH-okguzTiOIqi_l4AaABAg.AXAuJLxkkV-AYEO2VJoQCb"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-3bb0dc13cde6",
+      "representative_id": "yt:UgwJW-An2yh91ilVZ794AaABAg",
+      "member_ids": [
+        "yt:UgwJW-An2yh91ilVZ794AaABAg"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-e6e6ec649879",
+      "representative_id": "yt:UgwJW-An2yh91ilVZ794AaABAg.AXiKpP2BySJAXiL_dniwFE",
+      "member_ids": [
+        "yt:UgwJW-An2yh91ilVZ794AaABAg.AXiKpP2BySJAXiL_dniwFE"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-be6924d37d62",
+      "representative_id": "yt:UgwrdM5_-o3GbFohHR54AaABAg",
+      "member_ids": [
+        "yt:UgwrdM5_-o3GbFohHR54AaABAg"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-ef9bad75234b",
+      "representative_id": "yt:UgwwZDcIH7SMJHztjEB4AaABAg",
+      "member_ids": [
+        "yt:UgwwZDcIH7SMJHztjEB4AaABAg"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-7ee53aa38d1d",
+      "representative_id": "yt:UgwX16ldlC5GBaUcJHl4AaABAg",
+      "member_ids": [
+        "yt:UgwX16ldlC5GBaUcJHl4AaABAg"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-a158b3d5efe1",
+      "representative_id": "yt:Ugwx5tmbdxrp7uNNGuB4AaABAg",
+      "member_ids": [
+        "yt:Ugwx5tmbdxrp7uNNGuB4AaABAg"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-926a2fd34671",
+      "representative_id": "yt:Ugwx5tmbdxrp7uNNGuB4AaABAg.AWw7KDgl_SLAX-Lg3MfxNN",
+      "member_ids": [
+        "yt:Ugwx5tmbdxrp7uNNGuB4AaABAg.AWw7KDgl_SLAX-Lg3MfxNN"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-85a4d56f75d7",
+      "representative_id": "yt:Ugx4DgahfK7W0iiXhh94AaABAg",
+      "member_ids": [
+        "yt:Ugx4DgahfK7W0iiXhh94AaABAg"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-121f6ba02bc6",
+      "representative_id": "yt:Ugx58RlhEPnS-FLQeoB4AaABAg",
+      "member_ids": [
+        "yt:Ugx58RlhEPnS-FLQeoB4AaABAg"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-9cec78ed5f49",
+      "representative_id": "yt:Ugx58RlhEPnS-FLQeoB4AaABAg.AX91woiwPpkA_ZbwfVhD5e",
+      "member_ids": [
+        "yt:Ugx58RlhEPnS-FLQeoB4AaABAg.AX91woiwPpkA_ZbwfVhD5e"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-5bb5e52cc107",
+      "representative_id": "yt:Ugx79mQ3muQo-IsUj0V4AaABAg",
+      "member_ids": [
+        "yt:Ugx79mQ3muQo-IsUj0V4AaABAg"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-f32193e2e9d5",
+      "representative_id": "yt:Ugx7LzAi7R_lhhM0jg14AaABAg",
+      "member_ids": [
+        "yt:Ugx7LzAi7R_lhhM0jg14AaABAg"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-0914db1c87f2",
+      "representative_id": "yt:Ugx7LzAi7R_lhhM0jg14AaABAg.9oJmmuxS8hM9oMwf4nAHYF",
+      "member_ids": [
+        "yt:Ugx7LzAi7R_lhhM0jg14AaABAg.9oJmmuxS8hM9oMwf4nAHYF"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-a6f5f874a8f8",
+      "representative_id": "yt:UgxEdbSqnndUVpG6YUp4AaABAg",
+      "member_ids": [
+        "yt:UgxEdbSqnndUVpG6YUp4AaABAg"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-3e55cb30f1bb",
+      "representative_id": "yt:UgxeQH-65tJXutUnawJ4AaABAg",
+      "member_ids": [
+        "yt:UgxeQH-65tJXutUnawJ4AaABAg"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-8504530f7324",
+      "representative_id": "yt:UgxG5JfovUVF4XuVebR4AaABAg",
+      "member_ids": [
+        "yt:UgxG5JfovUVF4XuVebR4AaABAg"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-abb43d52fe44",
+      "representative_id": "yt:UgxKSZiJm_P_D8ypoVJ4AaABAg",
+      "member_ids": [
+        "yt:UgxKSZiJm_P_D8ypoVJ4AaABAg"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-4c98f4d884fe",
+      "representative_id": "yt:UgxO3sh67E6fKV81cZZ4AaABAg",
+      "member_ids": [
+        "yt:UgxO3sh67E6fKV81cZZ4AaABAg"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-5bbb45f9db02",
+      "representative_id": "yt:UgxO3sh67E6fKV81cZZ4AaABAg.9SwNusPCpRk9SxTUfnrIee",
+      "member_ids": [
+        "yt:UgxO3sh67E6fKV81cZZ4AaABAg.9SwNusPCpRk9SxTUfnrIee"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-b0513a653773",
+      "representative_id": "yt:Ugxrkf1T50iHI6yP6dx4AaABAg",
+      "member_ids": [
+        "yt:Ugxrkf1T50iHI6yP6dx4AaABAg"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-4c667e151707",
+      "representative_id": "yt:Ugxy81QVZqAOABHV9Wh4AaABAg",
+      "member_ids": [
+        "yt:Ugxy81QVZqAOABHV9Wh4AaABAg"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-f7795561f96b",
+      "representative_id": "yt:Ugxy81QVZqAOABHV9Wh4AaABAg.A_U1BoE7-zfA_boEG-oXog",
+      "member_ids": [
+        "yt:Ugxy81QVZqAOABHV9Wh4AaABAg.A_U1BoE7-zfA_boEG-oXog"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-2690b18dccbb",
+      "representative_id": "yt:Ugy0UMGoRRv5Ce50fk54AaABAg",
+      "member_ids": [
+        "yt:Ugy0UMGoRRv5Ce50fk54AaABAg"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-2d16a3cb9608",
+      "representative_id": "yt:Ugy0UMGoRRv5Ce50fk54AaABAg.AWugHUdPGZYAX-LE0ObQEU",
+      "member_ids": [
+        "yt:Ugy0UMGoRRv5Ce50fk54AaABAg.AWugHUdPGZYAX-LE0ObQEU"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-ec0bed0f5da4",
+      "representative_id": "yt:Ugy7BUSqUxchl3O8s1F4AaABAg",
+      "member_ids": [
+        "yt:Ugy7BUSqUxchl3O8s1F4AaABAg"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-67545f68a268",
+      "representative_id": "yt:UgyDN_cWPZoDd1zOiSV4AaABAg",
+      "member_ids": [
+        "yt:UgyDN_cWPZoDd1zOiSV4AaABAg"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-328dc3aa3c80",
+      "representative_id": "yt:UgyDN_cWPZoDd1zOiSV4AaABAg.AL7aSbUwRqRALBrj4r_S3a",
+      "member_ids": [
+        "yt:UgyDN_cWPZoDd1zOiSV4AaABAg.AL7aSbUwRqRALBrj4r_S3a"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-350a3029f209",
+      "representative_id": "yt:UgyfnRoCVpIROH-hCMp4AaABAg",
+      "member_ids": [
+        "yt:UgyfnRoCVpIROH-hCMp4AaABAg"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-2b73238b7a94",
+      "representative_id": "yt:UgyiLsMIRGEjygYehWd4AaABAg",
+      "member_ids": [
+        "yt:UgyiLsMIRGEjygYehWd4AaABAg"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-be374fd8c5d2",
+      "representative_id": "yt:UgyiN5aa8hxtzFc9MAd4AaABAg",
+      "member_ids": [
+        "yt:UgyiN5aa8hxtzFc9MAd4AaABAg"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-ce332fab6add",
+      "representative_id": "yt:UgyiN5aa8hxtzFc9MAd4AaABAg.9M0foI5SvjI9M1w5twvdau",
+      "member_ids": [
+        "yt:UgyiN5aa8hxtzFc9MAd4AaABAg.9M0foI5SvjI9M1w5twvdau"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-b408f10a1284",
+      "representative_id": "yt:UgyuVv8g9kQXCfonAid4AaABAg",
+      "member_ids": [
+        "yt:UgyuVv8g9kQXCfonAid4AaABAg"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-0a2f6a3bb85d",
+      "representative_id": "yt:UgyuVv8g9kQXCfonAid4AaABAg.A_an56vDjO6A_bnnopfnh3",
+      "member_ids": [
+        "yt:UgyuVv8g9kQXCfonAid4AaABAg.A_an56vDjO6A_bnnopfnh3"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-af946b9b3586",
+      "representative_id": "yt:UgyuY7YB3xiGOymICxB4AaABAg",
+      "member_ids": [
+        "yt:UgyuY7YB3xiGOymICxB4AaABAg"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-b2f519f795fa",
+      "representative_id": "yt:UgyuY7YB3xiGOymICxB4AaABAg.AWuw3NvST9oAX-LKZANhTf",
+      "member_ids": [
+        "yt:UgyuY7YB3xiGOymICxB4AaABAg.AWuw3NvST9oAX-LKZANhTf"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-4665b1f61bab",
+      "representative_id": "yt:UgyW2v99oumg0jMgKNF4AaABAg",
+      "member_ids": [
+        "yt:UgyW2v99oumg0jMgKNF4AaABAg"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-6c6ff8f34aa1",
+      "representative_id": "yt:UgyW2v99oumg0jMgKNF4AaABAg.AWv1yv1WuSnAX-LFGQ1XnT",
+      "member_ids": [
+        "yt:UgyW2v99oumg0jMgKNF4AaABAg.AWv1yv1WuSnAX-LFGQ1XnT"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-36fb33618ab5",
+      "representative_id": "yt:Ugz-cfiLCpzAaoly5ud4AaABAg",
+      "member_ids": [
+        "yt:Ugz-cfiLCpzAaoly5ud4AaABAg"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-b447436f71f8",
+      "representative_id": "yt:Ugz-cfiLCpzAaoly5ud4AaABAg.AWugBe3T4i9AX-LJGd5GAH",
+      "member_ids": [
+        "yt:Ugz-cfiLCpzAaoly5ud4AaABAg.AWugBe3T4i9AX-LJGd5GAH"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-62776fbd7958",
+      "representative_id": "yt:Ugz2hbj0c3BELaNw0rd4AaABAg",
+      "member_ids": [
+        "yt:Ugz2hbj0c3BELaNw0rd4AaABAg"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-3243facf3a7c",
+      "representative_id": "yt:Ugz2hbj0c3BELaNw0rd4AaABAg.AX9JoRDHQIYAX9KkN8h_c5",
+      "member_ids": [
+        "yt:Ugz2hbj0c3BELaNw0rd4AaABAg.AX9JoRDHQIYAX9KkN8h_c5"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-5425e9a8c36d",
+      "representative_id": "yt:Ugza8K9GZK23ud7lHNp4AaABAg",
+      "member_ids": [
+        "yt:Ugza8K9GZK23ud7lHNp4AaABAg"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-42f8b7a76109",
+      "representative_id": "yt:Ugza8K9GZK23ud7lHNp4AaABAg.AX1KpB8V45NAXCPMhtiK7x",
+      "member_ids": [
+        "yt:Ugza8K9GZK23ud7lHNp4AaABAg.AX1KpB8V45NAXCPMhtiK7x"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-1663e65cf251",
+      "representative_id": "yt:UgzavT33gBie79Hcmo94AaABAg",
+      "member_ids": [
+        "yt:UgzavT33gBie79Hcmo94AaABAg"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-dc02fb33cc81",
+      "representative_id": "yt:UgzbLnSL99Qwc2Q_8Qx4AaABAg",
+      "member_ids": [
+        "yt:UgzbLnSL99Qwc2Q_8Qx4AaABAg"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-ac2b0a20f466",
+      "representative_id": "yt:UgzDOPoqGyAVxeRFUl94AaABAg",
+      "member_ids": [
+        "yt:UgzDOPoqGyAVxeRFUl94AaABAg"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-dc1d0ca0a014",
+      "representative_id": "yt:UgzeyEaI1kOJ4AOGKih4AaABAg",
+      "member_ids": [
+        "yt:UgzeyEaI1kOJ4AOGKih4AaABAg"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-99c705ea64b4",
+      "representative_id": "yt:UgzeyEaI1kOJ4AOGKih4AaABAg.AWyU0lIHLuTAX-LZs7z-ga",
+      "member_ids": [
+        "yt:UgzeyEaI1kOJ4AOGKih4AaABAg.AWyU0lIHLuTAX-LZs7z-ga"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-935e95d77e03",
+      "representative_id": "yt:UgzeyEaI1kOJ4AOGKih4AaABAg.AWyU0lIHLuTAXBY8IPcmRY",
+      "member_ids": [
+        "yt:UgzeyEaI1kOJ4AOGKih4AaABAg.AWyU0lIHLuTAXBY8IPcmRY"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-8b7a3fa667a0",
+      "representative_id": "yt:UgzLk0R1JApc1SBmWxx4AaABAg",
+      "member_ids": [
+        "yt:UgzLk0R1JApc1SBmWxx4AaABAg"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-45640cd0850c",
+      "representative_id": "yt:UgzMmAqKNVR5aQhzJ_d4AaABAg",
+      "member_ids": [
+        "yt:UgzMmAqKNVR5aQhzJ_d4AaABAg"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-204398550249",
+      "representative_id": "yt:UgzVbupfCfu6f7wI3YB4AaABAg",
+      "member_ids": [
+        "yt:UgzVbupfCfu6f7wI3YB4AaABAg"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-bcc0935514f9",
+      "representative_id": "yt:UgzVbupfCfu6f7wI3YB4AaABAg.9oG_-JUZjuO9oHskgfvC-S",
+      "member_ids": [
+        "yt:UgzVbupfCfu6f7wI3YB4AaABAg.9oG_-JUZjuO9oHskgfvC-S"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-8d99ad820af1",
+      "representative_id": "yt:UgzzuJjiecLhIk0hDrt4AaABAg",
+      "member_ids": [
+        "yt:UgzzuJjiecLhIk0hDrt4AaABAg"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-d614e5b78bc8",
+      "representative_id": "yt:UgzzuJjiecLhIk0hDrt4AaABAg.9KmS0XJu2Mf9KrMZaCGBV4",
+      "member_ids": [
+        "yt:UgzzuJjiecLhIk0hDrt4AaABAg.9KmS0XJu2Mf9KrMZaCGBV4"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-0b83c8de2e5f",
+      "representative_id": "yt:UgzZVIoweGxb_KSCY2J4AaABAg",
+      "member_ids": [
+        "yt:UgzZVIoweGxb_KSCY2J4AaABAg"
+      ],
+      "reason": "single"
+    },
+    {
+      "group_id": "dedup-56e68b26b064",
+      "representative_id": "yt:UgzZVIoweGxb_KSCY2J4AaABAg.AXi5gMYIDEfAXiLMz-BGHP",
+      "member_ids": [
+        "yt:UgzZVIoweGxb_KSCY2J4AaABAg.AXi5gMYIDEfAXiLMz-BGHP"
+      ],
+      "reason": "single"
+    }
+  ],
+  "config_snapshot": {
+    "min_rung_obs": 3,
+    "opp_high": {
+      "min_ind": 10,
+      "min_source_groups": 1,
+      "min_rung": "switching"
+    },
+    "opp_medium": {
+      "min_ind": 5,
+      "min_rung": "workaround"
+    },
+    "counter_downgrade_ratio": 0.3,
+    "conf_high": {
+      "min_ind": 20,
+      "min_source_groups": 2,
+      "max_inflation": 3,
+      "max_not_experienced": 0.2
+    },
+    "conf_medium": {
+      "min_ind": 8
+    },
+    "same_item_penalty_ratio": 0.7,
+    "near_dup_threshold": 0.6,
+    "thread_echo_threshold": 0.4,
+    "signal_min_confidence": 0.6,
+    "batch_size": 20
+  },
+  "llm": {
+    "mode": "mock",
+    "dropped_quotes": 0
+  }
+}
