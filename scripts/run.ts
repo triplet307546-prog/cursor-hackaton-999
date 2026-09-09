@@ -464,7 +464,7 @@ if (isMainModule()) {
       process.exitCode = code;
     })
     .catch((error: unknown) => {
-      console.error(`오류: ${error instanceof Error ? error.message : String(error)}`);
+      console.error(`오류: ${error instanceof Error ? (error.stack ?? error.message) : String(error)}`);
       process.exitCode = 1;
     });
 }
