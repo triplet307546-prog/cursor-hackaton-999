@@ -40,3 +40,8 @@ LLM은 유형(type)과 인용문(quote), 확신도(confidence)를 낸다. quote�
 - **점수화** — 0~100점은 없다. High/Medium/Low 밴드와 규칙이 만든 이유 문자열만 있다.
 - **판매자 문장을 신호로 세기** — 홍보(링크+연락/판매) 댓글은 신호를 비우고 제외한다.
 - **내용 없는 댓글을 언급으로 세기** — 이모지·감사 한마디 같은 무내용은 언급에서 빼고, 화면 캡션에 제외 건수를 적는다.
+
+## 아직 없는 것
+
+- **네이버·CSV 소스** — `SourceGroup` 타입과 `NAVER_*` 환경변수만 있고 `lib/sources/naver.ts`·`csv.ts`는 없다. 지금 수집은 YouTube 댓글뿐이다.
+- **LLM 통째 비교(baseline)** — `lib/types.ts`의 `BaselineResult`는 타입만 있다. 계산도 화면 표시도 없다.
