@@ -31,7 +31,7 @@ const RUNG_COLORS: Record<SignalType, string> = {
   workaround: "#4ea6ea",
   alternative_search: "#9e82f0",
   switching: "#f2913e",
-  payment: "#2ed38f",
+  payment: "#159e66",
 };
 const BEHAVIOR_RUNGS = RUNG_ORDER.filter((type) => type !== "complaint");
 // 등장 뒤 자동 재생까지 기다리는 시간. ?step= 이 있으면 자동 재생하지 않는다.
@@ -382,12 +382,12 @@ function Slope({
         const moved = c.rank_before !== c.rank_after;
         const color =
           c.rank_after === 1
-            ? "#2ed38f"
+            ? "#159e66"
             : row.downgraded
-              ? "#f4536f"
+              ? "#e0405c"
               : moved
-                ? "rgba(236,234,228,.75)"
-                : "rgba(139,146,156,.35)";
+                ? "rgba(23,25,29,.6)"
+                : "rgba(107,114,128,.35)";
         const width = moved ? (c.rank_after === 1 ? 3 : 2) : 1.2;
         return (
           <g key={c.cluster_id}>

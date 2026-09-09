@@ -181,12 +181,12 @@ export default function RunPage() {
   const detail = phase === "replay" ? undefined : status?.detail;
 
   return (
-    <main className="min-h-screen bg-[#0e1013] text-zinc-100">
+    <main className="min-h-screen bg-zinc-50 text-zinc-900">
       <div className="flex flex-col gap-1.5 p-1.5">
         {/* 스테이지가 뜨면 이 줄은 접는다. "질문으로" 는 스테이지 머리에 들어 있다. */}
         {phase !== "ready" && (
           <div className="flex items-center gap-3 text-sm">
-            <Link href="/" className="text-zinc-500 hover:text-zinc-100">
+            <Link href="/" className="text-zinc-500 hover:text-zinc-900">
               ← 질문으로
             </Link>
             {run && run.mode !== "live" && <ModeBadge mode={run.mode} />}
