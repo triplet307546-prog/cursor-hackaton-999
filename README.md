@@ -31,7 +31,7 @@ npm run dev
 
 ## 원칙: 숫자는 코드가 세고, LLM은 라벨만
 
-LLM은 유형(type)과 인용문(quote)만 낸다. quote는 공백을 제거한 원문에 부분 문자열로 들어 있어야 하고, 없으면 코드가 버린다. 퍼널 숫자·사다리 합계·밴드·순위는 `lib/pipeline/`의 규칙이 계산한다.
+LLM은 유형(type)과 인용문(quote), 확신도(confidence)를 낸다. quote는 공백을 제거한 원문에 부분 문자열로 들어 있어야 하고, 없으면 코드가 버린다. 확신도가 `signal_min_confidence`(0.6) 미만인 신호는 버리지 않고 `used_in_ranking: false`로 남겨 순위 집계에서만 뺀다. 퍼널 숫자·사다리 합계·밴드·순위는 `lib/pipeline/`의 규칙이 계산한다.
 
 ## 하지 않는 것
 
