@@ -7,6 +7,7 @@ import demoJson from "../data/fixtures/demo.json";
 import labelsJson from "../data/fixtures/labels.json";
 import {
   classifyAll,
+  isContentless,
   isPromo,
   validateLabels,
   type RawLabel,
@@ -201,5 +202,29 @@ describe("classifyAll / validateLabels", () => {
     expect(result.evidence[0].signals).toHaveLength(1);
     expect(result.evidence[0].signals[0].type).toBe("workaround");
     expect(result.promo_dropped).toBe(0);
+  });
+});
+
+describe("isContentless", () => {
+  it('(i) "감사합니다 잘 봤어요" 는 무내용이다', () => {
+    expect(isContentless("감사합니다 잘 봤어요")).toBe(true);
+  });
+
+  it('(j) "ㅋㅋㅋㅋㅋ 👍" 는 무내용이다', () => {
+    expect(isContentless("ㅋㅋㅋㅋㅋ 👍")).toBe(true);
+  });
+
+  it('(k) 감사+행동 표현은 버리지 않는다', () => {
+    expect(
+      isContentless("감사합니다 저는 그냥 엑셀로 따로 정리해서 씁니다"),
+    ).toBe(false);
+  });
+
+  it('(l) 긴 고민 원문은 무내용이 아니다', () => {
+    expect(
+      isContentless(
+        "핸드메이드 제품은 인건비 생각하면 공장제품과 싸워야 해서 도저히 답이 안 나오더라고요",
+      ),
+    ).toBe(false);
   });
 });

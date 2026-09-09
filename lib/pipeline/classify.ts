@@ -24,6 +24,27 @@ export function isPromo(textRaw: string): boolean {
   return (hasLink && (hasContact || hasSales)) || (hasContact && hasSales);
 }
 
+const THANKS =
+  /(감사|고맙|잘\s*봤|잘\s*보고|유익|도움\s*(이\s*)?(됐|되었|됩)|최고|화이팅|파이팅|응원|구독|좋아요\s*누르)/;
+const NO_CONTENT = /^[\sㄱ-ㅎㅏ-ㅣ0-9!?.,~♡♥❤👍🙏😂🥲ㅋㅎㅠㅜ]*$/;
+const BEHAVIOR =
+  /엑셀|따로\s*정리|수기로|일일이|직접\s*만들|매크로|노션|갈아탔|옮겼|해지|넘어갔|접었|유료|결제|월\s*[0-9]/;
+
+export function isContentless(textRaw: string): boolean {
+  const len = textRaw.replace(/\s/g, "").length;
+  // 행동 표현이 있는 원문은 어떤 경우에도 버리지 않는다.
+  if (BEHAVIOR.test(textRaw)) {
+    return false;
+  }
+  if (NO_CONTENT.test(textRaw)) {
+    return true;
+  }
+  if (len < 20 && THANKS.test(textRaw)) {
+    return true;
+  }
+  return false;
+}
+
 export const CLASSIFY_PROMPT = `아래 pain 주제 목록에 각 evidence를 분류하라.
 
 주제:
@@ -144,11 +165,17 @@ export function validateLabels(
   labels: RawLabel[],
   themes: Theme[],
   cfg: ScoringConfig,
-): { evidence: Evidence[]; dropped: number; promo_dropped: number } {
+): {
+  evidence: Evidence[];
+  dropped: number;
+  promo_dropped: number;
+  contentless_dropped: number;
+} {
   const labelsById = new Map(labels.map((label) => [label.evidence_id, label]));
   const themeIds = new Set(themes.map((theme) => theme.cluster_id));
   let dropped = 0;
   let promoDropped = 0;
+  let contentlessDropped = 0;
 
   const evidence = batch.map((item) => {
     const raw = labelsById.get(item.evidence_id) ?? emptyRawLabel(item.evidence_id);
@@ -193,6 +220,12 @@ export function validateLabels(
       isNoise = true;
     }
 
+    if (isContentless(item.text_raw)) {
+      signals = [];
+      isNoise = true;
+      contentlessDropped += 1;
+    }
+
     return {
       ...item,
       pain_cluster_id: painClusterId,
@@ -202,7 +235,12 @@ export function validateLabels(
     };
   });
 
-  return { evidence, dropped, promo_dropped: promoDropped };
+  return {
+    evidence,
+    dropped,
+    promo_dropped: promoDropped,
+    contentless_dropped: contentlessDropped,
+  };
 }
 
 export async function classifyAll(
@@ -210,11 +248,17 @@ export async function classifyAll(
   themes: Theme[],
   cfg: ScoringConfig,
   mode?: LlmMode,
-): Promise<{ evidence: Evidence[]; dropped: number; promo_dropped: number }> {
+): Promise<{
+  evidence: Evidence[];
+  dropped: number;
+  promo_dropped: number;
+  contentless_dropped: number;
+}> {
   const representatives = evidence.filter((item) => item.is_group_representative);
   const labeledRepresentatives: Evidence[] = [];
   let dropped = 0;
   let promoDropped = 0;
+  let contentlessDropped = 0;
   let totalSignals = 0;
 
   // LLM 호출은 항상 순차. 배치를 동시에 보내면 할당량·로그가 꼬인다.
@@ -229,6 +273,7 @@ export async function classifyAll(
     labeledRepresentatives.push(...validated.evidence);
     dropped += validated.dropped;
     promoDropped += validated.promo_dropped;
+    contentlessDropped += validated.contentless_dropped;
   }
 
   if (totalSignals > 0 && dropped / totalSignals > 0.3) {
@@ -262,8 +307,13 @@ export async function classifyAll(
   });
 
   console.log(
-    `[classify] promo 제외 ${promoDropped}건 / quote 불일치 ${dropped}건`,
+    `[classify] promo 제외 ${promoDropped}건 / 무내용 제외 ${contentlessDropped}건 / quote 불일치 ${dropped}건`,
   );
 
-  return { evidence: labeledEvidence, dropped, promo_dropped: promoDropped };
+  return {
+    evidence: labeledEvidence,
+    dropped,
+    promo_dropped: promoDropped,
+    contentless_dropped: contentlessDropped,
+  };
 }
