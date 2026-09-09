@@ -69,14 +69,35 @@ export default function AskPage() {
           </p>
         </header>
 
-        <div className="flex flex-col gap-3">
+        <form onSubmit={submitCustom} className="flex gap-2 rounded-2xl border border-zinc-200 bg-white p-2 shadow-sm focus-within:border-zinc-500">
+          <input
+            type="text"
+            value={customQuestion}
+            onChange={(event) => setCustomQuestion(event.target.value)}
+            placeholder="예: 셀러들이 광고비 때문에 겪는 문제는?"
+            maxLength={300}
+            disabled={pending}
+            autoFocus
+            className="flex-1 bg-transparent px-4 py-3 text-lg outline-none placeholder:text-zinc-400"
+          />
+          <button
+            type="submit"
+            disabled={pending}
+            className="rounded-xl bg-zinc-900 px-5 py-3 text-base font-medium text-white hover:bg-zinc-700 disabled:cursor-wait disabled:opacity-60"
+          >
+            실행
+          </button>
+        </form>
+
+        <p className="mt-6 text-center text-xs font-medium uppercase tracking-widest text-zinc-400">이런 질문은 어때요?</p>
+        <div className="mt-3 flex flex-wrap justify-center gap-2">
           {QUESTIONS.map((item) => (
             <button
               key={item.slug}
               type="button"
               disabled={pending}
               onClick={() => void startRun({ question: item.label, slug: item.slug })}
-              className="rounded-2xl border border-zinc-200 bg-white px-6 py-6 text-left text-lg font-medium shadow-sm transition hover:border-zinc-400 hover:shadow disabled:cursor-wait disabled:opacity-60"
+              className="rounded-full border border-dashed border-zinc-300 bg-transparent px-4 py-2 text-sm text-zinc-600 transition hover:border-zinc-500 hover:bg-white hover:text-zinc-900 disabled:cursor-wait disabled:opacity-60"
             >
               {item.label}
             </button>
@@ -84,42 +105,6 @@ export default function AskPage() {
         </div>
 
         <p className="mt-4 text-center text-xs text-zinc-500">출처: YouTube 댓글 (공식 API)</p>
-
-        <details className="mt-6 rounded-xl border border-zinc-200 bg-white px-5 py-4">
-          <summary className="cursor-pointer text-sm font-medium text-zinc-700">직접 입력</summary>
-          <form onSubmit={submitCustom} className="mt-3 flex flex-col gap-2">
-            <input
-              type="text"
-              value={customQuestion}
-              onChange={(event) => setCustomQuestion(event.target.value)}
-              placeholder="질문 (예: 셀러들이 광고비 때문에 겪는 문제는?)"
-              maxLength={300}
-              disabled={pending}
-              className="rounded-lg border border-zinc-300 px-3 py-2 text-sm outline-none focus:border-zinc-500"
-            />
-            <div className="flex gap-2">
-              <input
-                type="text"
-                value={customQuery}
-                onChange={(event) => setCustomQuery(event.target.value)}
-                placeholder="YouTube 검색어 (예: 스마트스토어 광고비)"
-                maxLength={300}
-                disabled={pending}
-                className="flex-1 rounded-lg border border-zinc-300 px-3 py-2 text-sm outline-none focus:border-zinc-500"
-              />
-              <button
-                type="submit"
-                disabled={pending}
-                className="rounded-lg bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-700 disabled:cursor-wait disabled:opacity-60"
-              >
-                실행
-              </button>
-            </div>
-            <p className="text-xs text-zinc-500">
-              직접 입력은 YouTube에서 새로 수집해 분석합니다. 결과까지 몇 분 걸립니다.
-            </p>
-          </form>
-        </details>
 
         {error && (
           <p className="mt-4 rounded-lg border border-rose-300 bg-rose-50 px-4 py-2 text-sm text-rose-700">
