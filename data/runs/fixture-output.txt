@@ -7,7 +7,7 @@
 · dedup
 · themes 대표 40건 중 표본 40건
 · classify 주제 3개 · 배치 2회
-· rank
+· rank 클러스터 3개
 · done fixture
 저장: data/runs/fixture.json
 질문: 네이버 스마트스토어 셀러들이 반복적으로 겪는 운영 문제는?
