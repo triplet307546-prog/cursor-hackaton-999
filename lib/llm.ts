@@ -57,7 +57,7 @@ export function setUsageContext(ctx: { run_id: string; phase: UsagePhase }): voi
   usageContext = { run_id: ctx.run_id, phase: ctx.phase };
 }
 
-export function recordUsage(input: number, output: number): void {
+export function recordUsage(input: number, output: number, raw?: string | null): void {
   // mock 경로는 여기 오지 않는다. mode:'real' 오버라이드여도 토큰을 남겨야 한다.
   const line = `${JSON.stringify({
     at: new Date().toISOString(),
@@ -65,6 +65,7 @@ export function recordUsage(input: number, output: number): void {
     phase: usageContext.phase,
     input,
     output,
+    ...(process.env.LLM_LOG_RAW === "1" ? { raw } : {}),
   })}\n`;
 
   mkdirSync(dirname(USAGE_PATH), { recursive: true });
@@ -130,7 +131,7 @@ async function callJsonReal<T>(opts: {
       return opts.fallback;
     }
 
-    recordUsage(result.inputTokens, result.outputTokens);
+    recordUsage(result.inputTokens, result.outputTokens, result.text);
     const parsed = parseModelJson<T>(result.text ?? "");
     if (parsed.ok) {
       return parsed.value;
